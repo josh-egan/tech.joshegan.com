@@ -506,70 +506,41 @@ Serif;color:#e4e4e4;opacity:.8}
 @media screen and (max-width:595px){.posts{padding-top:10px}}
 
 .posts article{padding:65px 0 25px;border-bottom:1px solid #d7d7d7;clear:both}
-
 .posts article img[alt=featureimage],
 .posts article.featured header{display:none}
-
 .posts article iframe{margin:30px 0}
-
 .posts article header{position:relative}
-
 .posts article header h1{margin:30px 0}
-
 .posts article header h1 a{position:relative;padding:10px 0;color:#262b30}
-
 .posts article header h1 a:hover{color:#007cc3}
-
 .posts article header h2{font:600 20px 'Open Sans', Serif;color:#D5D5D5}
-
 .posts article header h2 a{color:#D5D5D5;display:none}
-
 .posts article header h2 a:first-child{display:block}
-
 .posts article header h2 a:hover{color:#B3B3B3}
-
-.posts article header time{font-weight:600;color:#026ed2}
-
+.posts article time{font-weight:600;color:orange}
 .posts article header i{margin:0 5px}
-
 .posts article header span{color:#b6b6b6}
-
 .posts article header p{margin:30px 0 0}
-
 .posts article hr{height:3px}
-
 .posts article .feature{display:none}
-
 .posts article.featured .feature{position:absolute;right:0;display:inline-block;padding:7px 15px;background:#fff;color:#78a300;-moz-border-radius:4px / 4px;-webkit-border-radius:4px;border-radius:4px / 4px}
-
 .posts article.featured .feature:hover span{display:inline;opacity:1}
-
 .posts article.featured .feature span{color:#78a300;margin-right:15px;opacity:0}
-
 @media screen and (max-width:595px){.posts article.featured .feature span{display:none}}
 
 .posts article section{margin:0 0 30px}
-
 .posts article section>p:first-child{margin:40px 0 30px;font-weight:600;color:#1d1d1d}
-
 .posts article section ol,
 .posts article section ul{margin:30px 0 0 6%;padding:0;line-height:38px}
-
 .posts article section ol li,
 .posts article section ul li{padding:0 0 0 3%;margin:10px 0}
-
 .posts article section ul li{list-style:square}
-
 .posts article section .container{position:relative}
-
 .posts article section .container .reference{position:absolute;top:0;left:-175px;width:150px;padding:20px 0 10px;border-top:1px solid #dcd8d5;border-bottom:1px solid #dcd8d5;text-align:right}
 
-@media screen and (max-width:1140px){.posts article section .container .reference{position:static;width:100%;border-top:0;padding:10px 0}
+@media screen and (max-width:1140px){.posts article section .container .reference{position:static;width:100%;border-top:0;padding:10px 0}}
 
-}
-
-.posts article section .container strong{font:600 14px 'Open Sans',
-Serif}
+.posts article section .container strong{font:600 14px 'Open Sans', Serif}
 
 .posts article section .container p{margin:10px 0;font:400 12px 'Open Sans',
 Serif;line-height:24px}
