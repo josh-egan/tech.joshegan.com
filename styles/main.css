@@ -5,7 +5,6 @@ figcaption,
 figure,
 footer,
 header,
-hgroup,
 main,
 nav,
 section,
@@ -487,22 +486,9 @@ Serif;color:#e4e4e4;opacity:.8}
 
 .cover header h2 a:hover{color:#fff}
 
-.cover header h1 a{color:#fff;font:700 1.7em Domine,
-Serif;line-height:86px;text-shadow:0 0 30px rgba(0,
-0,
-0,
-.8);-webkit-transform3d:translate(0,
-0,
-0);-moz-transform3d:translate(0,
-0,
-0);transform3d:translate(0,
-0,
-0)}
+.cover header h1 a{color:#fff;font:700 1.7em Domine,Serif;line-height:86px;text-shadow:0 0 30px rgba(0,0,0,.8);-webkit-transform3d:translate(0,0,0);-moz-transform3d:translate(0,0,0);transform3d:translate(0,0,0)}
 
-.cover header h1 a:hover{border-bottom:3px solid rgba(255,
-255,
-255,
-.2)}
+.cover header h1 a:hover{border-bottom:3px solid rgba(255,255,255,.2)}
 
 .cover header span{color:#dedede;opacity:.9}
 
@@ -513,18 +499,11 @@ Serif;line-height:86px;text-shadow:0 0 30px rgba(0,
 
 .cover header{padding:80px 0 20px}
 
-.cover header h1 a{font:700 1.2em Domine,
-Serif;line-height:22px}
+.cover header h1 a{font:700 1.2em Domine,Serif;line-height:22px}}
 
-}
+@media screen and (max-height:640px){.cover header{top:25%}}
 
-@media screen and (max-height:640px){.cover header{top:25%}
-
-}
-
-@media screen and (max-width:595px){.posts{padding-top:10px}
-
-}
+@media screen and (max-width:595px){.posts{padding-top:10px}}
 
 .posts article{padding:65px 0 25px;border-bottom:1px solid #d7d7d7;clear:both}
 
@@ -541,8 +520,7 @@ Serif;line-height:22px}
 
 .posts article header h1 a:hover{color:#007cc3}
 
-.posts article header h2{font:600 20px 'Open Sans',
-Serif;color:#D5D5D5}
+.posts article header h2{font:600 20px 'Open Sans', Serif;color:#D5D5D5}
 
 .posts article header h2 a{color:#D5D5D5;display:none}
 
@@ -568,9 +546,7 @@ Serif;color:#D5D5D5}
 
 .posts article.featured .feature span{color:#78a300;margin-right:15px;opacity:0}
 
-@media screen and (max-width:595px){.posts article.featured .feature span{display:none}
-
-}
+@media screen and (max-width:595px){.posts article.featured .feature span{display:none}}
 
 .posts article section{margin:0 0 30px}
 
