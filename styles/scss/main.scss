@@ -76,28 +76,34 @@ footer {
   }
 }
 
-@media screen and (max-width: 906px) {
-  footer .smallnav {
-    display: block
-  }
-
-}
-
 .title {
+
   a {
-    position: fixed;
-    top: 13px;
-    left: 13px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    margin-top: 10px;
+    display: inline-block;
     z-index: 200;
-    display: block;
     padding: 9px 12px 6px;
     background: $dark;
     color: $white;
     @include transition(background .4s ease-out);
 
+    @media screen and (min-width: $tablet) {
+      position: fixed;
+      left: 13px;
+      top: 13px;
+      display: block;
+    }
+
     span {
-      display: inline-block;
-      margin-left: 15px
+      display: none;
+      margin-left: 15px;
+
+      @media screen and (min-width: $desktopSmall) {
+        display: inline-block;
+      }
     }
   }
 
@@ -107,22 +113,6 @@ footer {
     span {
       display: inline-block;
     }
-  }
-}
-
-@media screen and (max-width: $desktopSmall) {
-  .title a span {
-    display: none
-  }
-}
-
-@media screen and (max-width: $tablet) {
-  .title a {
-    left: 5%;
-    top: 10px;
-    position: absolute;
-    margin-top: 10px;
-    display: inline-block
   }
 }
 
@@ -164,20 +154,21 @@ footer {
 
   .author {
     display: block;
-    float: left;
-    width: 120px;
+    float: none;
+    width: 50%;
     @include border-radius(8px);
   }
 
   .info {
-    margin-left: 30px;
+    margin: 0 auto;
     display: block;
-    float: left;
+    float: none;
+    width: 100%;
     font-family: 'Open Sans', Arial, sans-serif;
 
     .social {
       list-style: none;
-      margin: 20px 0 0;
+      margin: 20px 0 0 0;
       padding: 0;
       overflow: hidden;
       @include transition(all .25s ease-out);
@@ -202,18 +193,16 @@ footer {
       }
     }
   }
-}
 
-@media screen and (max-width: $mobile) {
-  .author-profile {
+  @media screen and (min-width: $tablet) {
     .author {
-      float: none;
-      width: 50%
+      float: left;
+      width: 120px;
     }
     .info {
-      margin: 0 auto;
-      float: none;
-      width: 100%
+      margin: 0 0 0 30px;
+      float: left;
+      width: auto;
     }
   }
 }
