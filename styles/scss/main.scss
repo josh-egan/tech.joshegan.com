@@ -1,17 +1,18 @@
 @import "colors";
 @import "sizes";
 @import "mixins";
+@import "fonts";
 
 body {
   background-color: #ffffff;
   color: $dark;
-  font: 400 15px 'Open Sans', Arial, sans-serif;
+  font: $body-font;
 }
 
 h1 {
   margin: 20px 0;
   font-size: 220%;
-  font-family: 'Domine', Times, serif;
+  font-family: $title-font-family;
 }
 
 h4 {
@@ -37,7 +38,7 @@ p {
   code {
     background-color: $light;
     display: inline-block;
-    font: 500 15px 'Source Code Pro', Arial, Serif;
+    font: $code-font;
     line-height: 22px;
     @include border-radius(4px);
   }
@@ -47,7 +48,7 @@ pre {
   background-color: $dark;
   border: 0;
   margin: 30px 0;
-  font: 500 15px 'Source Code Pro', Arial, Serif;
+  font: $code-font;
   overflow-x: auto;
   @include border-radius(4px);
 
@@ -56,7 +57,7 @@ pre {
     padding: 0;
     margin: 25px 35px;
     color: $light;
-    font: 500 15px 'Source Code Pro', Arial, Serif;
+    font: $code-font;
     line-height: 22px;
     background: 0 0;
     border: 0
@@ -66,7 +67,7 @@ pre {
 footer {
   padding: 25px 0;
   text-align: center;
-  font: 400 13px 'Open Sans', Arial, sans-serif;
+  font: $footer-font;
   line-height: 34px;
   color: #a6a6a6;
   border-top: 1px solid #b3b3b3;
@@ -101,7 +102,7 @@ footer {
       display: none;
       margin-left: 15px;
 
-      @media screen and (min-width: $desktopSmall) {
+      @media screen and (min-width: $desktop-small) {
         display: inline-block;
       }
     }
@@ -164,7 +165,6 @@ footer {
     display: block;
     float: none;
     width: 100%;
-    font-family: 'Open Sans', Arial, sans-serif;
 
     .social {
       list-style: none;
