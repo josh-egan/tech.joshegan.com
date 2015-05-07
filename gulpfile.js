@@ -118,11 +118,25 @@ function buildMdFile(mdFilePath) {
     if (!existsSync(markupDir)) {
         console.log('Creating directory... ');
         console.log(markupDir);
-        fs.mkdirSync(markupDir);
+        mkdirRecursivelySync(markupDir);
     }
 
     fs.writeFileSync(markupPath, htmlContent, 'utf8');
     console.log('Successfully built - ' + markupPath);
+}
+
+function mkdirRecursivelySync(dir){
+    var dirsToMake = [];
+    while (!existsSync(dir)){
+        dirsToMake.push(dir);
+        dir = dir.slice(0, dir.lastIndexOf("\\"));
+    }
+    while(dirsToMake.length > 0){
+        var d = dirsToMake.pop();
+        if (!existsSync(d)){
+            fs.mkdirSync(d);
+        }
+    }
 }
 
 function buildIndexPage() {
