@@ -13,20 +13,40 @@
     <link rel="stylesheet" type="text/css" href="/styles/css/third-party/hybrid.css">
     <link rel="stylesheet" type="text/css" href="/styles/css/main.css">
 
+    <script>
+        function onBodyScroll() {
+            var body = document.getElementById("body");
+            var sidebar = document.getElementById("sidebar");
+            if (!body || !sidebar || sidebar.style.display === 'none') return;
+
+            var translucentClass = " translucent";
+            var sideBarScrollCheckpoint = 300;
+            if (body.scrollTop < sideBarScrollCheckpoint){
+               if (sidebar.className.indexOf(translucentClass) !== -1){
+                   sidebar.className = sidebar.className.replace(translucentClass, '');
+               }
+            }
+            else{
+                if (sidebar.className.indexOf(translucentClass) === -1){
+                    sidebar.className += translucentClass;
+                }
+            }
+        }
+    </script>
+
     <title>Mic Check - tech.joshegan.com</title>
 </head>
-<body class="wrapper">
-<header class="title">
+<body id="body" class="wrapper" onscroll="onBodyScroll()">
+<header class="nav mobile-nav">
     <a href="/">
         <i class="fa fa-home fa-2x"></i>
         <span>tech.joshegan.com</span>
     </a>
 </header>
 
-<section class="posts">
-    <article class="post">
+<article class="post">
 
-        <h1 id="mic-check">Mic Check</h1>
+    <h1 id="mic-check">Mic Check</h1>
 <p>Posted on <time class="orange" datetime="2015-04-25"><strong>April 25th, 2015</strong></time></p>
 <p>Can you hear me? Is the sound too loud? Does my style look decent?</p>
 <ol>
@@ -65,13 +85,41 @@
 <p>Cya next time.</p>
 
 
-    </article>
+</article>
+
+<div id="sidebar" class="nav tablet-sidebar">
+    <a href="/">
+        <i class="fa fa-home fa-2x"></i>
+        <span>tech.joshegan.com</span>
+    </a>
 
     <div class="author-profile">
-        <img class="author" alt="user" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250">
+        <img class="author" alt="author"
+             src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250">
 
         <div class="info">
-            <h4>Josh Egan</h4>
+            <h5>Josh Egan</h5>
+            <ul class="social">
+                <li>
+                    <a href="https://github.com/eganj" class="github" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-author-profile">
+
+    <div class="separator"></div>
+
+    <div class="author-profile">
+        <img class="author" alt="author"
+             src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250">
+
+        <div class="info">
+            <h5>Josh Egan</h5>
             <ul class="social">
                 <li>
                     <a href="https://github.com/eganj" class="github" target="_blank">
@@ -82,19 +130,23 @@
         </div>
     </div>
 
-    <div>
-        <div id="disqus_thread"></div>
-        <script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
-            powered by Disqus.</a></noscript>
-    </div>
+    <div class="separator"></div>
 
-</section>
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+</div>
+
+<div class="separator"></div>
 
 <footer>
     <div>
-        Copyright &copy; 2015 &bull; All rights reserved.
-        <span>Proudly hosted using <a href="https://github.com/eganj/tech.joshegan.com" target="_blank">GitHub</a>.</span>
+        <span>Proudly hosted using <a href="https://github.com/eganj/tech.joshegan.com"
+                                      target="_blank">GitHub</a>.</span>
     </div>
 </footer>
 
