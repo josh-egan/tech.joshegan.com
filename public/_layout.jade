@@ -1,6 +1,32 @@
-doctype
-html
+doctype html
+html(lang="en")
   head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+      
+    meta(name="HandheldFriendly" content="True")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+      
+    - var computedTitle = locals.title ? title + " | " + site_title : site_title
+    meta(property='og:title', content= computedTitle)
+    title= computedTitle
+    
+    meta(name='description', content=description)
+    meta(property='og:description', content=description)
+    
+    if current.path[0] === "index"
+      meta(property='og:url', content=site_url)
+      meta(property='og:type', content='website')
+    
+    else if current.path[0] === "posts"
+      - var postUrl = site_url
+      - for (var i = 0; i < current.path.length; i++)
+          - postUrl += "/" + current.path[i]
+      meta(property='og:url', content=postUrl)
+      meta(property='og:type', content='article')
+    
+    meta(property='og:site_name', content=site_title)    
+    
     link(rel="stylesheet" href="/main.css")
   body
     != yield
