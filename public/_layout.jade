@@ -11,5 +11,8 @@ html(lang="en")
     
     != partial("_shared/styles")
     
-  body
-    != yield
+  body.wrapper
+    section.posts
+      != yield
+    
+    != partial("_shared/footer")
