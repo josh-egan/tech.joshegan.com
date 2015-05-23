@@ -6,8 +6,12 @@ var harp = require('harp');
 var browserSync = require('browser-sync');
 var ghPages = require('gulp-gh-pages');
 
-var paths = {
+var harpServerOptions = {
+  port: 9000
+};
 
+var paths = {
+  srcFiles: './public/**/*.*'
 };
 
 gulp.task('default', ['watch']);
@@ -21,9 +25,21 @@ gulp.task('build', function () {
 });
 
 gulp.task('watch', ['dev-server'], function () {
-  console.log('watching...');
+  browserSync({
+    open: false,
+    proxy: 'localhost:' + harpServerOptions.port,
+    notify: false
+  });
+
+  gulp.src(paths.srcFiles)
+    .pipe(watch(paths.srcFiles, {
+      verbose: true
+    }))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
-gulp.task('dev-server', function () {
-  console.log('serving...');
+gulp.task('dev-server', function (done) {
+  harp.server(__dirname, harpServerOptions, done);
 });
