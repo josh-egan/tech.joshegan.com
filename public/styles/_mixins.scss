@@ -1,0 +1,36 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin vertically-centered-parent{
+
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+@mixin vertically-centered-child{
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin transition($transitionStack) {
+  -moz-transition: $transitionStack;
+  -o-transition: $transitionStack;
+  -webkit-transition: $transitionStack;
+  transition: $transitionStack;
+}
