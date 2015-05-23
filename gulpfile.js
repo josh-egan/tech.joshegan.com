@@ -13,8 +13,8 @@ var harpServerOptions = {
 var paths = {
   projectDir: './',
   outputDir: './dist',
-  outputFiles: './dist/**/*.*',
-  srcFiles: './public/**/*.*'
+  outputFiles: './dist/**/*',
+  srcFiles: './public/**/*'
 };
 
 gulp.task('default', ['watch']);
