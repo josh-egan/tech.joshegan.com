@@ -1,18 +1,28 @@
 {
   "bootstrapping-a-harp-blog": {
     "title": "Bootstrapping a Harp Blog",
-    "date": "May 23rd, 2015",
     "description": "A simple, step by step guide to bootstrapping a harp blog.",
-    "draft": true
+    "postDateString": "May 23rd, 2015",
+    "postDateTime": "2015-05-06"
   },
   "mic-check": {
     "title": "Mic Check",
-    "date": "April 25th, 2015",
-    "description": "A sample post to see how things are looking."
+    "description": "A sample post to see how things are looking.",
+    "postDateString": "April 25th, 2015",
+    "postDateTime": "2015-04-25"
   },
   "hello-world": {
     "title": "Hello World!",
-    "date": "April 23rd, 2015",
-    "description": "First post ever!"
+    "description": "First post ever!",
+    "postDateString": "April 23rd, 2015",
+    "postDateTime": "2015-04-23"
+  },
+  "sample": {
+    "title": "Post Title - REQUIRED",
+    "description": "Post description used in meta data - REQUIRED",
+    "postDateString": "January 2nd, 2015 - REQUIRED",
+    "postDateTime": "2015-01-02 - REQUIRED",
+    "updateDateString": "February 3rd, 2015 - OPTIONAL",
+    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString IS PROVIDED"
   }
 }

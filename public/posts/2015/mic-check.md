@@ -1,9 +1,14 @@
 Can you hear me? Is the sound too loud? Does my style look decent?
 1. This
 2. is a
-- numbered list.
+3. numbered list.
+
+How about some bullets?
 - bullets
-3. yippee
+  - are
+    - fun
+
+- yippee
 
 And this is some inline `<code></code>` for your viewing pleasure.
 
