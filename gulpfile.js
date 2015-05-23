@@ -13,13 +13,15 @@ var harpServerOptions = {
 var paths = {
   projectDir: './',
   outputDir: './dist',
+  outputFiles: './dist/**/*.*',
   srcFiles: './public/**/*.*'
 };
 
 gulp.task('default', ['watch']);
 
 gulp.task('deploy', ['build'], function () {
-  console.log('deploying...');
+  return gulp.src(paths.outputFiles)
+    .pipe(ghPages());
 });
 
 gulp.task('build', function (done) {
