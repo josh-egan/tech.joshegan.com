@@ -11,6 +11,8 @@ var harpServerOptions = {
 };
 
 var paths = {
+  projectDir: './',
+  outputDir: './dist',
   srcFiles: './public/**/*.*'
 };
 
@@ -20,8 +22,8 @@ gulp.task('deploy', ['build'], function () {
   console.log('deploying...');
 });
 
-gulp.task('build', function () {
-  console.log('building...');
+gulp.task('build', function (done) {
+  harp.compile(paths.projectDir, paths.outputDir, done);
 });
 
 gulp.task('watch', ['dev-server'], function () {
