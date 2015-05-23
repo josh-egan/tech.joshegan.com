@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="MobileOptimized" content="320"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel='stylesheet' type='text/css' href='/styles/css/third-party/google-fonts/css/google-fonts.css'>
+    <link rel="stylesheet" type="text/css" href="/styles/css/third-party/font-awesome-4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/css/third-party/hybrid.css">
+    <link rel="stylesheet" type="text/css" href="/styles/css/main.css">
+
+    <script>
+        function onBodyScroll() {
+            var body = document.getElementById("body");
+            var sidebar = document.getElementById("sidebar");
+            if (!body || !sidebar || sidebar.style.display === 'none') return;
+
+            var translucentClass = " translucent";
+            var sideBarScrollCheckpoint = 300;
+            if (body.scrollTop < sideBarScrollCheckpoint){
+               if (sidebar.className.indexOf(translucentClass) !== -1){
+                   sidebar.className = sidebar.className.replace(translucentClass, '');
+               }
+            }
+            else{
+                if (sidebar.className.indexOf(translucentClass) === -1){
+                    sidebar.className += translucentClass;
+                }
+            }
+        }
+    </script>
+
+    <title>Building a Blog - tech.joshegan.com</title>
+</head>
+<body id="body" class="wrapper" onscroll="onBodyScroll()">
+<header class="nav mobile-nav">
+    <a href="/">
+        <i class="fa fa-home fa-2x"></i>
+        <span>tech.joshegan.com</span>
+    </a>
+</header>
+
+<article class="post">
+
+    <h1 id="building-a-blog">Building a Blog</h1>
+<p>Posted on <time class="orange" datetime="2015-05-06"><strong>May 6th, 2015</strong></time></p>
+<h2 id="diy-resources-">DIY Resources:</h2>
+<ul>
+<li><a href="http://daringfireball.net/projects/markdown/syntax">Core markdown syntax</a></li>
+<li><a href="https://help.github.com/articles/github-flavored-markdown/">GitHub flavored markdown</a></li>
+<li><a href="https://github.com/chjj/marked">marked GitHub repo</a></li>
+<li><a href="https://highlightjs.org/">highlight.js</a> | <a href="https://github.com/isagalaev/highlight.js">highlight.js GitHub repo</a></li>
+</ul>
+<h2 id="blogging-solutions-">Blogging Solutions:</h2>
+<ul>
+<li><a href="https://www.staticgen.com/">StaticGen</a> provides a list of static site generators.</li>
+<li>node<ul>
+<li><a href="http://www.metalsmith.io/">metalsmith</a> | <a href="https://github.com/segmentio/metalsmith/tree/master/examples">examples</a></li>
+<li><a href="http://wintersmith.io/">wintersmith</a></li>
+<li><a href="http://assemble.io/">assemble</a></li>
+<li><a href="https://docpad.org/">docpad</a> | <a href="https://github.com/docpad/docpad">GitHub repo</a></li>
+<li><a href="http://hexo.io/">hexo</a></li>
+<li><a href="http://laktek.github.io/punch/">punch</a></li>
+<li><a href="https://ghost.org/">ghost</a> | <a href="https://github.com/TryGhost/Ghost">ghost GitHub repo</a></li>
+</ul>
+</li>
+<li>ruby<ul>
+<li><a href="http://jekyllrb.com/">jekyll</a></li>
+<li><a href="http://octopress.org/">octopress</a></li>
+<li><a href="https://middlemanapp.com/">middleman</a></li>
+</ul>
+</li>
+</ul>
+
+
+</article>
+
+<div id="sidebar" class="nav tablet-sidebar">
+    <a href="/">
+        <i class="fa fa-home fa-2x"></i>
+        <span>tech.joshegan.com</span>
+    </a>
+
+    <div class="author-profile">
+        <img class="author" alt="author"
+             src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250">
+
+        <div class="info">
+            <h5>Josh Egan</h5>
+            <ul class="social">
+                <li>
+                    <a href="https://github.com/eganj" class="github" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-author-profile">
+
+    <div class="separator"></div>
+
+    <div class="author-profile">
+        <img class="author" alt="author"
+             src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250">
+
+        <div class="info">
+            <h5>Josh Egan</h5>
+            <ul class="social">
+                <li>
+                    <a href="https://github.com/eganj" class="github" target="_blank">
+                        <i class="fa fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="separator"></div>
+
+</div>
+
+<div>
+    <div id="disqus_thread"></div>
+    <script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments
+        powered by Disqus.</a></noscript>
+</div>
+
+<div class="separator"></div>
+
+<footer>
+    <div>
+        <span>Proudly hosted using <a href="https://github.com/eganj/tech.joshegan.com"
+                                      target="_blank">GitHub</a>.</span>
+    </div>
+</footer>
+
+</body>
+</html>
