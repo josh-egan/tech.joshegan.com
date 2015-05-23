@@ -9,10 +9,7 @@ html(lang="en")
     meta(property='og:url', content=site_url)
     meta(property='og:type', content='website')
     
-    link(rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css")
-    link(rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css")
-    link(rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css")
-    link(rel="stylesheet" type="text/css" href="/styles/main.css")
+    != partial("_shared/styles")
     
     script(src="/scripts/third-party/highlight-js-8.6/highlight.pack.js")
     script hljs.initHighlightingOnLoad();
