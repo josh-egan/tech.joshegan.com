@@ -1,0 +1,18 @@
+{
+  "bootstrapping-a-harp-blog": {
+    "title": "Bootstrapping a Harp Blog",
+    "date": "May 23rd, 2015",
+    "description": "A simple, step by step guide to bootstrapping a harp blog.",
+    "draft": true
+  },
+  "mic-check": {
+    "title": "Mic Check",
+    "date": "April 25th, 2015",
+    "description": "A sample post to see how things are looking."
+  },
+  "hello-world": {
+    "title": "Hello World!",
+    "date": "April 23rd, 2015",
+    "description": "First post ever!"
+  }
+}
