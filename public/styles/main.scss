@@ -87,7 +87,9 @@ footer {
 }
 
 .post-wrapper{
-  @extend .wrapper;
+  width: 90%;
+  max-width: $post-wrapper-width;
+  margin: 0 auto;
 
   @media screen and (min-width: $tablet) {
     padding-left: $post-padding-left;

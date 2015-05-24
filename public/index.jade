@@ -1,2 +1,25 @@
-h1 Welcome to Harp.
-h3 This is yours to own. Enjoy.
+- var SNIPPET_LENGTH = 300;
+
+for post, slug in public.posts.yr2015._data
+  if post.isDraft
+    - continue
+    
+  - var relativePath = "posts/yr2015/" + slug
+  - var tagsRemoved = partial(relativePath).replace(/(<([^>]+)>)/ig, '')
+  - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
+  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)  
+  - var postUrl = "/" + relativePath
+  
+  article.post
+    h1
+      a(href=postUrl)= post.title
+      
+    p 
+      | Posted on 
+      time.orange(datetime= post.postDateTime)
+        strong= post.postDateString
+
+    p
+      != snippet 
+      |  . . . 
+      a(href=postUrl) Read More

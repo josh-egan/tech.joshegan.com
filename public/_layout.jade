@@ -12,6 +12,11 @@ html(lang="en")
     != partial("_shared/styles")
     
   body.wrapper
+    header.nav
+      a(href="/")
+        i.fa.fa-home.fa-2x
+        span= site_title
+        
     section.posts
       != yield
     
