@@ -1,25 +1,26 @@
 - var SNIPPET_LENGTH = 300;
 
 for post, slug in public.posts.yr2015._data
-  if post.isDraft
-    - continue
-    
+  - if (environment === "PRODUCTION" && post.isDraft) continue
+
   - var relativePath = "posts/yr2015/" + slug
-  - var tagsRemoved = partial(relativePath).replace(/(<([^>]+)>)/ig, '')
+  - var postPartial = partial(relativePath)
+  - if (!postPartial) continue
+  - var tagsRemoved = postPartial.replace(/(<([^>]+)>)/ig, '')
   - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
-  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)  
+  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
   - var postUrl = "/" + relativePath
-  
+
   article.post
     h1
       a(href=postUrl)= post.title
-      
-    p 
-      | Posted on 
-      time.orange(datetime= post.postDateTime)
-        strong= post.postDateString
 
     p
-      != snippet 
-      |  . . . 
-      a(href=postUrl) Read More
+      | Posted on
+      time.orange(datetime= post.postDateTime)
+        strong= " " + post.postDateString
+
+    p
+      != snippet
+      |  . . .
+      a(href=postUrl)= " Read More"
