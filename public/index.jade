@@ -1,7 +1,7 @@
 - var SNIPPET_LENGTH = 300;
 
 for post, slug in public.posts.yr2015._data
-  - if (environment === "PRODUCTION" && post.isDraft) continue
+  - if (site_environment === "PRODUCTION" && post.isDraft) continue
 
   - var relativePath = "posts/yr2015/" + slug
   - var postPartial = partial(relativePath)

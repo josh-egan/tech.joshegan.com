@@ -20,11 +20,11 @@ var browserSynceOptions = {
 var harpConfig = {
   prod: {
     siteUrl: "http://tech.joshegan.com",
-    environment: "PRODUCTION"
+    siteEnvironment: "PRODUCTION"
   },
   dev: {
     siteUrl: "http://localhost:" + browserSynceOptions.port,
-    environment: "DEV"
+    siteEnvironment: "DEV"
   }
 };
 
@@ -62,5 +62,5 @@ gulp.task('dev-server', function (done) {
 
 function applyHarpConfig(config){
   process.env.SITE_URL = config.siteUrl;
-  process.env.ENVIRONMENT = config.environment;
+  process.env.SITE_ENVIRONMENT = config.siteEnvironment;
 }

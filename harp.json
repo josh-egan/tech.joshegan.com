@@ -3,6 +3,6 @@
     "site_title": "tech.joshegan.com",
     "description": "tech.joshegan.com is a blog about tech adventures.",
     "site_url": "$SITE_URL",
-    "environment": "$ENVIRONMENT"
+    "site_environment": "$SITE_ENVIRONMENT"
   }
 }
