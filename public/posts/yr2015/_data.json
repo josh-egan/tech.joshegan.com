@@ -13,11 +13,18 @@
     "postDateTime": "2015-05-26",
     "isDraft": "true"
   },
+  "building-a-blog": {
+    "title": "Buiding a Blog",
+    "description": "A brief chronicle of my journey to create a blog.",
+    "postDateString": "June 12th, 2015",
+    "postDateTime": "2015-06-12"
+  },
   "mic-check": {
     "title": "Mic Check",
     "description": "A sample post to see how things are looking.",
     "postDateString": "April 25th, 2015",
-    "postDateTime": "2015-04-25"
+    "postDateTime": "2015-04-25",
+    "isDraft": "true"
   },
   "hello-world": {
     "title": "Hello World!",
@@ -25,7 +32,8 @@
     "postDateString": "April 23rd, 2015",
     "postDateTime": "2015-04-23",
     "updateDateString": "June 12th, 2015",
-    "updateDateTime": "2015-06-12"
+    "updateDateTime": "2015-06-12",
+    "isDraft": "true"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
