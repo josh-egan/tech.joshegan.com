@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My thoughts and reflections from the OnAgile Virtual Conference"/><meta property="og:description" content="My thoughts and reflections from the OnAgile Virtual Conference"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Reflections from the OnAgile Virtual Conference - tech.joshegan.com"><title>Reflections from the OnAgile Virtual Conference - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2015/on-agile-conf-reflections"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2015/on-agile-conf-reflections">Reflections from the OnAgile Virtual Conference</a></h1><p></p>Posted on<time datetime="2015-05-26" class="orange"><strong> May 26th, 2015</strong></time><p>This year I attended the <a href="http://agilealliance.org/programs/onagile-virtual-conference/">OnAgile Virtual Conference</a>. And by &#39;attended&#39; I mean I logged into the site that hosted the virtual conference and watched the sessions on demand a couple weeks after the event actually took place. I&#39;ve been watching at a comfortable pace for myself, a few sessions in a sitting. I&#39;ve also watched sessions that took place simultaneously. There are pros and cons to the virtual world. Watching all the sessions I&#39;m interested in on my own time regardless of session collisions -- definitely a plus.</p>
+<p>In an effort to better digest what I hear, I take notes. In an attempt to organize my thoughts, I write. So these are some of my thoughts and reflections from the OnAgile Virtual Conference.</p>
+<h1>You Can&#39;t be Agile When You&#39;re Waist Deep in Mud!</h1><p>Presented by Martin Fowler and Rachel Laycock, this keynote emphasized following technical practices to ensure that you can really stay agile. This presentation was more of a summary of practices, rather than a deep exploration of any one of them. Here are some of the highlights:</p>
+<ul>
+<li>Continuous Delivery</li>
+<li>&#39;Already Agile&#39;</li>
+<li>Better Automation</li>
+<li>Treat infrastructure as Code</li>
+<li>In order to actually be agile, a lot of the desirable benefits come back to the code. Successful CI requires a good code base.</li>
+<li>Many projects get stuck at the &#39;1 star&#39; level.</li>
+<li>Only about 30% (or less) are using agile technical practices</li>
+<li>One of the core goals is short cycles and rapid iterations</li>
+<li>Scrum&#39;s approach says that you <em>should</em> have technical practices, but those practices are not defined.</li>
+<li>XP&#39;s approach says that you should use <em>these</em> practies.</li>
+<li>Key agile practices include TDD, CI, sustainable pace, pair programming</li>
+<li>Goal is to create software that is releasable as soon as possible.</li>
+<li>Self testing code</li>
+<li>TDD is the process by which the tests are created.</li>
+<li>is TDD dead (a video that was referenced)</li>
+<li>In order to understand when tests are useful and when they aren&#39;t, you have to have a mature understanding of how to do TDD. There are cases, for example when doing a quick exercise to determine feasibility, when tests may not be useful.</li>
+<li>code ownership</li>
+<li>&quot;my&quot; code and &quot;his&quot; code are terms that should be avoided. The code should belong to the team. This is addressed by pair programming.</li>
+<li>Continuous integration requires a test suite that conveys confidence in the functionality of the code.</li>
+<li>Always be looking for quick feedback cycles.</li>
+<li>The feedback cycle needs to be fast enought to satiate individual tolerance.</li>
+<li>Refactoring</li>
+<li><a href="include link to amazon here.">The book by Martin Fowler about refactoring</a></li>
+<li>The point of refactoring is to make changes to the internal structure of the code without changing its external behavior.</li>
+<li>Take very very small steps, so small they don&#39;t seem worth taking. This makes it much more difficult to introduce a bug. It also makes it so that you can catch a breaking change immediately.</li>
+<li>You should not be &#39;refactoring&#39; and have a bunch of broken tests.</li>
+<li>If you have to take time to understand code, and then you get it, at that point you should refactor and make the code clear.</li>
+<li>Collective code ownership facilitates refactoring. That way, when you see a problem, you can improve it.</li>
+<li>When prioritizing refactoring, you need to think about it upfront. How complex is the task, and how complex is the code base that you&#39;ll be working in?</li>
+<li>One idea is to create a technical debt backlog wall. Then work items into the daily work.</li>
+<li><p>When deciding whether or not to refactor you should consider these three questions:</p>
+<ol>
+<li>What bits are complex?</li>
+<li>What is the level of test coverage? How confident can you be when you make changes?</li>
+<li>Where is the business going?</li>
+<li>How often is it changing?</li>
+</ol>
+</li>
+<li><p>As soon as you set up quality code / speed of features, you&#39;re hosed. You simply cannot deliver quickly in the long term without a quality code base.</p>
+</li>
+<li>You must ensure that you keep the code base healthy so that you can maintain speed.</li>
+<li><p>Continuous integration</p>
+<ul>
+<li>Commit to master all the time.</li>
+<li>Staying on feature branches, even if builds are automated, is not CI.</li>
+<li><p>CI is:</p>
+<ol>
+<li>Commit onto trunk.</li>
+<li>Commit at least once / day.</li>
+<li>Committing and running the tests.</li>
+</ol>
+</li>
+<li><p>CI has been confused with CD (Continuous Delivery)</p>
+</li>
+<li>Merge pain is a sign that you&#39;re not integrating frequently enough.</li>
+</ul>
+</li>
+<li><p>DevOps is a cultural movement, not a team.</p>
+</li>
+<li>DevOps is an attempt to overcome the antagonistic relationship between ops and devs, whose goals can often differ.</li>
+<li>Creating a &#39;devops&#39; team can cause even more problems.</li>
+<li>DevOps is a culture of developers and operations working together.</li>
+<li>The most common architecture structure is a ball of mud.</li>
+<li>The problem is that the design evolves over time, and the ball of mud is thus created.</li>
+<li>Requires discipline.</li>
+<li>The best way to address a ball of mud is to not create it in the first place.</li>
+<li>Technical practices are at the core of being able to implement Agile effectively.</li>
+</ul></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
