@@ -23,7 +23,9 @@
     "title": "Hello World!",
     "description": "First post ever!",
     "postDateString": "April 23rd, 2015",
-    "postDateTime": "2015-04-23"
+    "postDateTime": "2015-04-23",
+    "updateDateString": "June 12th, 2015",
+    "updateDateTime": "2015-06-12"
   },
   "sample": {
     "title": "Post Title - REQUIRED",

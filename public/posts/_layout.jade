@@ -27,13 +27,7 @@ html(lang="en")
         span= site_title
 
     article.post
-      h1
-        a(href=postUrl)= title
-
-      p
-        | Posted on
-        time.orange(datetime=postDateTime)
-          strong= postDateString
+      != partial("../_shared/post-header.jade", {post: {url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime }})
 
       != yield
 
