@@ -9,7 +9,8 @@
     "gulp": "^3.8.11",
     "gulp-gh-pages": "^0.5.1",
     "gulp-watch": "^4.2.4",
-    "harp": "git://github.com/josh-egan/harp.git"
+    "harp": "git://github.com/josh-egan/harp.git",
+    "merge": "^1.2.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

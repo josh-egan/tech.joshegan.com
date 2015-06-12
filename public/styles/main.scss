@@ -57,13 +57,14 @@ pre {
   border: 0;
   margin: 30px 0;
   overflow-x: auto;
+  background: $dark;
   @include border-radius(4px);
 
   code {
     padding: 25px 35px;
     color: $light;
     line-height: 22px;
-    background: none;
+    background: $dark;
     border: none;
   }
 }
