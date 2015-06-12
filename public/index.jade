@@ -1,20 +1,21 @@
 - var SNIPPET_LENGTH = 300;
 
-for post, slug in public.posts.yr2015._data
-  - if (site_environment === "PRODUCTION" && post.isDraft) continue
+for yearData, yearName in public.posts
+  for post, postName in yearData._data
+    - if (site_environment === "PRODUCTION" && post.isDraft) continue
 
-  - var relativePath = "posts/yr2015/" + slug
-  - var postPartial = partial(relativePath)
-  - if (!postPartial) continue
-  - var tagsRemoved = postPartial.replace(/(<([^>]+)>)/ig, '')
-  - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
-  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
-  - post.url = site_url + "/" + relativePath
+    - var relativePath = "posts/" + yearName + "/" + postName
+    - var postPartial = partial(relativePath)
+    - if (!postPartial) continue
+    - var tagsRemoved = postPartial.replace(/(<([^>]+)>)/ig, '')
+    - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
+    - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
+    - post.url = site_url + "/" + relativePath
 
-  article.post
-    != partial("_shared/post-header", {post: post})
+    article.post
+      != partial("_shared/post-header", {post: post})
 
-    p
-      != snippet
-      |  . . .
-      a(href=post.url)= " Read More"
+      p
+        != snippet
+        |  . . .
+        a(href=post.url)= " Read More"
