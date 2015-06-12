@@ -19,22 +19,6 @@
     "postDateString": "June 12th, 2015",
     "postDateTime": "2015-06-12"
   },
-  "mic-check": {
-    "title": "Mic Check",
-    "description": "A sample post to see how things are looking.",
-    "postDateString": "April 25th, 2015",
-    "postDateTime": "2015-04-25",
-    "isDraft": "true"
-  },
-  "hello-world": {
-    "title": "Hello World!",
-    "description": "First post ever!",
-    "postDateString": "April 23rd, 2015",
-    "postDateTime": "2015-04-23",
-    "updateDateString": "June 12th, 2015",
-    "updateDateTime": "2015-06-12",
-    "isDraft": "true"
-  },
   "sample": {
     "title": "Post Title - REQUIRED",
     "description": "Post description used in meta data - REQUIRED",
