@@ -34,6 +34,10 @@ h5 {
   font-size: 120%;
 }
 
+p, ul, ol {
+  line-height: 1.4em;
+}
+
 a {
   @include transition(all .4s ease-out);
   font-weight: 600;
