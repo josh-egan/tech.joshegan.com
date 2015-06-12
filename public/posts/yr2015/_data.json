@@ -31,7 +31,7 @@
     "postDateString": "January 2nd, 2015 - REQUIRED",
     "postDateTime": "2015-01-02 - REQUIRED",
     "updateDateString": "February 3rd, 2015 - OPTIONAL",
-    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString IS PROVIDED",
+    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
     "isDraft": "true"
   }
 }
