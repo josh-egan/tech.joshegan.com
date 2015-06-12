@@ -9,14 +9,14 @@
     "gulp": "^3.8.11",
     "gulp-gh-pages": "^0.5.1",
     "gulp-watch": "^4.2.4",
-    "harp": "^0.17.0"
+    "harp": "git://github.com/josh-egan/harp.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/eganj/tech.joshegan.com.git"
+    "url": "https://github.com/josh-egan/tech.joshegan.com.git"
   },
   "keywords": [
     "blog"
@@ -24,7 +24,7 @@
   "author": "Joshua Egan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eganj/tech.joshegan.com/issues"
+    "url": "https://github.com/josh-egan/tech.joshegan.com/issues"
   },
   "homepage": "http://tech.joshegan.com"
 }

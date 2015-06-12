@@ -1,42 +1,40 @@
 doctype html
 html(lang="en")
   head
-    != partial("../_shared/meta")    
-        
+    != partial("../_shared/meta")
+
     - var computedTitle = title + " - " + site_title
     meta(property='og:title', content= computedTitle)
-    title= computedTitle        
-    
+    title= computedTitle
+
     - var postUrl = site_url
     - for (var i = 0; i < current.path.length; i++)
         - postUrl += "/" + current.path[i]
     meta(property='og:url', content=postUrl)
-    meta(property='og:type', content='article')    
-    
+    meta(property='og:type', content='article')
+
     != partial("../_shared/styles")
-    
+
     link(rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css")
-      
+
     script(src="/scripts/sidebar-opacity.js")
-    script(src="/scripts/third-party/highlight-js-8.6/highlight.pack.js")
-    script hljs.initHighlightingOnLoad();
-    
+
   body.post-wrapper(id="body")
-    
+
     header.nav.mobile-nav
       a(href="/")
         i.fa.fa-home.fa-2x
         span= site_title
-    
+
     article.post
       h1
         a(href=postUrl)= title
-        
-      p 
-        | Posted on 
+
+      p
+        | Posted on
         time.orange(datetime=postDateTime)
           strong= postDateString
-          
+
       != yield
 
     div.nav.tablet-sidebar(id="sidebar")
@@ -51,10 +49,10 @@ html(lang="en")
             li
               a.github(href="https://github.com/josh-egan" target="_blank")
                 i.fa.fa-github
-    
+
     div.mobile-author-profile
       div.separator
-        
+
       div.author-profile
         img.author-img(alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250")
         div.info
@@ -63,15 +61,15 @@ html(lang="en")
             li
               a.github(href="https://github.com/josh-egan" target="_blank")
                 i.fa.fa-github
-      
+
       div.separator
 
     div
       div(id="disqus_thread")
       script(type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js")
       noscript
-        | Please enable JavaScript to view the 
+        | Please enable JavaScript to view the
         a(href="https://disqus.com/?ref_noscript" rel="nofollow")
           | comments powered by Disqus.
-    
-    != partial("../_shared/footer")   
+
+    != partial("../_shared/footer")
