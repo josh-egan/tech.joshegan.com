@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A few details that should help someone new to markdown get going."/><meta property="og:description" content="A few details that should help someone new to markdown get going."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Getting Started with Markdown - tech.joshegan.com"><title>Getting Started with Markdown - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2015/getting-started-with-markdown"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2015/getting-started-with-markdown">Getting Started with Markdown</a></h1><p></p>Posted on<time datetime="2015-06-12" class="orange"><strong> June 12th, 2015</strong></time><p>When I started building this blog, I knew that one of the tools I wanted to use was markdown. I didn't know much about markdown, and I've learned a fair amount about it over the past few weeks. I thought I'd try to collect my thoughts into a post about what I've learned so far.</p>
+<p><a href="https://en.wikipedia.org/wiki/Markdown">According to Wikipedia</a>, markdown was created in 2004 by John Gruber. Well, as is so often the case, Wikipedia is right. John's post about markdown can be found <a href="http://daringfireball.net/projects/markdown/">here</a>. He describes his purpose of wanting to write documents using a syntax that is 'as readable as possible'. I'm in favor of readable documents. Count me in.</p>
+<p>I was surprised to find that there are various flavors of markdown. The original markdown syntax is <a href="http://daringfireball.net/projects/markdown/syntax">described on John's website</a>. The flavor that I have been using for a while now, the flavor which provided my introduction to markdown, is <a href="https://help.github.com/articles/github-flavored-markdown/">GitHub flavored markdown</a>. I also recently discovered <a href="https://github.com/jgm/CommonMark">CommonMark</a> syntax, which is an attempt to standardize markdown syntax. This can be extremely valuable when it comes to edge cases. I'll have more to say on this later.</p>
+<p>So what makes them different? The original syntax supports basic functionality. GitHub flavored markdown introduces additional functionality (and also some special features available on <a href="http://github.com">github.com</a>). CommonMark goes even further and supports a wide array of edge cases and specific syntax scenarios. The various compilers for each syntax provide variations as well.</p>
+<p>One addition from GitHub flavored markdown that I would like to quickly point out is fenced code blocks. Since I write code, I use these frequently. The GitHub flavor allows us to write code in markdown like this:</p>
+<pre><code>```javascript
+function someFunction() {
+  var alpha = &quot;beta&quot;;
+  return doSomething(alpha);
+}
+```
+</code></pre>
+<p>Each processor supports different features and syntax, so I've found myself using several sources of information for getting the syntax right for what I'm trying to accomplish. For best results, look at the docs for the processor you're using. These are some of the sources I've found helpful:</p>
+<ul>
+<li>Original markdown syntax
+<ul>
+<li>For the original markdown syntax, I found <a href="http://daringfireball.net/projects/markdown/dingus">this small cheatsheet complete with a playground</a>.</li>
+</ul>
+</li>
+<li>GitHub flavored markdown
+<ul>
+<li>The GitHub Guide <a href="https://guides.github.com/features/mastering-markdown">Mastering Markdown</a> page is pretty concise. It describes the core syntax and also what it adds using examples.</li>
+</ul>
+</li>
+<li>CommonMark syntax
+<ul>
+<li>CommonMark has a <a href="http://spec.commonmark.org/">detailed spec sheet</a> describing syntax and giving examples. This is not short, but it is thorough. I've found that a quick <code>Ctrl+F</code> will help me quickly find what I'm looking for.</li>
+<li>CommonMark also <a href="http://spec.commonmark.org/dingus/">hosts a dingus</a> for experimenting.</li>
+<li>markdown-it has a <a href="https://markdown-it.github.io/">live demo</a> that simultaneously demonstrates syntax and examples.</li>
+</ul>
+</li>
+</ul>
+<p>Now a note on CommonMark. To be clear, CommonMark is a syntax specification. The CommonMark people have a reference implementation in javascript called <a href="https://github.com/jgm/commonmark.js">commonmark.js</a>. Anyone can implement the CommonMark syntax. One such library is <a href="https://github.com/markdown-it/markdown-it">markdown-it</a>. In addition to supporting CommonMark syntax, markdown-it also comes with a bunch of additional enhancements, making it a nice option.</p>
+<p>So now that we have the markdown syntax down and we're aware of some of the various markdown syntax specs that are out there, how do we render markdown to html? Well, there are several libraries out there for converting markdown into html. One of the most popular javascript libraries I've found is <a href="https://github.com/chjj/marked">marked</a>. Marked mostly follows the GitHub flavored markdown syntax. I used marked initially in my hand-rolled blog. <a href="https://github.com/sintaxi/terraform/blob/release-v0.11.1/lib/template/processors/md.js#L3">Harp is currently using marked internally</a> for processing markdown. The syntax supported by marked has a few issues that are solved by CommonMark though. For example, composing multiple lists back to back ends up creating a single list. This issue led me to find <a href="https://github.com/jgm/CommonMark">CommonMark</a> and subsequently <a href="https://github.com/markdown-it/markdown-it">markdown-it</a>. I have since implemented markdown-it <a href="https://github.com/josh-egan/terraform">in a fork</a> of harp's pre-processing engine, and I'm using it to build this blog. <i class="fa fa-smile-o"></i></p>
+<p>Now that we've converted markdown into html, we're almost done. Let's make the code look beautiful. Syntax highlighting can be done using libraries such as <a href="https://github.com/isagalaev/highlight.js">highlight.js</a>, <a href="https://github.com/ccampbell/rainbow">rainbow</a>, <a href="https://github.com/syntaxhighlighter/syntaxhighlighter">SyntaxHighlighter</a>, <a href="https://github.com/PrismJS/prism">prism</a>, and <a href="http://shjs.sourceforge.net/">SHJS</a>. These libraries can all be used server side, and several can be used client side. For a static site, I think it makes the most sense to do the syntax highlighting at compile time, especially when it can be easily integrated into the markdown compiler. I chose to use highlight.js. Highlight.js can easily be integrated into marked or markdown-it as follows:</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> highlight = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">applySyntaxHighlighting</span> (<span class="hljs-params">code, lang</span>) </span>{
+  <span class="hljs-keyword">if</span> (lang &amp;&amp; highlight.getLanguage(lang))
+    <span class="hljs-keyword">return</span> highlight.highlight(lang, code).value;
+
+  <span class="hljs-keyword">var</span> result = highlight.highlightAuto(code);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Code block language was not specified in markdown. Auto detected language: "</span> + result.language);
+  <span class="hljs-keyword">return</span> result.value;
+}
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> markdownIt = <span class="hljs-built_in">require</span>(<span class="hljs-string">"markdown-it"</span>)({
+  highlight: applySyntaxHighlighting
+});
+</code></pre>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">"marked"</span>);
+marked.setOptions({
+  highlight: applySyntaxHighlighting
+});
+</code></pre>
+<p>Excellent! I love good code.</p>
+<p>If you came here hoping for answers, you might walk away with more questions. But hopefully this general overview of markdown and the libraries that support it will help you get a taste for what's available and where to start looking.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
