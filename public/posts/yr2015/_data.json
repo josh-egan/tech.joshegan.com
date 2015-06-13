@@ -13,6 +13,12 @@
     "postDateTime": "2015-05-26",
     "isDraft": "true"
   },
+  "getting-started-with-markdown": {
+    "title": "Getting Started with Markdown",
+    "description": "A few details that should help someone new to markdown get going.",
+    "postDateString": "June 12th, 2015",
+    "postDateTime": "2015-06-12"
+  },
   "building-a-blog": {
     "title": "Buiding a Blog",
     "description": "A brief chronicle of my journey to create a blog.",
