@@ -62,3 +62,26 @@ Presented by Martin Fowler and Rachel Laycock, this keynote emphasized following
 - Requires discipline.
 - The best way to address a ball of mud is to not create it in the first place.
 - Technical practices are at the core of being able to implement Agile effectively.
+
+# Functional Programming: Technical Reasons to Adapt
+by Venkat Subramaniam
+- Imperative style of programming does not work well for solving today's difficult challenges.
+- Imperative style does not work well with concurrency.
+- Imperative style is ...
+  - verbose
+  - error prone
+  - hard to reason
+  - hard to make concurrent
+
+- Functional programming...
+  - honors immutability by default
+  - declarative style
+  - function composition
+  - lazy evaluation
+
+Imperative code is code written focusing on HOW to accomplish something. Declarative code is code written focusing on WHAT is being accomplished.
+- Example of doing a loop to find a matching string vs. calling list.contains("target")
+
+Functional programming languages can take advantage of memoization - remembering a call and not recomputing for an identical call.
+
+Compiler can automatically reorder functional calls. Can also automatically run code concurrently.
