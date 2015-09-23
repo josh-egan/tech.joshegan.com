@@ -57,11 +57,15 @@
 
 <span class="hljs-keyword">var</span> expect = chai.expect
 </code></pre>
-<p>Let me take a moment to just add that you might need to add this line  immediately after the import statement.</p>
-<pre><code class="language-js"><span class="hljs-comment">// If failing tests don't show a stack trace, try using this setting</span>
+<p>Let me take a moment to just add that you might need to add some configuration immediately after the import statement.</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> chai = <span class="hljs-built_in">require</span>(<span class="hljs-string">'chai'</span>)
+
+<span class="hljs-comment">// If failing tests don't show a stack trace, try using this setting</span>
 chai.config.includeStack = <span class="hljs-literal">true</span>
+
+<span class="hljs-keyword">var</span> expect = chai.expect
 </code></pre>
-<p>I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.</p>
+<p>I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting <code>includeStack</code> to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.</p>
 <p>There are <a href="http://chaijs.com/guide/styles/">several assertion styles</a> that chai supports. I like to use the <code>expect</code> style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:</p>
 <pre><code class="language-js"><span class="hljs-keyword">var</span> result = myObject.thisMethodReturnsUndefined()
 
