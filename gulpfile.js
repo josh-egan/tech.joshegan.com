@@ -10,7 +10,7 @@ var harpServerOptions = {
   port: 9000
 };
 
-var browserSynceOptions = {
+var browserSyncOptions = {
   open: false,
   proxy: 'localhost:' + harpServerOptions.port,
   notify: false,
@@ -23,7 +23,7 @@ var harpConfig = {
     siteEnvironment: "PRODUCTION"
   },
   dev: {
-    siteUrl: "http://localhost:" + browserSynceOptions.port,
+    siteUrl: "http://localhost:" + browserSyncOptions.port,
     siteEnvironment: "DEV"
   }
 };
@@ -48,11 +48,15 @@ gulp.task('build-for-prod', function (done) {
 });
 
 gulp.task('watch', ['dev-server'], function () {
-  browserSync(browserSynceOptions);
+  browserSync(browserSyncOptions);
 
   gulp.src(paths.srcFiles)
-    .pipe(watch(paths.srcFiles, {verbose: true}))
-    .pipe(browserSync.reload({stream: true}));
+    .pipe(watch(paths.srcFiles, {
+      verbose: true
+    }))
+    .pipe(browserSync.reload({
+      stream: true
+    }));
 });
 
 gulp.task('dev-server', function (done) {
@@ -60,7 +64,7 @@ gulp.task('dev-server', function (done) {
   harp.server(__dirname, harpServerOptions, done);
 });
 
-function applyHarpConfig(config){
+function applyHarpConfig(config) {
   process.env.SITE_URL = config.siteUrl;
   process.env.SITE_ENVIRONMENT = config.siteEnvironment;
 }
