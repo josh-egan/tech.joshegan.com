@@ -13,6 +13,12 @@
     "postDateTime": "2015-05-26",
     "isDraft": "true"
   },
+  "getting-started-with-mocha-and-chai": {
+    "title": "Getting Started with Mocha and Chai",
+    "description": "A quick look into getting going with the mocha test framework and the chai assertion library.",
+    "postDateString": "September 22nd, 2015",
+    "postDateTime": "2015-09-22"
+  },
   "getting-started-with-markdown": {
     "title": "Getting Started with Markdown",
     "description": "A few details that should help someone new to markdown get going.",
