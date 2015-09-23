@@ -84,18 +84,19 @@ var expect = chai.expect
 Let me take a moment to just add that you might need to add this line  immediately after the import statement.
 
 ```js
+// If failing tests don't show a stack trace, try using this setting
 chai.config.includeStack = true
 ```
 
-I once ran into an issue where my stack traces were getting swallowed during test execution. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared without it, but there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.
+I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.
 
-There are [three assertion styles](http://chaijs.com/guide/styles/) that chai supports. I like to use the `expect` style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:
+There are [several assertion styles](http://chaijs.com/guide/styles/) that chai supports. I like to use the `expect` style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:
 
 ```js
 var result = myObject.thisMethodReturnsUndefined()
 
 expect(result).to.be.undefined //Works like a charm
-result.should.be.undefined //Blows all to pieces
+result.should.be.undefined //Goes down in flames
 ```
 
 So now that we've brought chai in, lets make an assertion in our test:
