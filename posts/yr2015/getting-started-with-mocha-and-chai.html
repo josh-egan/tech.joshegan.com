@@ -58,14 +58,15 @@
 <span class="hljs-keyword">var</span> expect = chai.expect
 </code></pre>
 <p>Let me take a moment to just add that you might need to add this line  immediately after the import statement.</p>
-<pre><code class="language-js">chai.config.includeStack = <span class="hljs-literal">true</span>
+<pre><code class="language-js"><span class="hljs-comment">// If failing tests don't show a stack trace, try using this setting</span>
+chai.config.includeStack = <span class="hljs-literal">true</span>
 </code></pre>
-<p>I once ran into an issue where my stack traces were getting swallowed during test execution. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared without it, but there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.</p>
-<p>There are <a href="http://chaijs.com/guide/styles/">three assertion styles</a> that chai supports. I like to use the <code>expect</code> style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:</p>
+<p>I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.</p>
+<p>There are <a href="http://chaijs.com/guide/styles/">several assertion styles</a> that chai supports. I like to use the <code>expect</code> style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:</p>
 <pre><code class="language-js"><span class="hljs-keyword">var</span> result = myObject.thisMethodReturnsUndefined()
 
 expect(result).to.be.undefined <span class="hljs-comment">//Works like a charm</span>
-result.should.be.undefined <span class="hljs-comment">//Blows all to pieces</span>
+result.should.be.undefined <span class="hljs-comment">//Goes down in flames</span>
 </code></pre>
 <p>So now that we've brought chai in, lets make an assertion in our test:</p>
 <pre><code class="language-js">it(<span class="hljs-string">'should correctly add positive numbers'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
