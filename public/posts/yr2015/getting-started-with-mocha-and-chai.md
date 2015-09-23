@@ -81,14 +81,18 @@ var chai = require('chai')
 var expect = chai.expect
 ```
 
-Let me take a moment to just add that you might need to add this line  immediately after the import statement.
+Let me take a moment to just add that you might need to add some configuration immediately after the import statement.
 
 ```js
+var chai = require('chai')
+
 // If failing tests don't show a stack trace, try using this setting
 chai.config.includeStack = true
+
+var expect = chai.expect
 ```
 
-I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting this to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.
+I once ran into an issue where my stack traces for failing tests were getting completely swallowed. Setting `includeStack` to true solved the issue for me. It took me a long time before I finally discovered that this little configuration value was causing my problem. I'm still not sure why the stack trace completely disappeared, because normally the stack trace shows up even with that setting set to false, which is the default. But there was a lot going on in that project, including using babel and transpiling es6 and es7 code, so perhaps something just wasn't playing nice.
 
 There are [several assertion styles](http://chaijs.com/guide/styles/) that chai supports. I like to use the `expect` style. It is a bdd style, and I prefer 'expect' over 'should' because of this scenario:
 
