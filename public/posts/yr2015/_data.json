@@ -13,6 +13,12 @@
     "postDateTime": "2015-05-26",
     "isDraft": "true"
   },
+  "getting-started-with-keepass": {
+    "title": "Getting Started with KeePass",
+    "description": "A brief introduction to using KeePass.",
+    "postDateString": "October 9th, 2015",
+    "postDateTime": "2015-10-09"
+  },
   "getting-started-with-mocha-and-chai": {
     "title": "Getting Started with Mocha and Chai",
     "description": "A quick look into getting going with the mocha test framework and the chai assertion library.",

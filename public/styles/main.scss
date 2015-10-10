@@ -97,6 +97,14 @@ pre {
   }
 }
 
+blockquote {
+  border-left: 3px solid $border-color;
+  margin: 30px 0 30px 15px;
+  padding: 0 15px;
+  font: $blockquote-font;
+  text-align: justify;
+}
+
 footer {
   padding: 25px 0;
   text-align: center;
