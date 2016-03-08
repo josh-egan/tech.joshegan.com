@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07" class="orange"><strong> March 7th, 2016</strong></time><h1></h1>
+<h2>Git Resources</h2>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://git-scm.com/">http://git-scm.com/</a></td>
+<td>Official git website</td>
+</tr>
+<tr>
+<td><a href="http://git-scm.com/docs">http://git-scm.com/docs</a></td>
+<td>Git docs</td>
+</tr>
+<tr>
+<td><a href="https://help.github.com/articles/generating-ssh-keys/">https://help.github.com/articles/generating-ssh-keys/</a></td>
+<td>Generate an SSH Key</td>
+</tr>
+<tr>
+<td><a href="https://help.github.com/articles/changing-a-remote-s-url/">https://help.github.com/articles/changing-a-remote-s-url/</a></td>
+<td>Setup the Remote URL</td>
+</tr>
+<tr>
+<td><a href="https://github.com/pluralsight/git-switch">https://github.com/pluralsight/git-switch</a></td>
+<td>GitSwitch is a windows utility for managing multiple git credentials</td>
+</tr>
+<tr>
+<td><a href="https://github.com/pluralsight/pairing-station">https://github.com/pluralsight/pairing-station</a></td>
+<td>PairingStation is a mac app for managing multiple git credentials</td>
+</tr>
+</tbody>
+</table>
+<h2>Awesome Git Aliases</h2>
+<pre><code class="language-bash">git config --global alias.lga <span class="hljs-string">"log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span>
+git config --global alias.s <span class="hljs-string">"status -su"</span>
+git config --global alias.pr <span class="hljs-string">"pull --rebase"</span>
+git config --global alias.cm <span class="hljs-string">"commit -m"</span>
+git config --global alias.cam <span class="hljs-string">"commit -am"</span>
+</code></pre>
+<h2>Global Configuration Preferences</h2>
+<pre><code class="language-bash">git config --global core.autocrlf <span class="hljs-literal">true</span>
+git config --global core.safecrlf <span class="hljs-literal">false</span>
+git config --global push.default simple
+git config --global color.ui <span class="hljs-literal">true</span>
+</code></pre>
+<h2>Git Commands</h2>
+<h3>git help</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git help</code></td>
+<td>Prints basic usage for the <code>help</code> command to the console.</td>
+</tr>
+<tr>
+<td><code>git help &lt;command&gt;</code></td>
+<td>Launches detailed help docs for the specified command. For example, <code>git help commit</code> or <code>git help clone</code></td>
+</tr>
+</tbody>
+</table>
+<h3>git config</h3>
+<p>For a large, but not necessarily complete, list of configuration variables, see <a href="http://git-scm.com/docs/git-config#_variables">http://git-scm.com/docs/git-config#_variables</a></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git config</code></td>
+<td>Prints basic usage for the <code>config</code> command to the console.</td>
+</tr>
+<tr>
+<td><code>git config --global</code></td>
+<td>Use the global user configuration</td>
+</tr>
+<tr>
+<td><code>git config --system</code></td>
+<td>Use the system configuration, i.e. the config for all users on the computer</td>
+</tr>
+<tr>
+<td><code>git config --list</code></td>
+<td>Prints the applicable configurations for the repository, namely the local, global, and system configurations, so some variables might be listed multiple times.</td>
+</tr>
+<tr>
+<td><code>git config &lt;variable&gt; &lt;value&gt;</code></td>
+<td>Set the value for a config variable. For example, <code>git config --global color.ui true</code></td>
+</tr>
+<tr>
+<td><code>git config --get &lt;variable&gt;</code></td>
+<td>Get the value for a config variable. For example, <code>git config --global --get color.ui</code></td>
+</tr>
+<tr>
+<td><code>git config --unset &lt;variable&gt;</code></td>
+<td>Remove a variable from the config.</td>
+</tr>
+<tr>
+<td><code>git config --global alias.&lt;alias-name&gt; &quot;&lt;aliased command&gt;&quot;</code></td>
+<td>Set a command alias. For example, <code>git config --global alias.pr &quot;pull --rebase&quot;</code> then use <code>git pr</code></td>
+</tr>
+<tr>
+<td><code>git config --global user.name &quot;User Name&quot;</code></td>
+<td>Set the global user name</td>
+</tr>
+<tr>
+<td><code>git config --global user.email &quot;user@site.com&quot;</code></td>
+<td>Set the global email address</td>
+</tr>
+<tr>
+<td><code>git config --global core.autocrlf true</code></td>
+<td>Set the global line endings policy to \r\n (carriage return) on checkout and \n (line feed) on commit</td>
+</tr>
+<tr>
+<td><code>git config --global core.autocrlf input</code></td>
+<td>Changes the line ending to \n on commit.</td>
+</tr>
+<tr>
+<td><code>git config --global core.editor &lt;editor-command&gt;</code></td>
+<td>Set the global editor used by git for things like commit messages</td>
+</tr>
+</tbody>
+</table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
