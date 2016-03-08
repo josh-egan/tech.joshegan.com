@@ -1,9 +1,13 @@
 - var SNIPPET_LENGTH = 300;
+- var yearNames = Object.keys(public.posts)
 
-for yearData, yearName in public.posts
+- for (var i = yearNames.length - 1; i >= 0; i--)
+  - var yearName = yearNames[i]
+  - var yearData = public.posts[yearName]
+  
   for post, postName in yearData._data
     - if (site_environment === "PRODUCTION" && post.isDraft) continue
-
+      
     - var relativePath = "posts/" + yearName + "/" + postName
     - var postPartial = partial(relativePath)
     - if (!postPartial) continue

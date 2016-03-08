@@ -1,0 +1,17 @@
+{
+  "git-cheatsheet": {
+    "title": "Git Cheatsheet",
+    "description": "A cheatsheet of common git commands.",
+    "postDateString": "March 7th, 2016",
+    "postDateTime": "2016-03-07"
+  },
+  "sample": {
+    "title": "Post Title - REQUIRED",
+    "description": "Post description used in meta data - REQUIRED",
+    "postDateString": "January 2nd, 2015 - REQUIRED",
+    "postDateTime": "2015-01-02 - REQUIRED",
+    "updateDateString": "February 3rd, 2015 - OPTIONAL",
+    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
+    "isDraft": "true"
+  }
+}
