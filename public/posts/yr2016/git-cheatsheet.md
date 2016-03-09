@@ -104,3 +104,15 @@ Command                   | Description
 `git commit -a`           | Add all modified tracked files and then commit. This DOES NOT add untracked files. Alias for `--all`
 `git commit --amend`      | Amend the last commit by adding additional files or changing the commit message. Do not amend commits that have been pushed to a remote repository!
 `git commit --dry-run`    | Does not create a commit, but instead shows what would have been committed.
+
+### git reset
+Never use the `reset` command to undo changes that have been pushed! If changes have been pushed, use `git revert` to undo commits.
+
+Command                     | Description
+--------------------------- | -------------------------------------------------------------------------------------------
+`git reset`                 | Unstage all files that have been staged using the `add` command.
+`git reset <path>`          | Unstage the specified file or folder.
+`git reset --soft HEAD^`    | Undo, or reset, the last commit and put the changes from that commit into the staging area.
+`git reset --hard HEAD^`    | Undo, or reset, the last commit and discard the changes.
+`git reset --hard HEAD^^^`  | Completely blow away the last three commits.
+`git reset --soft <commit>` | Undo changes back to the specified commit.
