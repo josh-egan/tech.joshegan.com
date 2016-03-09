@@ -79,7 +79,7 @@ Command         | Description
 Command                          | Description
 -------------------------------- | --------------------------------------------------------------------------------
 `git diff`                       | Show the differences in tracked, unstaged files.
-`git diff --staged`              | Show the differences in staged files.
+`git diff --staged`              | Show the differences in staged files. Synonymous with `git diff --cached`
 `git diff <file>`                | Show the differences in the specified file.
 `git diff <commit>`              | Show the changes you have in your working tree relative to the named `<commit>`.
 `git diff <branch-1> <branch-2>` | Show the differences between two branches.
@@ -94,3 +94,13 @@ Command           | Description
 `git add .`       | Functionally equivalent to `--all`
 `git add *.txt`   | Wildcards are supported. A command like this would add all .txt fils in the top level folder.
 `git add "*.txt"` | Adding quotes around the wildcard will make it work in the top level folder and in all sub folders.
+
+### git commit
+
+Command                   | Description
+------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------
+`git commit`              | Commit the staged files. This will open up an editor to type in your commit message.
+`git commit -m "message"` | Commit staged files with the specified commit message.
+`git commit -a`           | Add all modified tracked files and then commit. This DOES NOT add untracked files. Alias for `--all`
+`git commit --amend`      | Amend the last commit by adding additional files or changing the commit message. Do not amend commits that have been pushed to a remote repository!
+`git commit --dry-run`    | Does not create a commit, but instead shows what would have been committed.
