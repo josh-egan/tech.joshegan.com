@@ -18,6 +18,8 @@ git config --global alias.s "status -su"
 git config --global alias.pr "pull --rebase"
 git config --global alias.cm "commit -m"
 git config --global alias.cam "commit -am"
+git config --global alias.d "diff"
+git config --global alias.ds "diff --staged"
 ```
 
 ## Global Configuration Preferences
@@ -72,11 +74,23 @@ Command         | Description
 `git status -s` | Displays a short, condensed status message. Alias for `--short`
 `git status -u` | Show untracked files. Alias for `--untracked`
 
+### git diff
+
+Command                          | Description
+-------------------------------- | --------------------------------------------------------------------------------
+`git diff`                       | Show the differences in tracked, unstaged files.
+`git diff --staged`              | Show the differences in staged files.
+`git diff <file>`                | Show the differences in the specified file.
+`git diff <commit>`              | Show the changes you have in your working tree relative to the named `<commit>`.
+`git diff <branch-1> <branch-2>` | Show the differences between two branches.
+`git diff HEAD~5`                | Show the differences in the working tree against 5 commits back.
+
 ### git add
 
 Command           | Description
 ----------------- | ---------------------------------------------------------------------------------------------------
 `git add <path>`  | Add the specified file or folder to the staging area.
 `git add -A`      | Add all modified and untracked files to the staging area. Alias for `--all`
+`git add .`       | Functionally equivalent to `--all`
 `git add *.txt`   | Wildcards are supported. A command like this would add all .txt fils in the top level folder.
 `git add "*.txt"` | Adding quotes around the wildcard will make it work in the top level folder and in all sub folders.
