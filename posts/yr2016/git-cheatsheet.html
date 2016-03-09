@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07" class="orange"><strong> March 7th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-08" class="orange"><strong> March 8th, 2016</strong></time><h1></h1>
 <h2>Git Resources</h2>
 <table>
 <thead>
@@ -40,6 +40,8 @@ git config --global alias.s <span class="hljs-string">"status -su"</span>
 git config --global alias.pr <span class="hljs-string">"pull --rebase"</span>
 git config --global alias.cm <span class="hljs-string">"commit -m"</span>
 git config --global alias.cam <span class="hljs-string">"commit -am"</span>
+git config --global alias.d <span class="hljs-string">"diff"</span>
+git config --global alias.ds <span class="hljs-string">"diff --staged"</span>
 </code></pre>
 <h2>Global Configuration Preferences</h2>
 <pre><code class="language-bash">git config --global core.autocrlf <span class="hljs-literal">true</span>
@@ -48,6 +50,7 @@ git config --global push.default simple
 git config --global color.ui <span class="hljs-literal">true</span>
 </code></pre>
 <h2>Git Commands</h2>
+<p>When working with <code>git</code> commands, options can be combined. For example, <code>git commit -am</code> is the same as <code>git commit -a -m</code> and <code>git status -su</code> is the same as <code>git status -s -u</code>.</p>
 <h3>git help</h3>
 <table>
 <thead>
@@ -128,6 +131,177 @@ git config --global color.ui <span class="hljs-literal">true</span>
 <tr>
 <td><code>git config --global core.editor &lt;editor-command&gt;</code></td>
 <td>Set the global editor used by git for things like commit messages</td>
+</tr>
+</tbody>
+</table>
+<h3>git init</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git init</code></td>
+<td>Create a new, empty git repository.</td>
+</tr>
+</tbody>
+</table>
+<h3>git status</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git status</code></td>
+<td>Shows changes since the last commit</td>
+</tr>
+<tr>
+<td><code>git status -s</code></td>
+<td>Displays a short, condensed status message. Alias for <code>--short</code></td>
+</tr>
+<tr>
+<td><code>git status -u</code></td>
+<td>Show untracked files. Alias for <code>--untracked</code></td>
+</tr>
+</tbody>
+</table>
+<h3>git diff</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git diff</code></td>
+<td>Show the differences in tracked, unstaged files.</td>
+</tr>
+<tr>
+<td><code>git diff --staged</code></td>
+<td>Show the differences in staged files. Synonymous with <code>git diff --cached</code></td>
+</tr>
+<tr>
+<td><code>git diff &lt;file&gt;</code></td>
+<td>Show the differences in the specified file.</td>
+</tr>
+<tr>
+<td><code>git diff &lt;commit&gt;</code></td>
+<td>Show the changes you have in your working tree relative to the named <code>&lt;commit&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>git diff &lt;branch-1&gt; &lt;branch-2&gt;</code></td>
+<td>Show the differences between two branches.</td>
+</tr>
+<tr>
+<td><code>git diff HEAD~5</code></td>
+<td>Show the differences in the working tree against 5 commits back.</td>
+</tr>
+</tbody>
+</table>
+<h3>git add</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git add &lt;path&gt;</code></td>
+<td>Add the specified file or folder to the staging area.</td>
+</tr>
+<tr>
+<td><code>git add -A</code></td>
+<td>Add all modified and untracked files to the staging area. Alias for <code>--all</code></td>
+</tr>
+<tr>
+<td><code>git add .</code></td>
+<td>Functionally equivalent to <code>--all</code></td>
+</tr>
+<tr>
+<td><code>git add *.txt</code></td>
+<td>Wildcards are supported. A command like this would add all .txt files in the top level folder.</td>
+</tr>
+<tr>
+<td><code>git add &quot;*.txt&quot;</code></td>
+<td>Adding quotes around the wildcard will make it work in the top level folder and in all sub folders.</td>
+</tr>
+</tbody>
+</table>
+<h3>git commit</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git commit</code></td>
+<td>Commit the staged files. This will open up an editor to type in your commit message.</td>
+</tr>
+<tr>
+<td><code>git commit -m &quot;message&quot;</code></td>
+<td>Commit staged files with the specified commit message.</td>
+</tr>
+<tr>
+<td><code>git commit -a</code></td>
+<td>Add all modified tracked files and then commit. This DOES NOT add untracked files. Alias for <code>--all</code></td>
+</tr>
+<tr>
+<td><code>git commit --amend</code></td>
+<td>Amend the last commit by adding additional files or changing the commit message. Do not amend commits that have been pushed to a remote repository!</td>
+</tr>
+<tr>
+<td><code>git commit --dry-run</code></td>
+<td>Does not create a commit, but instead shows what would have been committed.</td>
+</tr>
+</tbody>
+</table>
+<h3>git reset</h3>
+<p>Never use the <code>reset</code> command to undo changes that have been pushed! If changes have been pushed, use <code>git revert</code> to undo commits.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git reset</code></td>
+<td>Unstage all files that have been staged using the <code>add</code> command.</td>
+</tr>
+<tr>
+<td><code>git reset &lt;path&gt;</code></td>
+<td>Unstage the specified file or folder.</td>
+</tr>
+<tr>
+<td><code>git reset --soft HEAD^</code></td>
+<td>Undo, or reset, the last commit and put the changes from that commit into the staging area.</td>
+</tr>
+<tr>
+<td><code>git reset --hard HEAD^</code></td>
+<td>Undo, or reset, the last commit and discard the changes.</td>
+</tr>
+<tr>
+<td><code>git reset --hard HEAD^^^</code></td>
+<td>Completely blow away the last three commits.</td>
+</tr>
+<tr>
+<td><code>git reset --soft &lt;commit&gt;</code></td>
+<td>Undo changes back to the specified commit.</td>
 </tr>
 </tbody>
 </table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
