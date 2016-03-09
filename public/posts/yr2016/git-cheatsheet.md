@@ -30,6 +30,8 @@ git config --global color.ui true
 ```
 
 ## Git Commands
+When working with `git` commands, options can be combined. For example, `git commit -am` is the same as `git commit -a -m` and `git status -su` is the same as `git status -s -u`.
+
 ### git help
 
 Command              | Description
@@ -55,3 +57,17 @@ Command                                                      | Description
 `git config --global core.autocrlf true`                     | Set the global line endings policy to \r\n (carriage return) on checkout and \n (line feed) on commit
 `git config --global core.autocrlf input`                    | Changes the line ending to \n on commit.
 `git config --global core.editor <editor-command>`           | Set the global editor used by git for things like commit messages
+
+### git init
+
+Command    | Description
+---------- | -----------------------------------
+`git init` | Create a new, empty git repository.
+
+### git status
+
+Command         | Description
+--------------- | ---------------------------------------------------------------
+`git status`    | Shows changes since the last commit
+`git status -s` | Displays a short, condensed status message. Alias for `--short`
+`git status -u` | Show untracked files. Alias for `--untracked`
