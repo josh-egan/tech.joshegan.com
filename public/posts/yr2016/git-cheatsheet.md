@@ -92,7 +92,7 @@ Command           | Description
 `git add <path>`  | Add the specified file or folder to the staging area.
 `git add -A`      | Add all modified and untracked files to the staging area. Alias for `--all`
 `git add .`       | Functionally equivalent to `--all`
-`git add *.txt`   | Wildcards are supported. A command like this would add all .txt fils in the top level folder.
+`git add *.txt`   | Wildcards are supported. A command like this would add all .txt files in the top level folder.
 `git add "*.txt"` | Adding quotes around the wildcard will make it work in the top level folder and in all sub folders.
 
 ### git commit
