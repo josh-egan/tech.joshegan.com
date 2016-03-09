@@ -69,6 +69,7 @@ td {
   vertical-align: middle;
   padding: 5px;
   border-top: 1px solid $light;
+  border-bottom: 1px solid $light;
   border-left: 1px solid $light;
 
   @media screen and (min-width: $tablet) {
