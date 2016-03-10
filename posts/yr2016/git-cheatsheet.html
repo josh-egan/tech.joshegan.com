@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-08" class="orange"><strong> March 8th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-09" class="orange"><strong> March 9th, 2016</strong></time><h1></h1>
 <h2>Git Resources</h2>
 <table>
 <thead>
@@ -48,6 +48,47 @@ git config --global alias.ds <span class="hljs-string">"diff --staged"</span>
 git config --global core.safecrlf <span class="hljs-literal">false</span>
 git config --global push.default simple
 git config --global color.ui <span class="hljs-literal">true</span>
+</code></pre>
+<h2>Git Recipes</h2>
+<h3>Hatin' on merge commits</h3>
+<p>Don't you just hate those nasty merge commits cluttering up your commit history? This recipe is just the trick for merging a local branch into master without generating a merge commit.</p>
+<p>DO NOT use this recipe if your branch has been pushed to a remote!</p>
+<pre><code class="language-bash">git checkout my-branch
+git rebase master
+git checkout master
+git merge my-branch
+</code></pre>
+<h3>I take it back!</h3>
+<p>Sometimes, don't you wish you could just go back in time and do things a little bit differently? Well, with git you can.</p>
+<p>Here are the git commands to use for the three different scenarios you'll face when wanting to undo what's been done.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git checkout</code></td>
+<td>Use <code>checkout</code> if your changes have not been checked in.</td>
+</tr>
+<tr>
+<td><code>git reset</code></td>
+<td>Use <code>reset</code> if your changes have been checked in, but not pushed to a remote.</td>
+</tr>
+<tr>
+<td><code>git revert</code></td>
+<td>Use <code>revert</code> if your changes have been checked in and pushed to a remote.</td>
+</tr>
+</tbody>
+</table>
+<h3>Catching up</h3>
+<p>If you've forked a repo and then find yourself wanting to sync up with the latest changes in the original repo, this is the recipe for you.</p>
+<p>This recipe makes the assumption that your repo follows the standard conventions of naming the original remote the <code>upstream</code> remote.</p>
+<pre><code class="language-bash">git fetch upstream
+git checkout master
+git merge upstream/master
 </code></pre>
 <h2>Git Commands</h2>
 <p>When working with <code>git</code> commands, options can be combined. For example, <code>git commit -am</code> is the same as <code>git commit -a -m</code> and <code>git status -su</code> is the same as <code>git status -s -u</code>.</p>
@@ -173,6 +214,7 @@ git config --global color.ui <span class="hljs-literal">true</span>
 </tbody>
 </table>
 <h3>git diff</h3>
+<p>When viewing the diff in a bash console, hit <code>q</code> to exit.</p>
 <table>
 <thead>
 <tr>
@@ -204,6 +246,37 @@ git config --global color.ui <span class="hljs-literal">true</span>
 <tr>
 <td><code>git diff HEAD~5</code></td>
 <td>Show the differences in the working tree against 5 commits back.</td>
+</tr>
+</tbody>
+</table>
+<h3>git checkout</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git checkout &lt;path&gt;</code></td>
+<td>Replace the contents of the file in the working directory with the contents from the last commit. This effectively blows away the changes in the specified path since the last commit.</td>
+</tr>
+<tr>
+<td><code>git checkout .</code></td>
+<td>Checkout all files from the last commit. This effectively blows away all changes to tracked files since your last commit.</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;branch-name&gt;</code></td>
+<td>Switch to the specified branch. If you have changes in your working directory when you switch branches, those changes will be preserved.</td>
+</tr>
+<tr>
+<td><code>git checkout -b &lt;new-branch&gt;</code></td>
+<td>Create a new branch and immediately switch to the new branch.</td>
+</tr>
+<tr>
+<td><code>git checkout &lt;tag-name&gt;</code></td>
+<td>Checks out the code at the commit where the tag was inserted.</td>
 </tr>
 </tbody>
 </table>
@@ -302,6 +375,78 @@ git config --global color.ui <span class="hljs-literal">true</span>
 <tr>
 <td><code>git reset --soft &lt;commit&gt;</code></td>
 <td>Undo changes back to the specified commit.</td>
+</tr>
+</tbody>
+</table>
+<h3>git log</h3>
+<p>When viewing the diff in a bash console, hit <code>q</code> to exit.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git log</code></td>
+<td>Show the commit log.</td>
+</tr>
+<tr>
+<td><code>git log --graph</code></td>
+<td>Show a text based representation of the branches.</td>
+</tr>
+<tr>
+<td><code>git log --all</code></td>
+<td>Show all of the commits as if they had been specified on the command line.</td>
+</tr>
+<tr>
+<td><code>git log --oneline</code></td>
+<td>Show each commit on a single line.</td>
+</tr>
+<tr>
+<td><code>git log --abbrev-commit</code></td>
+<td>Show only the first 7 characters of the commit instead of the full 40 byte hex object name.</td>
+</tr>
+</tbody>
+</table>
+<h3>git remote</h3>
+<p>There are a couple of remote naming conventions:</p>
+<ol>
+<li><code>origin</code> is the name of the remote that is the primary owner of the repository.</li>
+<li><code>upstream</code> is the name of the original remote from which a repository was forked.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git remote</code></td>
+<td>List the remotes for the repository.</td>
+</tr>
+<tr>
+<td><code>git remote -v</code></td>
+<td>Give detailed information about remotes. Alias for <code>--verbose</code>.</td>
+</tr>
+<tr>
+<td><code>git remote add &lt;remote-name&gt; &lt;remote-address&gt;</code></td>
+<td>Add a remote to an existing repo.</td>
+</tr>
+<tr>
+<td><code>git remote rm &lt;remote-name&gt;</code></td>
+<td>Remove a remote.</td>
+</tr>
+<tr>
+<td><code>git remote show &lt;remote-name&gt;</code></td>
+<td>Show detailed information about a remote, including remote branches and whether the branches are tracked or not.</td>
+</tr>
+<tr>
+<td><code>git remote prune &lt;remote-name&gt;</code></td>
+<td>Remove stale, local branches that have been removed from the remote.</td>
 </tr>
 </tbody>
 </table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
