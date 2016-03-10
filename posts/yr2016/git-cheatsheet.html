@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-09" class="orange"><strong> March 9th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-10" class="orange"><strong> March 10th, 2016</strong></time><h1></h1>
 <h2>Git Resources</h2>
 <table>
 <thead>
@@ -447,6 +447,68 @@ git merge upstream/master
 <tr>
 <td><code>git remote prune &lt;remote-name&gt;</code></td>
 <td>Remove stale, local branches that have been removed from the remote.</td>
+</tr>
+</tbody>
+</table>
+<h3>git push</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git push &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td>Push the specified branch to the specified to the specified remote.</td>
+</tr>
+<tr>
+<td><code>git push -u &lt;remote-name&gt; &lt;branch-name&gt;</code></td>
+<td>Push using the <code>-u</code> flag to remember the remote to use for the branch. After pushing with the <code>-u</code> flag, you can just use <code>git push</code>. <code>-u</code> is an alias for <code>--set-upstream</code>.</td>
+</tr>
+<tr>
+<td><code>git push</code></td>
+<td>After pushing with the <code>-u</code> flag, this will push the branch to the upstream remote.</td>
+</tr>
+<tr>
+<td><code>git push &lt;remote-name&gt; :&lt;branch-name&gt;</code></td>
+<td>Delete a remote branch. For example, <code>git push origin :new-feature</code></td>
+</tr>
+<tr>
+<td><code>git push &lt;remote-name&gt; :&lt;tag-name&gt;</code></td>
+<td>Delete a remote tag. For example, <code>git push origin :v1.2.6</code></td>
+</tr>
+<tr>
+<td><code>git push &lt;remote-name&gt; &lt;local-branch&gt;:&lt;remote-branch&gt;</code></td>
+<td>If the local branch has a different name than the remote branch, use this command to push the local branch to the remote.</td>
+</tr>
+<tr>
+<td><code>git push --tags</code></td>
+<td>Push tags. For some strange reason, tags are not pushed unless this flag is used and using this flag does not push code.</td>
+</tr>
+<tr>
+<td><code>git push --recurse-submodules=on-demand</code></td>
+<td>If using submodules, use this flag to push your current branch and also all of the submodules.</td>
+</tr>
+</tbody>
+</table>
+<h3>git pull</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git pull</code></td>
+<td>Pull down changes from the remote. If needed a merge commit will be created. Shorthand for <code>git fetch</code> followed by <code>git merge FETCH_HEAD</code></td>
+</tr>
+<tr>
+<td><code>git pull --rebase</code></td>
+<td>Pull down changes from the remote, and if needed, rebase local commits instead of creating a merge commit. Shorthand for <code>git fetch</code> followed by <code>git rebase FETCH_HEAD</code></td>
 </tr>
 </tbody>
 </table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
