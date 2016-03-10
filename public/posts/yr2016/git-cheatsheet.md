@@ -121,6 +121,16 @@ Command                          | Description
 `git diff <branch-1> <branch-2>` | Show the differences between two branches.
 `git diff HEAD~5`                | Show the differences in the working tree against 5 commits back.
 
+### git checkout
+
+Command                        | Description
+------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git checkout <path>`          | Replace the contents of the file in the working directory with the contents from the last commit. This effectively blows away the changes in the specified path since the last commit.
+`git checkout .`               | Checkout all files from the last commit. This effectively blows away all changes to tracked files since your last commit.
+`git checkout <branch-name>`   | Switch to the specified branch.
+`git checkout -b <new-branch>` | Create a new branch and immediately switch to the new branch.
+`git checkout <tag-name>`      | Checks out the code at the commit where the tag was inserted.
+
 ### git add
 
 Command           | Description
