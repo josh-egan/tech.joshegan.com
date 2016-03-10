@@ -31,6 +31,41 @@ git config --global push.default simple
 git config --global color.ui true
 ```
 
+## Git Recipes
+### Hatin' on merge commits
+Don't you just hate those nasty merge commits cluttering up your commit history? This recipe is just the trick for merging a local branch into master without generating a merge commit.
+
+DO NOT use this recipe if your branch has been pushed to a remote!
+
+```bash
+git checkout my-branch
+git rebase master
+git checkout master
+git merge my-branch
+```
+
+### I take it back!
+Sometimes, don't you wish you could just go back in time and do things a little bit differently? Well, with git you can.
+
+Here are the git commands to use for the three different scenarios you'll face when wanting to undo what's been done.
+
+Command        | Use Case
+-------------- | -----------------------------------------------------------------------------
+`git checkout` | Use `checkout` if your changes have not been checked in.
+`git reset`    | Use `reset` if your changes have been checked in, but not pushed to a remote.
+`git revert`   | Use `revert` if your changes have been checked in and pushed to a remote.
+
+### Catching up
+If you've forked a repo and then find yourself wanting to sync up with the latest changes in the original repo, this is the recipe for you.
+
+This recipe makes the assumption that your repo follows the standard conventions of naming the original remote the `upstream` remote.
+
+```bash
+git fetch upstream
+git checkout master
+git merge upstream/master
+```
+
 ## Git Commands
 When working with `git` commands, options can be combined. For example, `git commit -am` is the same as `git commit -a -m` and `git status -su` is the same as `git status -s -u`.
 
