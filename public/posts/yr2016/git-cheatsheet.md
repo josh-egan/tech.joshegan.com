@@ -173,3 +173,17 @@ Command                   | Description
 `git log --all`           | Show all of the commits as if they had been specified on the command line.
 `git log --oneline`       | Show each commit on a single line.
 `git log --abbrev-commit` | Show only the first 7 characters of the commit instead of the full 40 byte hex object name.
+
+### git remote
+There are a couple of remote naming conventions:
+1. `origin` is the name of the remote that is the primary owner of the repository.
+2. `upstream` is the name of the original remote from which a repository was forked.
+
+Command                                         | Description
+----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------
+`git remote`                                    | List the remotes for the repository.
+`git remote -v`                                 | Give detailed information about remotes. Alias for `--verbose`.
+`git remote add <remote-name> <remote-address>` | Add a remote to an existing repo.
+`git remote rm <remote-name>`                   | Remove a remote.
+`git remote show <remote-name>`                 | Show detailed information about a remote, including remote branches and whether the branches are tracked or not.
+`git remote prune <remote-name>`                | Remove stale, local branches that have been removed from the remote.
