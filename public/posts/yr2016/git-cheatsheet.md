@@ -75,6 +75,7 @@ Command         | Description
 `git status -u` | Show untracked files. Alias for `--untracked`
 
 ### git diff
+When viewing the diff in a bash console, hit `q` to exit.
 
 Command                          | Description
 -------------------------------- | --------------------------------------------------------------------------------
@@ -116,3 +117,14 @@ Command                     | Description
 `git reset --hard HEAD^`    | Undo, or reset, the last commit and discard the changes.
 `git reset --hard HEAD^^^`  | Completely blow away the last three commits.
 `git reset --soft <commit>` | Undo changes back to the specified commit.
+
+### git log
+When viewing the diff in a bash console, hit `q` to exit.
+
+Command                   | Description
+------------------------- | -------------------------------------------------------------------------------------------
+`git log`                 | Show the commit log.
+`git log --graph`         | Show a text based representation of the branches.
+`git log --all`           | Show all of the commits as if they had been specified on the command line.
+`git log --oneline`       | Show each commit on a single line.
+`git log --abbrev-commit` | Show only the first 7 characters of the commit instead of the full 40 byte hex object name.
