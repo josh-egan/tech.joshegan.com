@@ -200,3 +200,10 @@ Command                                                 | Description
 `git push <remote-name> <local-branch>:<remote-branch>` | If the local branch has a different name than the remote branch, use this command to push the local branch to the remote.
 `git push --tags`                                       | Push tags. For some strange reason, tags are not pushed unless this flag is used and using this flag does not push code.
 `git push --recurse-submodules=on-demand`               | If using submodules, use this flag to push your current branch and also all of the submodules.
+
+### git pull
+
+Command             | Description
+------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git pull`          | Pull down changes from the remote. If needed a merge commit will be created. Shorthand for `git fetch` followed by `git merge FETCH_HEAD`
+`git pull --rebase` | Pull down changes from the remote, and if needed, rebase local commits instead of creating a merge commit. Shorthand for `git fetch` followed by `git rebase FETCH_HEAD`
