@@ -187,3 +187,16 @@ Command                                         | Description
 `git remote rm <remote-name>`                   | Remove a remote.
 `git remote show <remote-name>`                 | Show detailed information about a remote, including remote branches and whether the branches are tracked or not.
 `git remote prune <remote-name>`                | Remove stale, local branches that have been removed from the remote.
+
+### git push
+
+Command                                                 | Description
+------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git push <remote-name> <branch-name>`                  | Push the specified branch to the specified to the specified remote.
+`git push -u <remote-name> <branch-name>`               | Push using the `-u` flag to remember the remote to use for the branch. After pushing with the `-u` flag, you can just use `git push`. `-u` is an alias for `--set-upstream`.
+`git push`                                              | After pushing with the `-u` flag, this will push the branch to the upstream remote.
+`git push <remote-name> :<branch-name>`                 | Delete a remote branch. For example, `git push origin :new-feature`
+`git push <remote-name> :<tag-name>`                    | Delete a remote tag. For example, `git push origin :v1.2.6`
+`git push <remote-name> <local-branch>:<remote-branch>` | If the local branch has a different name than the remote branch, use this command to push the local branch to the remote.
+`git push --tags`                                       | Push tags. For some strange reason, tags are not pushed unless this flag is used and using this flag does not push code.
+`git push --recurse-submodules=on-demand`               | If using submodules, use this flag to push your current branch and also all of the submodules.
