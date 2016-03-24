@@ -214,3 +214,15 @@ Command                              | Description
 ------------------------------------ | ------------------------------------------------------------------
 `git clone <src-repo>`               | Clone a repository. Provide a url to clone a remotely hosted repo.
 `git clone <src-repo> <target-repo>` | Clone a repo into the specified repo.
+
+### git branch
+
+Command                             | Description
+----------------------------------- | -----------------------------------------------------------------------------------------------------------------------
+`git branch`                        | List the active branch and all local branches.
+`git branch -r`                     | List remote branches.
+`git branch -a`                     | List all branches, both local and remote.
+`git branch <branch-name>`          | Create a new branch with the specified name.
+`git branch <branch-name> <commit>` | Create a new branch that points to a specific commit.
+`git branch -d <branch-name>`       | Safely delete a branch. If the branch has not been merged into master or has uncommitted changes, the delete will fail.
+`git branch -D <branch-name>`       | Force delete a branch. This will blow the branch away regardless of branch state.
