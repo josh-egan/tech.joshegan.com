@@ -207,3 +207,10 @@ Command             | Description
 ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git pull`          | Pull down changes from the remote. If needed a merge commit will be created. Shorthand for `git fetch` followed by `git merge FETCH_HEAD`
 `git pull --rebase` | Pull down changes from the remote, and if needed, rebase local commits instead of creating a merge commit. Shorthand for `git fetch` followed by `git rebase FETCH_HEAD`
+
+### git clone
+
+Command                              | Description
+------------------------------------ | ------------------------------------------------------------------
+`git clone <src-repo>`               | Clone a repository. Provide a url to clone a remotely hosted repo.
+`git clone <src-repo> <target-repo>` | Clone a repo into the specified repo.
