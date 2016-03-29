@@ -236,7 +236,7 @@ Command                                                  | Description
 `git merge --no-ff <branch-name>`                        | Do a recursive merge. Tell git not to do a fast-forward merge.
 
 ### git rebase
-Rebase moves commits since branching into a temporary area, merges in the commits that have occurred since the branch, and then replays the commits creating new commit hashes in the process. This effectively makes it as if you had started the branch at the current state of the original branch. This is a useful technique for not creating automatic 'merge commits' that would get creating using `git merge`.
+Rebase moves commits made on the current branch since the branch was made into a temporary area, does a fast-forward merge of new commits in the original branch into the current branch, and then replays the current branch commits (which creates new commit hashes in the process). This effectively makes it as if you had started the branch at the current state of the original branch. This is a useful technique for not creating automatic 'merge commits' that would get created using `git merge`.
 
 DO NOT rebase a branch that has been pushed to a remote.
 
