@@ -226,3 +226,11 @@ Command                             | Description
 `git branch <branch-name> <commit>` | Create a new branch that points to a specific commit.
 `git branch -d <branch-name>`       | Safely delete a branch. If the branch has not been merged into master or has uncommitted changes, the delete will fail.
 `git branch -D <branch-name>`       | Force delete a branch. This will blow the branch away regardless of branch state.
+
+### git merge
+
+Command                                                  | Description
+-------------------------------------------------------- | --------------------------------------------------------------
+`git merge <branch-name>`                                | Merge the specified branch into the current branch.
+`git merge <remote-name>/<remote-branch> <local-branch>` | Merge a remote branch into a local branch.
+`git merge --no-ff <branch-name>`                        | Do a recursive merge. Tell git not to do a fast-forward merge.
