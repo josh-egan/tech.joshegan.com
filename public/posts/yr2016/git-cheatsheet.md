@@ -201,6 +201,12 @@ Command                                                 | Description
 `git push --tags`                                       | Push tags. For some strange reason, tags are not pushed unless this flag is used and using this flag does not push code.
 `git push --recurse-submodules=on-demand`               | If using submodules, use this flag to push your current branch and also all of the submodules.
 
+### git fetch
+
+Command     | Description
+----------- | -----------------------------------------------------------------------------------------------
+`git fetch` | Retrieves and pulls down information from the remote, but does not merge it into the local copy
+
 ### git pull
 
 Command             | Description
