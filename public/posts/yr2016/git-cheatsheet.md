@@ -151,6 +151,20 @@ Command                   | Description
 `git commit --amend`      | Amend the last commit by adding additional files or changing the commit message. Do not amend commits that have been pushed to a remote repository!
 `git commit --dry-run`    | Does not create a commit, but instead shows what would have been committed.
 
+### git tag
+
+Command                              | Description
+------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git tag`                            | Lists all of the tags. Same as running `git tag -l`
+`git tag <tag-name>`                 | Create a new lightweight tag. This does not create a tag object. Lightweight tags are only recommended for temporary or private use for identifying commits.
+`git tag -a <tag-name>`              | Create an unsigned, annotated tag object. For example, `git tag -a v1.2.7`. `-a` is an alias for `--annotate`.
+`git tag -s <tag-name>`              | Create a GPG-signed tag object using the default email address's key. For example, `git tag -s v2.2.9`. `-s` is an alias for `--sign`.
+`git tag -m <message>`               | Add the message for the tag object from the command line. For example, `git tag -a v3.1.0 -m 'new feature: time travel'`. `-m` is an alias for `--message`.
+`git tag -a <tag-name> <commit>`     | Tag a previous commit by its id. For example, `git tag -a v5.3.1 9fceb02 -m 'forgot to tag this!'`
+`git tag -l <pattern>`               | List all tags that match the given pattern. If no pattern is given, all tags are listed. `-l` is an alias for `--list`.
+`git tag -d <tag-name>`              | Delete a local tag. For example `git tag -d v1.2.3`. `-d` is an alias for `--delete`.
+`git push <remote-name> :<tag-name>` | Use git push to delete a remote tag. For example, `git push origin :v1.2.3`
+
 ### git reset
 Never use the `reset` command to undo changes that have been pushed! If changes have been pushed, use `git revert` to undo commits.
 
@@ -223,15 +237,16 @@ Command                              | Description
 
 ### git branch
 
-Command                             | Description
------------------------------------ | -----------------------------------------------------------------------------------------------------------------------
-`git branch`                        | List the active branch and all local branches.
-`git branch -r`                     | List remote branches.
-`git branch -a`                     | List all branches, both local and remote.
-`git branch <branch-name>`          | Create a new branch with the specified name.
-`git branch <branch-name> <commit>` | Create a new branch that points to a specific commit.
-`git branch -d <branch-name>`       | Safely delete a branch. If the branch has not been merged into master or has uncommitted changes, the delete will fail.
-`git branch -D <branch-name>`       | Force delete a branch. This will blow the branch away regardless of branch state.
+Command                                 | Description
+--------------------------------------- | -----------------------------------------------------------------------------------------------------------------------
+`git branch`                            | List the active branch and all local branches.
+`git branch -r`                         | List remote branches.
+`git branch -a`                         | List all branches, both local and remote.
+`git branch <branch-name>`              | Create a new branch with the specified name.
+`git branch <branch-name> <commit>`     | Create a new branch that points to a specific commit.
+`git branch -d <branch-name>`           | Safely delete a branch. If the branch has not been merged into master or has uncommitted changes, the delete will fail.
+`git branch -D <branch-name>`           | Force delete a branch. This will blow the branch away regardless of branch state.
+`git push <remote-name> :<branch-name>` | Use git push to delete a remote branch. For example, `git push origin :cool-branch`
 
 ### git merge
 
