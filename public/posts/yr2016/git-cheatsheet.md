@@ -272,3 +272,12 @@ Command                       | Description
 `git rebase <branch-name>`    | Replay the commits in the current branch on top of any commits from the specified branch.
 `git rebase --continue`       | Continue a rebase after fixing a conflict.
 `git rebase -i <branch-name>` | Do an interactive rebase.
+
+### git rm
+
+Command                          | Description
+-------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git rm <file-pattern>`          | Remove the file(s) that match the specified file pattern from the working tree and from the index.
+`git rm -n <file-pattern>`       | Do a dry run to see which files will be removed.
+`git rm -r <directory>`          | Recursively remove all of the files in the specified directory.
+`git rm --cached <file-pattern>` | Remove matching files from the index, but does not touch the working tree. In other words, the file is no longer tracked in git, but the file is not modified by this command.
