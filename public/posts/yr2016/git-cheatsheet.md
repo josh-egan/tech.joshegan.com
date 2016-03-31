@@ -282,6 +282,15 @@ Command                          | Description
 `git rm -r <directory>`          | Recursively remove all of the files in the specified directory.
 `git rm --cached <file-pattern>` | Remove matching files from the index, but does not touch the working tree. In other words, the file is no longer tracked in git, but the file is not modified by this command.
 
+### git clean
+
+Command        | Description
+-------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git clean`    | Remove untracked files from the working directory
+`git clean -n` | Do a dry run - preview files that are going to be deleted
+`git clean -f` | Force delete. Remove files without requiring a confirmation
+`git clean -x` | Remove files that are ignored in your .gitignore file. For more examples, see http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch
+
 ### git stash
 Stashing files is particularly useful for when you have changes in the working directory that you aren't ready to commit, but you need to pull or push or something. Stashing the files will preserve your changes in the stashed copy.
 
