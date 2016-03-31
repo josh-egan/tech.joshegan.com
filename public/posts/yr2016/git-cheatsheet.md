@@ -165,6 +165,12 @@ Command                              | Description
 `git tag -d <tag-name>`              | Delete a local tag. For example `git tag -d v1.2.3`. `-d` is an alias for `--delete`.
 `git push <remote-name> :<tag-name>` | Use git push to delete a remote tag. For example, `git push origin :v1.2.3`
 
+### git blame
+
+Command                 | Description
+----------------------- | --------------------------------------------------------------------
+`git blame <file-name>` | See which commit is responsible for each line in the specified file.
+
 ### git reset
 Never use the `reset` command to undo changes that have been pushed! If changes have been pushed, use `git revert` to undo commits.
 
