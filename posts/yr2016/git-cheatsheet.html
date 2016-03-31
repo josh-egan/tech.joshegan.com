@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-29" class="orange"><strong> March 29th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-30" class="orange"><strong> March 30th, 2016</strong></time><h1></h1>
 <h2>Git Resources</h2>
 <table>
 <thead>
@@ -342,6 +342,53 @@ git merge upstream/master
 </tr>
 </tbody>
 </table>
+<h3>git tag</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git tag</code></td>
+<td>Lists all of the tags. Same as running <code>git tag -l</code></td>
+</tr>
+<tr>
+<td><code>git tag &lt;tag-name&gt;</code></td>
+<td>Create a new lightweight tag. This does not create a tag object. Lightweight tags are only recommended for temporary or private use for identifying commits.</td>
+</tr>
+<tr>
+<td><code>git tag -a &lt;tag-name&gt;</code></td>
+<td>Create an unsigned, annotated tag object. For example, <code>git tag -a v1.2.7</code>. <code>-a</code> is an alias for <code>--annotate</code>.</td>
+</tr>
+<tr>
+<td><code>git tag -s &lt;tag-name&gt;</code></td>
+<td>Create a GPG-signed tag object using the default email address's key. For example, <code>git tag -s v2.2.9</code>. <code>-s</code> is an alias for <code>--sign</code>.</td>
+</tr>
+<tr>
+<td><code>git tag -m &lt;message&gt;</code></td>
+<td>Add the message for the tag object from the command line. For example, <code>git tag -a v3.1.0 -m 'new feature: time travel'</code>. <code>-m</code> is an alias for <code>--message</code>.</td>
+</tr>
+<tr>
+<td><code>git tag -a &lt;tag-name&gt; &lt;commit&gt;</code></td>
+<td>Tag a previous commit by its id. For example, <code>git tag -a v5.3.1 9fceb02 -m 'forgot to tag this!'</code></td>
+</tr>
+<tr>
+<td><code>git tag -l &lt;pattern&gt;</code></td>
+<td>List all tags that match the given pattern. If no pattern is given, all tags are listed. <code>-l</code> is an alias for <code>--list</code>.</td>
+</tr>
+<tr>
+<td><code>git tag -d &lt;tag-name&gt;</code></td>
+<td>Delete a local tag. For example <code>git tag -d v1.2.3</code>. <code>-d</code> is an alias for <code>--delete</code>.</td>
+</tr>
+<tr>
+<td><code>git push &lt;remote-name&gt; :&lt;tag-name&gt;</code></td>
+<td>Use git push to delete a remote tag. For example, <code>git push origin :v1.2.3</code></td>
+</tr>
+</tbody>
+</table>
 <h3>git reset</h3>
 <p>Never use the <code>reset</code> command to undo changes that have been pushed! If changes have been pushed, use <code>git revert</code> to undo commits.</p>
 <table>
@@ -493,6 +540,21 @@ git merge upstream/master
 </tr>
 </tbody>
 </table>
+<h3>git fetch</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git fetch</code></td>
+<td>Retrieves and pulls down information from the remote, but does not merge it into the local copy</td>
+</tr>
+</tbody>
+</table>
 <h3>git pull</h3>
 <table>
 <thead>
@@ -567,6 +629,10 @@ git merge upstream/master
 <tr>
 <td><code>git branch -D &lt;branch-name&gt;</code></td>
 <td>Force delete a branch. This will blow the branch away regardless of branch state.</td>
+</tr>
+<tr>
+<td><code>git push &lt;remote-name&gt; :&lt;branch-name&gt;</code></td>
+<td>Use git push to delete a remote branch. For example, <code>git push origin :cool-branch</code></td>
 </tr>
 </tbody>
 </table>
