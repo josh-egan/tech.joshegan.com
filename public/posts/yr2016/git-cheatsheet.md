@@ -66,6 +66,45 @@ git checkout master
 git merge upstream/master
 ```
 
+## Special Git Files
+### .gitignore
+The `.gitignore` file should be at the root of the project directory. This file tells git to ignore, or not track, the specified files.
+
+See the docs for a complete reference: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore)
+
+```
+# Lines that start with a pound sign (#) are comments
+# Blank lines are not interpreted
+
+# Ignore specific files
+.env
+secrets.txt
+
+# Ignore entire folders
+node_modules
+bin
+log
+
+# Patterns are supported
+*.log
+**/*.log
+
+# Negate a previous pattern to NOT ignore a file
+!critical.log
+```
+
+### .gitattributes
+The `.gitattributes` file should be at the root of the project directory. This file tells git how to handle certain files or file types.
+
+See the docs for a complete reference: [https://git-scm.com/docs/gitattributes](https://git-scm.com/docs/gitattributes)
+
+```
+*.txt       text
+*.vcproj    eol=crlf
+*.sh        eol=lf
+*.jpg       -text
+```
+
 ## Git Commands
 When working with `git` commands, options can be combined. For example, `git commit -am` is the same as `git commit -a -m` and `git status -su` is the same as `git status -s -u`.
 
