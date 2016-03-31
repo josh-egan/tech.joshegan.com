@@ -151,6 +151,13 @@ Command                   | Description
 `git commit --amend`      | Amend the last commit by adding additional files or changing the commit message. Do not amend commits that have been pushed to a remote repository!
 `git commit --dry-run`    | Does not create a commit, but instead shows what would have been committed.
 
+### git revert
+Use git revert if the commit to undo has been pushed to a remote.
+
+Command               | Description
+--------------------- | -----------------------------------------------------------------------------------
+`git revert <commit>` | Create an inverse commit of the specified commit. For example, `git revert f32ab34`
+
 ### git tag
 
 Command                              | Description
