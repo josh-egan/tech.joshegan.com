@@ -90,6 +90,38 @@ git merge my-branch
 git checkout master
 git merge upstream/master
 </code></pre>
+<h2>Special Git Files</h2>
+<h3>.gitignore</h3>
+<p>The <code>.gitignore</code> file should be at the root of the project directory. This file tells git to ignore, or not track, the specified files.</p>
+<p>See the docs for a complete reference: <a href="https://git-scm.com/docs/gitignore">https://git-scm.com/docs/gitignore</a></p>
+<pre><code><span class="hljs-comment"># Lines that start with a pound sign (#) are comments</span>
+<span class="hljs-comment"># Blank lines are not interpreted</span>
+
+<span class="hljs-comment"># Ignore specific files</span>
+.env
+secrets.txt
+
+<span class="hljs-comment"># Ignore entire folders</span>
+node_modules
+bin
+<span class="hljs-command">log</span>
+
+<span class="hljs-comment"># Patterns are supported</span>
+*.<span class="hljs-command">log</span>
+**/*.<span class="hljs-command">log</span>
+
+<span class="hljs-comment"># Negate a previous pattern to NOT ignore a file</span>
+!critical.<span class="hljs-command">log</span>
+</code></pre>
+<h3>.gitattributes</h3>
+<p>The <code>.gitattributes</code> file should be at the root of the project directory. This file tells git how to handle certain files or file types.</p>
+<p>See the docs for a complete reference: <a href="https://git-scm.com/docs/gitattributes">https://git-scm.com/docs/gitattributes</a></p>
+<p>The <code>-text</code> option tells git not to normalize the line endings on that file. In other words, leave this file alone.</p>
+<pre><code>*<span class="hljs-class">.txt</span>       text
+*<span class="hljs-class">.vcproj</span>    eol=crlf
+*<span class="hljs-class">.sh</span>        eol=lf
+*<span class="hljs-class">.jpg</span>       -text
+</code></pre>
 <h2>Git Commands</h2>
 <p>When working with <code>git</code> commands, options can be combined. For example, <code>git commit -am</code> is the same as <code>git commit -a -m</code> and <code>git status -su</code> is the same as <code>git status -s -u</code>.</p>
 <h3>git help</h3>
@@ -342,22 +374,6 @@ git merge upstream/master
 </tr>
 </tbody>
 </table>
-<h3>git revert</h3>
-<p>Use git revert if the commit to undo has been pushed to a remote.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>git revert &lt;commit&gt;</code></td>
-<td>Create an inverse commit of the specified commit. For example, <code>git revert f32ab34</code></td>
-</tr>
-</tbody>
-</table>
 <h3>git tag</h3>
 <table>
 <thead>
@@ -453,6 +469,22 @@ git merge upstream/master
 <tr>
 <td><code>git reset --soft &lt;commit&gt;</code></td>
 <td>Undo changes back to the specified commit.</td>
+</tr>
+</tbody>
+</table>
+<h3>git revert</h3>
+<p>Use git revert if the commit to undo has been pushed to a remote.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>Create an inverse commit of the specified commit. For example, <code>git revert f32ab34</code></td>
 </tr>
 </tbody>
 </table>
