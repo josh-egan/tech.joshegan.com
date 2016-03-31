@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Josh Egan's Tech Blog",
   "main": "gulpfile.js",
+  "engines": {
+    "node": "0.12.10"
+  },
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.7.3",
