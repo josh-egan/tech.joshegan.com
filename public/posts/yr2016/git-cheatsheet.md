@@ -98,6 +98,8 @@ The `.gitattributes` file should be at the root of the project directory. This f
 
 See the docs for a complete reference: [https://git-scm.com/docs/gitattributes](https://git-scm.com/docs/gitattributes)
 
+The `-text` option tells git not to normalize the line endings on that file. In other words, leave this file alone.
+
 ```
 *.txt       text
 *.vcproj    eol=crlf
