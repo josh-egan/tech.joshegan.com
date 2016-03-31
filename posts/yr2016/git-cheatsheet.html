@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-30" class="orange"><strong> March 30th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A cheatsheet of common git commands."/><meta property="og:description" content="A cheatsheet of common git commands."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Git Cheatsheet - tech.joshegan.com"><title>Git Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/git-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/git-cheatsheet">Git Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-03-07"><strong> March 7th, 2016</strong></time>, Updated on<time datetime="2016-03-31" class="orange"><strong> March 31st, 2016</strong></time><h1></h1>
 <h2>Git Resources</h2>
 <table>
 <thead>
@@ -342,6 +342,22 @@ git merge upstream/master
 </tr>
 </tbody>
 </table>
+<h3>git revert</h3>
+<p>Use git revert if the commit to undo has been pushed to a remote.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git revert &lt;commit&gt;</code></td>
+<td>Create an inverse commit of the specified commit. For example, <code>git revert f32ab34</code></td>
+</tr>
+</tbody>
+</table>
 <h3>git tag</h3>
 <table>
 <thead>
@@ -386,6 +402,21 @@ git merge upstream/master
 <tr>
 <td><code>git push &lt;remote-name&gt; :&lt;tag-name&gt;</code></td>
 <td>Use git push to delete a remote tag. For example, <code>git push origin :v1.2.3</code></td>
+</tr>
+</tbody>
+</table>
+<h3>git blame</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git blame &lt;file-name&gt;</code></td>
+<td>See which commit is responsible for each line in the specified file.</td>
 </tr>
 </tbody>
 </table>
@@ -681,6 +712,133 @@ git merge upstream/master
 <tr>
 <td><code>git rebase -i &lt;branch-name&gt;</code></td>
 <td>Do an interactive rebase.</td>
+</tr>
+</tbody>
+</table>
+<h3>git rm</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git rm &lt;file-pattern&gt;</code></td>
+<td>Remove the file(s) that match the specified file pattern from the working tree and from the index.</td>
+</tr>
+<tr>
+<td><code>git rm -n &lt;file-pattern&gt;</code></td>
+<td>Do a dry run to see which files will be removed.</td>
+</tr>
+<tr>
+<td><code>git rm -r &lt;directory&gt;</code></td>
+<td>Recursively remove all of the files in the specified directory.</td>
+</tr>
+<tr>
+<td><code>git rm --cached &lt;file-pattern&gt;</code></td>
+<td>Remove matching files from the index, but does not touch the working tree. In other words, the file is no longer tracked in git, but the file is not modified by this command.</td>
+</tr>
+</tbody>
+</table>
+<h3>git clean</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git clean</code></td>
+<td>Remove untracked files from the working directory</td>
+</tr>
+<tr>
+<td><code>git clean -n</code></td>
+<td>Do a dry run - preview files that are going to be deleted</td>
+</tr>
+<tr>
+<td><code>git clean -f</code></td>
+<td>Force delete. Remove files without requiring a confirmation</td>
+</tr>
+<tr>
+<td><code>git clean -x</code></td>
+<td>Remove files that are ignored in your .gitignore file. For more examples, see <a href="http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch">http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch</a></td>
+</tr>
+</tbody>
+</table>
+<h3>git stash</h3>
+<p>Stashing files is particularly useful for when you have changes in the working directory that you aren't ready to commit, but you need to pull or push or something. Stashing the files will preserve your changes in the stashed copy.</p>
+<p>Most common usage is <code>git stash</code>, [do some stuff], <code>git stash pop</code></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git stash</code></td>
+<td>Same as <code>git stash save</code></td>
+</tr>
+<tr>
+<td><code>git stash save</code></td>
+<td>Save all changed files and stash them away.</td>
+</tr>
+<tr>
+<td><code>git stash save --keep-index</code></td>
+<td>Causes the staging area not to get stashed.</td>
+</tr>
+<tr>
+<td><code>git stash save --included-untracked</code></td>
+<td>Stash untracked files as well</td>
+</tr>
+<tr>
+<td><code>git stash save &quot;message&quot;</code></td>
+<td>A message can be included when stashing.</td>
+</tr>
+<tr>
+<td><code>git stash apply</code></td>
+<td>Restores the files at the top of the stash.</td>
+</tr>
+<tr>
+<td><code>git stash apply &lt;stash-name&gt;</code></td>
+<td>A stash can be picked out of the stack by name to restore.</td>
+</tr>
+<tr>
+<td><code>git stash drop</code></td>
+<td>Deletes the top stash.</td>
+</tr>
+<tr>
+<td><code>git stash pop</code></td>
+<td>Shortcut for <code>git stash apply</code> followed by <code>git stash drop</code>.</td>
+</tr>
+<tr>
+<td><code>git stash list</code></td>
+<td>List the stack of stashes</td>
+</tr>
+<tr>
+<td><code>git stash list --stat</code></td>
+<td>Summarize the file changes in the stash.</td>
+</tr>
+<tr>
+<td><code>git stash show</code></td>
+<td>Show the changes for the stash</td>
+</tr>
+<tr>
+<td><code>git stash show &lt;stash-name&gt;</code></td>
+<td>Show the changes for the named stash</td>
+</tr>
+<tr>
+<td><code>git stash branch &lt;branch-name&gt;</code></td>
+<td>Pulls a stash out into a new branch</td>
+</tr>
+<tr>
+<td><code>git stash clear</code></td>
+<td>Drop all of the stashes in the stack</td>
 </tr>
 </tbody>
 </table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
