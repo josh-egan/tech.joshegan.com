@@ -1,4 +1,10 @@
 {
+  "aws-nodejs-server": {
+    "title": "Launching an AWS Node.js Server",
+    "description": "Detailed steps for launching a node.js server on aws.",
+    "postDateString": "April 5th, 2016",
+    "postDateTime": "2016-04-05"
+  },
   "git-cheatsheet": {
     "title": "Git Cheatsheet",
     "description": "A cheatsheet of common git commands.",
