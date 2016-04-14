@@ -3,7 +3,15 @@
     "title": "Launching an AWS Node.js Server",
     "description": "Detailed steps for launching a node.js server on aws.",
     "postDateString": "April 5th, 2016",
-    "postDateTime": "2016-04-05"
+    "postDateTime": "2016-04-05",
+    "isDraft": "true"
+  },
+  "cassandra-cheatsheet": {
+    "title": "Cassandra Cheatsheet",
+    "description": "Cheatsheet for cassandra",
+    "postDateString": "April 15th, 2016",
+    "postDateTime": "2016-04-15",
+    "isDraft": "true"
   },
   "git-cheatsheet": {
     "title": "Git Cheatsheet",
