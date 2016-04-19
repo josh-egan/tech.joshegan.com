@@ -9,6 +9,7 @@ https://help.github.com/articles/generating-ssh-keys/     | Generate an SSH Key
 https://help.github.com/articles/changing-a-remote-s-url/ | Setup the Remote URL
 https://github.com/pluralsight/git-switch                 | GitSwitch is a windows utility for managing multiple git credentials
 https://github.com/pluralsight/pairing-station            | PairingStation is a mac app for managing multiple git credentials
+https://www.codeschool.com/learn/git                      | CodeSchool courses on using git
 
 ## Awesome Git Aliases
 
