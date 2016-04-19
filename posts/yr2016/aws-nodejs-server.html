@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Detailed steps for launching a node.js server on aws."/><meta property="og:description" content="Detailed steps for launching a node.js server on aws."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Launching an AWS Node.js Server - tech.joshegan.com"><title>Launching an AWS Node.js Server - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/aws-nodejs-server"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/aws-nodejs-server">Launching an AWS Node.js Server</a></h1><h2 class="green">DRAFT</h2><p></p>Posted on<time datetime="2016-04-05" class="orange"><strong> April 5th, 2016</strong></time><p>I'm working on getting a node server up and running in aws and figured I would document the steps I'm taking.</p>
+<h2>Front Matter</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Have a node.js app that is ready to launch on a server</li>
+<li>Have an aws account.</li>
+<li>If on a windows machine, have <a href="http://www.putty.org/">putty</a> installed</li>
+</ul>
+<h3>Goals</h3>
+<ul>
+<li>Launch a <code>t2.micro</code> linux server (free tier)</li>
+<li>Run a <code>node.js</code> web app on the server</li>
+<li>Run a <code>node.js</code> RESTful api on the server</li>
+<li>Launch a <code>db.t2.micro</code> mysql rds instance</li>
+</ul>
+<p>Services will be launched manually, as opposed to programatically.</p>
+<h3>Resources</h3>
+<p><a href="https://aws.amazon.com/free/">AWS free tier details</a>
+<a href="https://aws.amazon.com/rds/mysql/pricing/">AWS RDS mysql instance pricing</a>
+<a href="https://aws.amazon.com/ec2/pricing/">AWS ec2 instance pricing</a></p>
+<h2>Launch the Services</h2>
+<h3>Launch an EC2 instance</h3>
+<ol>
+<li>Ensure that you're in the region you want to be in. Currently, the dropdown is in the top-right of the UI. Current options include <code>US East</code> and <code>US West</code>. I'm using <code>US West (Oregon)</code>.</li>
+<li>From the AWS dashboard, click on EC2</li>
+<li>On the EC2 dashboard, locate and click on the <code>Launch Instance</code> button.</li>
+<li>Select an image. I'm going to use Red Hat Linux.</li>
+<li>Choose your instance type then click next. I'm going with <code>t2.micro</code>, which is free tier eligible.</li>
+<li>Configure Instance details</li>
+</ol>
+<ul>
+<li>Set Auto-assign Public IP to <code>Enable</code> - we want this to have a pubic IP.</li>
+<li>Leave all other settings as default and click next</li>
+</ul>
+<ol>
+<li>Add 10 GB of storage and click next</li>
+<li>Add tags. For example, give the server a name.</li>
+<li>Configure Security Group</li>
+</ol>
+<ul>
+<li>Create a new security group for this server.</li>
+<li>Give the security group a meaningful name and description.</li>
+<li>If it doesn't already have it, add the <code>SSH</code> group.</li>
+<li>Add the <code>HTTP</code> group, which exposes <code>TCP</code> traffic on port 80. This will be for the web app.</li>
+<li>Add a <code>Custom TCP Rule</code> to expose <code>TCP</code> traffic on a specified port. Choose a port to expose. This port will be for the api.</li>
+</ul>
+<ol>
+<li>Click Review and Launch</li>
+<li>Click Launch</li>
+<li>Create a new key pair</li>
+<li>Choose <code>Create a new key pair</code> from the dropdown</li>
+<li>Give the key pair a name.</li>
+<li>Click the download button and save the key to a secure location. Keys should be stored and handled with great care.</li>
+<li>Click Launch</li>
+</ol>
+<p>The instance is now launched! Click on it to check it out.</p>
+<h4>Setup SSH Access</h4>
+<h5>puTTY</h5>
+<p>If using putty on windows:</p>
+<ol>
+<li>Use the puttyGen program to convert the <code>.pem</code> private key that was downloaded earlier into a <code>.ppk</code> key that putty can use.</li>
+<li>In putty, create a profile for accessing this aws server.</li>
+<li>For the <code>Host Name</code>, put <code>ec2-user@DNS</code>, where DNS is the public DNS of the server that was just created. To locate the <code>Public DNS</code> for the ec2 instance that was just created, search for it on the details of that instance.</li>
+<li>Under <code>Connection.SSH.Auth</code>, find the field for 'Private key file for authention:'. Click the <code>Browse</code> button and select the <code>.ppk</code> file that was just created.</li>
+<li>Go back to the main options screen (Session) and give the session a name and save it.</li>
+<li>Double click on your saved session to give it a try.</li>
+</ol>
+<p><strong>PRO TIP</strong> -
+If you're using portable putty and you want to create a shortcut to start the session that you just created, create a short cut, then open up the properties for the shortcut and set the 'Target' to the following:
+<code>%windir%\system32\cmd.exe /c start &quot;CUSTOM_WINDOW_TITLE - PuTTY&quot; &quot;%cd%\Programs\PuTTYPortable\PuTTYPortable.exe&quot; -load my_putty_session</code>
+Where <code>my_putty_session</code> is the name of the session that you just created and saved. Be sure to check the other params and update them to your particular situation.</p>
+<h5>bash SSH</h5>
+<p>If using linux, or if you have access to the bash ssh, use the <code>.pem</code> key and use the following command:
+<code>ssh -i $PRIVATE_KEY_PATH $SERVER</code></p>
+<h3>Deploy the Apps</h3>
+<p>I created a <code>deploy-stage</code> npm script so that I can deploy using <code>npm run deploy-stage</code>. Here are all of the scripts:</p>
+<pre><code class="language-json">"scripts": {
+  "start": "node app.js",
+  "test": "./node_modules/.bin/mocha application/**/*.specs.js domain/**/*.specs.js --reporter mocha-minimalist-reporter",
+  "tw": "npm test -- --watch",
+  "test-watch": "npm test -- --watch",
+  "ti": "./node_modules/.bin/mocha domain/**/*.ispecs.js --reporter progress || true",
+  "ti-watch": "npm run test-integration -- -watch",
+  "test-integration": "./node_modules/.bin/mocha domain/**/*.ispecs.js --reporter progress",
+  "ta": "./node_modules/.bin/mocha test/acceptance/**/*.specs.js --reporter progress || true",
+  "test-acceptance": "./node_modules/.bin/mocha test/acceptance/**/*.specs.js --reporter progress",
+  "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha",
+  "test-all": "npm test &amp;&amp; npm run test-integration &amp;&amp; npm run test-acceptance",
+  "ensure-all-files-are-committed": "git diff --exit-code &amp;&amp; git diff --cached --exit-code",
+  "version-bump": "npm version patch &amp;&amp; git push &amp;&amp; git push --tags",
+  "predeploy-stage": "npm run ensure-all-files-are-committed &amp;&amp; npm run test-all &amp;&amp; npm run version-bump",
+  "deploy-stage": "node ./scripts/run-shell-script.js deploy-stage.sh"
+},
+</code></pre>
+<p><code>run-shell-script.js</code> is as follows:</p>
+<pre><code class="language-js"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+
+<span class="hljs-keyword">var</span> shellCommand = process.platform === <span class="hljs-string">'win32'</span> ? <span class="hljs-string">'C:\\Program Files\\Git\\bin\\sh.exe'</span> : <span class="hljs-string">'sh'</span>
+<span class="hljs-keyword">var</span> fullFilePath = path.join(__dirname, process.argv[<span class="hljs-number">2</span>])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn(shellCommand,
+  [<span class="hljs-string">'-login'</span>, <span class="hljs-string">'-i'</span>, <span class="hljs-string">'--'</span>, fullFilePath],
+  { stdio: <span class="hljs-string">'inherit'</span> })
+</code></pre>
+<p>The job of the <code>deploy-stage.sh</code> script is to transfer the deploy script to the server and then run it. This script contains the following:</p>
+<pre><code class="language-bash"><span class="hljs-shebang">#!/usr/bin/env bash
+</span>
+<span class="hljs-comment">#Exit immediately if a simple command exits with a non-zero status</span>
+<span class="hljs-built_in">set</span> <span class="hljs-operator">-e</span>
+
+SERVER=*******@***********.us-west-<span class="hljs-number">2</span>.compute.amazonaws.com
+SSH_KEY_PATH=*********
+
+LOCAL_SCRIPT_PATH=./scripts/api-stage-serverside-deploy.sh
+REMOTE_SCRIPT_PATH=*******/api-stage-serverside-deploy.sh
+
+<span class="hljs-comment">#Print a trace of simple commands and their arguments after they are expanded and before they are executed.</span>
+<span class="hljs-built_in">set</span> -x
+
+<span class="hljs-comment"># Transfer files and then execute deploy script</span>
+scp -i <span class="hljs-variable">$SSH_KEY_PATH</span> <span class="hljs-variable">$LOCAL_SCRIPT_PATH</span> <span class="hljs-variable">$SERVER</span>:<span class="hljs-variable">$REMOTE_SCRIPT_PATH</span>
+ssh -i <span class="hljs-variable">$SSH_KEY_PATH</span> -t <span class="hljs-variable">$SERVER</span> sudo bash <span class="hljs-variable">$REMOTE_SCRIPT_PATH</span>
+</code></pre>
+<p>The <code>api-stage-serverside-deploy.sh</code> script does the deploy work. I used to have smaller scripts, but I've recently started using this script which does more. This script accomplishes server bootstrapping, server updates, and code deploys all in one. I've liked it this way as of late because it is self-contained and can get a new server up and going from scratch.</p>
+<p>One manual step still of necessity exists, which is transferring the .env file to the server manually. See <a href="http://12factor.net/">12 Factor Apps</a> to learn about the value of a .env file. The <code>ENV_SRC</code> variable points to the location of this manually transferred file.</p>
+<p>A few notes:</p>
+<ul>
+<li>the usage of <code>nvm</code> in this script assumes that you have a <code>.nvmrc</code> file in the root of the project.</li>
+<li>the usage of <code>forever</code> in this script assumes that you have a <code>forever.json</code> file in the root of the project.</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-shebang">#!/usr/bin/env bash
+</span>
+GIT_URL=*******
+
+ENV_SRC=*******
+APP_DIR=*******
+
+SERVICE_NAME=*******
+
+<span class="hljs-comment">#Print a trace of simple commands and their arguments after they are expanded and before they are executed.</span>
+<span class="hljs-built_in">set</span> -x
+
+<span class="hljs-comment"># ensure packages on the server are up to date</span>
+yum update -y
+
+<span class="hljs-comment"># ensure git is installed</span>
+yum install git -y
+
+<span class="hljs-comment"># Pull the latest code.</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-operator">-d</span> <span class="hljs-string">"<span class="hljs-variable">$APP_DIR</span>"</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$APP_DIR</span>
+  git pull
+<span class="hljs-keyword">else</span>
+  git <span class="hljs-built_in">clone</span> <span class="hljs-variable">$GIT_URL</span> <span class="hljs-variable">$APP_DIR</span>
+  <span class="hljs-built_in">cd</span> <span class="hljs-variable">$APP_DIR</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Copy the .env file</span>
+cp -pf <span class="hljs-variable">$ENV_SRC</span> <span class="hljs-variable">$APP_DIR</span>/.env
+
+<span class="hljs-comment"># install nvm if necessary</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-operator">-d</span> <span class="hljs-string">"<span class="hljs-variable">$HOME</span>/.nvm"</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-built_in">echo</span> nvm is already installed
+<span class="hljs-keyword">else</span>
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.<span class="hljs-number">31.0</span>/install.sh | bash
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Load nvm into the shell</span>
+<span class="hljs-built_in">set</span> +x
+<span class="hljs-built_in">source</span> <span class="hljs-variable">$HOME</span>/.bashrc
+
+<span class="hljs-comment"># Ensure the correct version of node is installed</span>
+nvm install
+nvm use
+<span class="hljs-built_in">set</span> -x
+
+<span class="hljs-comment"># add a symbolic link of the installed node version to the path</span>
+ln -sf <span class="hljs-string">"<span class="hljs-variable">$(which node)</span>"</span> /usr/bin/node
+
+<span class="hljs-comment"># Install dependencies</span>
+npm install --production
+npm prune --production
+
+<span class="hljs-comment"># install forever and forever-service if needed - used for turning node.js apps into services</span>
+<span class="hljs-built_in">which</span> forever
+<span class="hljs-keyword">if</span> [ $? <span class="hljs-operator">-ne</span> <span class="hljs-number">0</span> ]; <span class="hljs-keyword">then</span>
+  npm install -g forever
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-built_in">which</span> forever-service
+<span class="hljs-keyword">if</span> [ $? <span class="hljs-operator">-ne</span> <span class="hljs-number">0</span> ]; <span class="hljs-keyword">then</span>
+  npm install -g forever-service
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># If the service exists restart it. Create the service if it does not exist.</span>
+<span class="hljs-keyword">if</span> service --status-all | grep -F <span class="hljs-string">"<span class="hljs-variable">$SERVICE_NAME</span>"</span>; <span class="hljs-keyword">then</span>
+  service <span class="hljs-variable">$SERVICE_NAME</span> restart
+<span class="hljs-keyword">else</span>
+  forever-service install <span class="hljs-variable">$SERVICE_NAME</span> --script forever.json --start
+<span class="hljs-keyword">fi</span>
+</code></pre></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
