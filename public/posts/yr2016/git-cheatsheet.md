@@ -345,20 +345,20 @@ Stashing files is particularly useful for when you have changes in the working d
 
 Most common usage is `git stash`, [do some stuff], `git stash pop`
 
-Command                               | Description
-------------------------------------- | ------------------------------------------------------------
-`git stash`                           | Same as `git stash save`
-`git stash save`                      | Save all changed files and stash them away.
-`git stash save --keep-index`         | Causes the staging area not to get stashed.
-`git stash save --included-untracked` | Stash untracked files as well
-`git stash save "message"`            | A message can be included when stashing.
-`git stash apply`                     | Restores the files at the top of the stash.
-`git stash apply <stash-name>`        | A stash can be picked out of the stack by name to restore.
-`git stash drop`                      | Deletes the top stash.
-`git stash pop`                       | Shortcut for `git stash apply` followed by `git stash drop`.
-`git stash list`                      | List the stack of stashes
-`git stash list --stat`               | Summarize the file changes in the stash.
-`git stash show`                      | Show the changes for the stash
-`git stash show <stash-name>`         | Show the changes for the named stash
-`git stash branch <branch-name>`      | Pulls a stash out into a new branch
-`git stash clear`                     | Drop all of the stashes in the stack
+Command                              | Description
+------------------------------------ | ------------------------------------------------------------
+`git stash`                          | Same as `git stash save`
+`git stash save`                     | Save all changed files and stash them away.
+`git stash save --keep-index`        | Causes the staging area not to get stashed.
+`git stash save --include-untracked` | Stash untracked files as well
+`git stash save "message"`           | A message can be included when stashing.
+`git stash apply`                    | Restores the files at the top of the stash.
+`git stash apply <stash-name>`       | A stash can be picked out of the stack by name to restore.
+`git stash drop`                     | Deletes the top stash.
+`git stash pop`                      | Shortcut for `git stash apply` followed by `git stash drop`.
+`git stash list`                     | List the stack of stashes
+`git stash list --stat`              | Summarize the file changes in the stash.
+`git stash show`                     | Show the changes for the stash
+`git stash show <stash-name>`        | Show the changes for the named stash
+`git stash branch <branch-name>`     | Pulls a stash out into a new branch
+`git stash clear`                    | Drop all of the stashes in the stack
