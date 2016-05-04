@@ -83,8 +83,8 @@ Command                            | Description
 ### CQL (Cassandra Query Language)
 
 Command  | Description                         | Examples
--------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`CREATE` | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replcation_factor':3};` <br/><br/> `CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
+-------- | ----------------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`CREATE` | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};` <br/><br/> `CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
 `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
 
 ## Junk Drawer
