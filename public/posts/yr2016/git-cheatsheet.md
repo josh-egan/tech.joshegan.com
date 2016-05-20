@@ -165,13 +165,14 @@ Command                          | Description
 
 ### git checkout
 
-Command                        | Description
------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`git checkout <path>`          | Replace the contents of the file in the working directory with the contents from the last commit. This effectively blows away the changes in the specified path since the last commit.
-`git checkout .`               | Checkout all files from the last commit. This effectively blows away all changes to tracked files since your last commit.
-`git checkout <branch-name>`   | Switch to the specified branch. If you have changes in your working directory when you switch branches, those changes will be preserved.
-`git checkout -b <new-branch>` | Create a new branch and immediately switch to the new branch.
-`git checkout <tag-name>`      | Checks out the code at the commit where the tag was inserted.
+Command                                     | Description
+------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`git checkout <path>`                       | Replace the contents of the file in the working directory with the contents from the last commit. This effectively blows away the changes in the specified path since the last commit.
+`git checkout .`                            | Checkout all files from the last commit. This effectively blows away all changes to tracked files since your last commit.
+`git checkout <branch-name>`                | Switch to the specified branch. If you have changes in your working directory when you switch branches, those changes will be preserved.
+`git checkout -b <new-branch>`              | Create a new branch and immediately switch to the new branch.
+`git checkout <tag-name>`                   | Checks out the code at the commit where the tag was inserted.
+`git checkout <branch-name> -- <file-name>` | Checkout a file from a different branch. Useful if you're in a branch and want to get a single file in sync with master or any other branch.
 
 ### git add
 
