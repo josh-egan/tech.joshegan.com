@@ -17,7 +17,9 @@
     "title": "Getting Started with KeePass",
     "description": "A brief introduction to using KeePass.",
     "postDateString": "October 9th, 2015",
-    "postDateTime": "2015-10-09"
+    "postDateTime": "2015-10-09",
+    "updateDateString": "June 24th, 2016",
+    "updateDateTime": "2016-06-24"
   },
   "getting-started-with-mocha-and-chai": {
     "title": "Getting Started with Mocha and Chai",
