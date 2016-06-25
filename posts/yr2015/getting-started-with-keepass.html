@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="A brief introduction to using KeePass."/><meta property="og:description" content="A brief introduction to using KeePass."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Getting Started with KeePass - tech.joshegan.com"><title>Getting Started with KeePass - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2015/getting-started-with-keepass"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2015/getting-started-with-keepass">Getting Started with KeePass</a></h1><p></p>Posted on<time datetime="2015-10-09"><strong> October 9th, 2015</strong></time>, updated on<time datetime="2016-06-24" class="orange"><strong> June 24th, 2016</strong></time><p>I've been using KeePass for a while now; well over a year. It's been an excellent tool for me. Recently, I've shared this software with several people, which prompted me to put together some notes on how to get started with KeePass.</p>
+<h2>Why I Use KeePass</h2>
+<blockquote>
+<p>KeePass is a free, open source password manager. As a password manager, it helps you to manage your passwords in a secure way. You can put all your passwords in one database, which is locked with one master key or a key file. So you only have to remember one single master password and/or select the key file to unlock the whole database. The databases are encrypted using the best and most secure encryption algorithms currently known (AES and Twofish).</p>
+</blockquote>
+<p>To learn about KeePass in detail, you can read <a href="http://keepass.info/index.html">everything they have to say</a> about their software. I'm just going to go over a few highlights.</p>
+<p>One of the reasons I chose KeePass over other services is because it is not in the cloud. I wanted my password database to be on my hard drive, not in the cloud somewhere. The sad truth is that any site can be hacked. Even the most secure sites can be hacked. For example, <a href="http://lifehacker.com/lastpass-hacked-time-to-change-your-master-password-1711463571">LastPass was hacked</a> just a few months ago. For that reason, I want to keep my database on my drives, not in the cloud.</p>
+<p>Another feature that was important to me was that I'd be able to use it anywhere. KeePass fits the bill. The desktop software will run on Windows, Mac, and Linux. There are also apps for Android, iOS, Windows Phone, etc. Desktop apps can be downloaded <a href="http://keepass.info/download.html">here</a>. There are a couple Android apps, and I've been using <a href="https://play.google.com/store/apps/details?id=keepass2android.keepass2android_nonet">KeePass2Android</a>. It has worked great for me. As an aside, I use <a href="https://play.google.com/store/apps/details?id=lutey.FTPServer">FTPServer</a> on my phone in conjunction with <a href="https://filezilla-project.org/">FileZilla</a> on my computer to transfer files to and from my phone, including my passwords database.</p>
+<p>I love the fact that the KeePass desktop software has the ability to run as a portable executable, so installing the software onto the computer is not necessary. This makes it so that you can run the software anywhere, and keep your settings in one place too. It's easy to have a copy of KeePass on a jump drive to carry with you. Some people also store their password database, and perhaps the portable executable as well, using their cloud storage provider, such as <a href="https://mega.nz/">MEGA</a>, which also makes using your passwords anywhere possible. Just keep in mind that a database stored in the cloud runs the risk of potentially getting stolen by hackers, so take all the security measures you can if you decide to go this route.</p>
+<p>There are several little features that I have found make KeePass pleasant to use: random password generation, configurable password generator settings, open the last used database, keyboard shortcuts, url opening shortcuts, etc. Depending on how you intend to use it, some of these features will probably be more useful to you than others.</p>
+<p>For me, what makes using KeePass truly a joy is the auto type functionality. KeePass can type much faster than I can, so now my passwords are not only unique and random, but I can get logged in faster than I used to be able to. In the settings dialog, there are options for automatic auto-type wiring. I used this at first, but as I added more and more entries to my database, conflicts started occurring more often, requiring me to choose which of the entries I wanted to auto-type. Consequently, I turned off the auto-wiring for auto-type in the settings dialog and I now add auto-type manually for the entries as I add them. That way, only the entries I want to have auto-type do. To adjust these settings, follow these steps:</p>
+<ol>
+<li>From the menu, select Tools -&gt; Options.</li>
+<li>In the dialog window, select the Advanced tab.</li>
+<li>Scroll down to the &quot;Auto-Type&quot; section.</li>
+<li>Uncheck each of the options that start with &quot;An entry matches if...&quot;.</li>
+</ol>
+<p>Here are a few highlights of commonly used operations in the KeePass desktop software.</p>
+<ul>
+<li><strong>Create a new entry</strong> - Select the folder that you want to store the entry in and then right click in some empty space in the folder contents area. Select the option to add a new entry from the context menu.</li>
+<li><strong>Edit an existing entry</strong> - Double click on the entry.</li>
+<li><strong>Find an entry</strong> - Hit CTRL + F within the software. The find dialog will appear.</li>
+<li><strong>Open an entry's url</strong> - Select the entry and then hit CTRL + U. Alternatively, you can right click on the entry and open the url using the context menu.</li>
+<li><strong>Copy the user name of an entry</strong> - Select the entry and hit CTRL + B. Alternatively, right click on the entry and select the option from the context menu to copy the username.</li>
+<li><strong>Copy the password of an entry</strong> - Select the entry and hit CTRL + C. Alternatively, right click on the entry and select the option from the context menu to copy the password.</li>
+<li><strong>Auto type for an entry</strong> - In the application window, ensure that the cursor is in the appropriate field, then hit CTRL + ALT + A</li>
+</ul>
+<p>The most common workflow that I use is as follows:</p>
+<ol>
+<li>CTRL + F</li>
+<li>Type in keyword for desired entry then hit enter.</li>
+<li>Ensure desired entry is selected. Use arrow keys to change selection if needed.</li>
+<li>CTRL + U</li>
+<li>CTRL + ALT + A</li>
+</ol>
+<h2>Plugins</h2>
+<p>I strongly recommend using the <a href="http://keepass.info/plugins.html#databasebackup">DataBaseBackup</a> plugin. I have had my database file corrupted before; I could have lost all of my passwords, but luckily I had another uncorrupted copy. I am now wiser - I backup my database. I have it set to backup after every save.</p>
+<h2>Settings</h2>
+<p>If you're up for opening and modifying your <code>KeePass.config.xml</code> file, here are a few snippets from my config that are my preferred settings. Each of these should be nested under the root <code>&lt;Configuration&gt;</code> node:</p>
+<p>Show expired or soon to expire entries when the software opens; auto save when the software closes:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">Application</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">FileOpening</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ShowExpiredEntries</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">ShowExpiredEntries</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ShowSoonToExpireEntries</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">ShowSoonToExpireEntries</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">FileOpening</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">FileClosing</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">AutoSave</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">AutoSave</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">FileClosing</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">Application</span>&gt;</span>
+</code></pre>
+<p>I like these settings for the window:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">MainWindow</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">Layout</span>&gt;</span>Default<span class="hljs-tag">&lt;/<span class="hljs-title">Layout</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">MinimizeAfterLocking</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">MinimizeAfterLocking</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">DisableSaveIfNotModified</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">DisableSaveIfNotModified</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">EntryListColumnCollection</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Type</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-title">Type</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Width</span>&gt;</span>307<span class="hljs-tag">&lt;/<span class="hljs-title">Width</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Type</span>&gt;</span>UserName<span class="hljs-tag">&lt;/<span class="hljs-title">Type</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Width</span>&gt;</span>215<span class="hljs-tag">&lt;/<span class="hljs-title">Width</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">HideWithAsterisks</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">HideWithAsterisks</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Type</span>&gt;</span>Password<span class="hljs-tag">&lt;/<span class="hljs-title">Type</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Width</span>&gt;</span>26<span class="hljs-tag">&lt;/<span class="hljs-title">Width</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">HideWithAsterisks</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">HideWithAsterisks</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Type</span>&gt;</span>Url<span class="hljs-tag">&lt;/<span class="hljs-title">Type</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Width</span>&gt;</span>27<span class="hljs-tag">&lt;/<span class="hljs-title">Width</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Type</span>&gt;</span>Notes<span class="hljs-tag">&lt;/<span class="hljs-title">Type</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Width</span>&gt;</span>28<span class="hljs-tag">&lt;/<span class="hljs-title">Width</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">EntryListColumnDisplayOrder</span>&gt;</span>0 1 2 3 4<span class="hljs-tag">&lt;/<span class="hljs-title">EntryListColumnDisplayOrder</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">EntryListAlternatingBgColors</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">EntryListAlternatingBgColors</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ListSorting</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Column</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">Column</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Order</span>&gt;</span>Ascending<span class="hljs-tag">&lt;/<span class="hljs-title">Order</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">ListSorting</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">MainWindow</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">UI</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">Hiding</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">HideInEntryWindow</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">HideInEntryWindow</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">Hiding</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">StandardFont</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Family</span>&gt;</span>Consolas<span class="hljs-tag">&lt;/<span class="hljs-title">Family</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Size</span>&gt;</span>12<span class="hljs-tag">&lt;/<span class="hljs-title">Size</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">GraphicsUnit</span>&gt;</span>Point<span class="hljs-tag">&lt;/<span class="hljs-title">GraphicsUnit</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Style</span>&gt;</span><span class="css"><span class="hljs-tag">Regular</span></span><span class="hljs-tag">&lt;/<span class="hljs-title">Style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">OverrideUIDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">OverrideUIDefault</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">StandardFont</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">PasswordFont</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Family</span>&gt;</span>Consolas<span class="hljs-tag">&lt;/<span class="hljs-title">Family</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Size</span>&gt;</span>10<span class="hljs-tag">&lt;/<span class="hljs-title">Size</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">GraphicsUnit</span>&gt;</span>Point<span class="hljs-tag">&lt;/<span class="hljs-title">GraphicsUnit</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Style</span>&gt;</span><span class="css"><span class="hljs-tag">Regular</span></span><span class="hljs-tag">&lt;/<span class="hljs-title">Style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">OverrideUIDefault</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">OverrideUIDefault</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">PasswordFont</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ForceSystemFontUnix</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">ForceSystemFontUnix</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">BannerStyle</span>&gt;</span>WinVistaBlack<span class="hljs-tag">&lt;/<span class="hljs-title">BannerStyle</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ShowRecycleConfirmDialog</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">ShowRecycleConfirmDialog</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">DataEditorFont</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Family</span>&gt;</span>Microsoft Sans Serif<span class="hljs-tag">&lt;/<span class="hljs-title">Family</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Size</span>&gt;</span>8.25<span class="hljs-tag">&lt;/<span class="hljs-title">Size</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">GraphicsUnit</span>&gt;</span>Point<span class="hljs-tag">&lt;/<span class="hljs-title">GraphicsUnit</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Style</span>&gt;</span><span class="css"><span class="hljs-tag">Regular</span></span><span class="hljs-tag">&lt;/<span class="hljs-title">Style</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">OverrideUIDefault</span>&gt;</span>false<span class="hljs-tag">&lt;/<span class="hljs-title">OverrideUIDefault</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">DataEditorFont</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">UIFlags</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">UIFlags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">KeyCreationFlags</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">KeyCreationFlags</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">KeyPromptFlags</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">KeyPromptFlags</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">UI</span>&gt;</span>
+</code></pre>
+<p>Lock the database when logging out, changing users, or locking the screen. I'm good about locking the screen when I walk away from my computer (WindowsKey + L on windows). If you're not in that habit, you might want to set KeePass to lock after a certain amount of time.</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">Security</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">WorkspaceLocking</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">LockOnSessionSwitch</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">LockOnSessionSwitch</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">LockOnSuspend</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">LockOnSuspend</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">LockOnRemoteControlChange</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-title">LockOnRemoteControlChange</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">LockAfterTime</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">LockAfterTime</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">LockAfterGlobalTime</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-title">LockAfterGlobalTime</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">WorkspaceLocking</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">Security</span>&gt;</span>
+</code></pre>
+<p>I use the longest password with as many characters as the application I'm setting the password for will allow. My custom random password generating presets:</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-title">PasswordGenerator</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">AutoGeneratedPasswordsProfile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULD_______<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">AutoGeneratedPasswordsProfile</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">LastUsedProfile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>(Custom)<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULDS_mu___<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">LastUsedProfile</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">UserProfiles</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>16 Chars<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULD_______<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>16 Chars with Special<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>16<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULDS_mu___<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>20 Chars<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULD_______<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>20 Chars with Special<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>20<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULDS_mu___<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>30 Chars with Special<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>30<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULDS_mu_B_<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>32 Chars<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULD_______<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">Profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Name</span>&gt;</span>32 Chars with Special<span class="hljs-tag">&lt;/<span class="hljs-title">Name</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">GeneratorType</span>&gt;</span>CharSet<span class="hljs-tag">&lt;/<span class="hljs-title">GeneratorType</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Length</span>&gt;</span>32<span class="hljs-tag">&lt;/<span class="hljs-title">Length</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">CharSetRanges</span>&gt;</span>ULDS_mu___<span class="hljs-tag">&lt;/<span class="hljs-title">CharSetRanges</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">Profile</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">UserProfiles</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">PasswordGenerator</span>&gt;</span>
+</code></pre>
+<p>For complete documentation on what KeePass can do, check out the features and docs at <a href="http://keepass.info/">http://keepass.info/</a></p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
