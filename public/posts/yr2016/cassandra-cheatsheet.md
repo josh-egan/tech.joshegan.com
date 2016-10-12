@@ -1,23 +1,37 @@
-#  
+# Title Placeholder
+
 ## Cassandra Resources
-- [https://cassandra.apache.org/](https://cassandra.apache.org/)
-- [https://app.pluralsight.com/library/courses/cassandra-developers](https://app.pluralsight.com/library/courses/cassandra-developers)
+
+- <https://cassandra.apache.org/>
+- <http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html>
+- <https://app.pluralsight.com/library/courses/cassandra-developers>
 
 ## About Cassandra
+
 ### History
+
 - Originally created at Facebook.
 - Open sourced and now an official apache project.
 
 ### When to use Cassandra
+
 Cassandra is a great choice for a database when...
+
 - Speed is the top goal and eventual consistency is acceptable.
 - Table schema is stable and unlikely to change.
+
+### High Level Overview
+
+Cassandra nodes are typically represented in a ring because there is no master node - it is a true peer to peer system.
+
+All data stored in Cassandra is associated with a token value. Each data center has a set of token values, and each node in the data center is assigned to manage a portion of the token values. Virtual nodes can exist within each node. Virtual nodes distribute the load of token values somewhat randomly, making it so that each vnode is replicated on a different node. See [this article](http://www.datastax.com/dev/blog/virtual-nodes-in-cassandra-1-2) for further reading.
 
 ### Terminology
 
 Term      | Meaning
 --------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 node      | A server running an instance of cassandra.
+token     | A single token associated with a piece of data. "Token" is also often used to refer to a range of tokens.
 vnode     | A virtual node. Virtual nodes are used to distribute token values on a single physical node.
 dc        | A data center is a grouping of nodes. Each data center has its own set of tokens.
 rack      | Each node in a data center is part of a rack. Racks do not require an even distribution of nodes. Data center replication will be evenly distributed among racks. Each rack will evenly distribute the replication among the nodes on the rack.
@@ -27,15 +41,27 @@ partition | All data is associated with a partition key. A table contains partit
 row       | Also close to mysql definition. Rows represent data within paritions.
 
 ## Setting up a Cassandra cluster
-### Creating cassandra nodes
 
-Option    | Description
---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`--seeds` | When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using `-seeds <ip-address-1>,<ip-address-2>`
-`-dc`     | Give a name of the data center. e.g. `-dc DC-1`
-`-rack`   | Give the rack name. e.g. `-rack R-1`
+### Creating a Sandbox Cluster
+
+This sandbox is created using [docker](https://www.docker.com/), [VirtualBox](https://www.virtualbox.org/), and [boot2docker](http://boot2docker.io/).
+
+```bash
+boot2docker --memory=4096 init
+boot2docker up
+$(boot2docker shellinit)
+boot2docker status
+
+docker run --name=n1 -d tobert/cassandra
+docker exec -it n1 nodetool status
+docker exec -it n1 nodetool ring
+docker inspect -f '{{ .NetworkSettings.IPAddress}}' n1
+#The inspect command will output an IP address to be used in the next command
+docker run --name n2 -d tobert/cassandra -seeds 000.00.0.0
+```
 
 ### cassandra.yaml
+
 Cassandra configuration is stored in `cassandra.yaml` file. By default this file is located at `/data/conf/cassandra.yaml`.
 
 Property          | Description
@@ -44,13 +70,24 @@ Property          | Description
 `seed_provider`   | Defines the seeds for the node.
 `endpoint_snitch` | The snitch type for the node.
 
+### Creating Cassandra Nodes with Docker
+
+Option    | Description
+--------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`--seeds` | When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using `-seeds <ip-address-1>,<ip-address-2>`
+`-dc`     | Give a name of the data center. e.g. `-dc DC-1`
+`-rack`   | Give the rack name. e.g. `-rack R-1`
+
 ### cassandra-rackdc.properties
+
 By default, this file is located at `/data/conf/cassandra-rackdc.properties`
 
 The `dc` (data center) and `rack` are stored in this properties file. This file is read in at node start-up and gossiped out to the other nodes in the cluster.
 
 ## Working with cassandra
+
 ### CQLSH
+
 The cqlsh command line utility allows for interacting with Cassandra directly.
 
 Command                                        | Description
@@ -82,15 +119,16 @@ Command                            | Description
 
 ### CQL (Cassandra Query Language)
 
-Command  | Description                         | Examples
--------- | ----------------------------------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`CREATE` | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};` <br/><br/> `CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
-`INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
+Command  | Description                        | Examples
+-------- | ---------------------------------- | --------------------------------------------------------------------------------------------------
+`CREATE` | Use to create a keyspace or table. | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br>
+
+<br>
+`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))` `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
 
 ## Junk Drawer
-... All the things that don't have a nice tidy home yet...
 
-All data stored in Cassandra is associated with a token value.
+... All the things that don't have a nice tidy home yet...
 
 SimpleStrategy
 
