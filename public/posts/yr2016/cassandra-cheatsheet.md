@@ -72,7 +72,7 @@ Property          | Description
 
 Option    | Description
 --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`--seeds` | When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using `-seeds <ip-address-1>,<ip-address-2>`
+`-seeds` | When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using `-seeds <ip-address-1>,<ip-address-2>`
 `-dc`     | Give a name of the data center. e.g. `-dc DC-1`
 `-rack`   | Give the rack name. e.g. `-rack R-1`
 
