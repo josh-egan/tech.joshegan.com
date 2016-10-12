@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18" class="orange"><strong> April 18th, 2016</strong></time><h1></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-10-12" class="orange"><strong> October 12th, 2016</strong></time><h1>Title Placeholder</h1>
 <h2>Cassandra Resources</h2>
 <ul>
 <li><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></li>
+<li><a href="http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html">http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html</a></li>
 <li><a href="https://app.pluralsight.com/library/courses/cassandra-developers">https://app.pluralsight.com/library/courses/cassandra-developers</a></li>
 </ul>
 <h2>About Cassandra</h2>
@@ -16,6 +17,9 @@
 <li>Speed is the top goal and eventual consistency is acceptable.</li>
 <li>Table schema is stable and unlikely to change.</li>
 </ul>
+<h3>High Level Overview</h3>
+<p>Cassandra nodes are typically represented in a ring because there is no master node - it is a true peer to peer system.</p>
+<p>All data stored in Cassandra is associated with a token value. Each data center has a set of token values, and each node in the data center is assigned to manage a portion of the token values. Virtual nodes can exist within each node. Virtual nodes distribute the load of token values somewhat randomly, making it so that each vnode is replicated on a different node. See <a href="http://www.datastax.com/dev/blog/virtual-nodes-in-cassandra-1-2">this article</a> for further reading.</p>
 <h3>Terminology</h3>
 <table>
 <thead>
@@ -28,6 +32,10 @@
 <tr>
 <td>node</td>
 <td>A server running an instance of cassandra.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>A single token associated with a piece of data. &quot;Token&quot; is also often used to refer to a range of tokens.</td>
 </tr>
 <tr>
 <td>vnode</td>
@@ -60,29 +68,20 @@
 </tbody>
 </table>
 <h2>Setting up a Cassandra cluster</h2>
-<h3>Creating cassandra nodes</h3>
-<table>
-<thead>
-<tr>
-<th>Option</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--seeds</code></td>
-<td>When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using <code>-seeds &lt;ip-address-1&gt;,&lt;ip-address-2&gt;</code></td>
-</tr>
-<tr>
-<td><code>-dc</code></td>
-<td>Give a name of the data center. e.g. <code>-dc DC-1</code></td>
-</tr>
-<tr>
-<td><code>-rack</code></td>
-<td>Give the rack name. e.g. <code>-rack R-1</code></td>
-</tr>
-</tbody>
-</table>
+<h3>Creating a Sandbox Cluster</h3>
+<p>This sandbox is created using <a href="https://www.docker.com/">docker</a>, <a href="https://www.virtualbox.org/">VirtualBox</a>, and <a href="http://boot2docker.io/">boot2docker</a>.</p>
+<pre><code class="language-bash">boot2docker --memory=<span class="hljs-number">4096</span> init
+boot2docker up
+$(boot2docker shellinit)
+boot2docker status
+
+docker run --name=n1 <span class="hljs-operator">-d</span> tobert/cassandra
+docker <span class="hljs-built_in">exec</span> -it n1 nodetool status
+docker <span class="hljs-built_in">exec</span> -it n1 nodetool ring
+docker inspect <span class="hljs-operator">-f</span> <span class="hljs-string">'{{ .NetworkSettings.IPAddress}}'</span> n1
+<span class="hljs-comment">#The inspect command will output an IP address to be used in the next command</span>
+docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -seeds <span class="hljs-number">000.00</span>.<span class="hljs-number">0.0</span>
+</code></pre>
 <h3>cassandra.yaml</h3>
 <p>Cassandra configuration is stored in <code>cassandra.yaml</code> file. By default this file is located at <code>/data/conf/cassandra.yaml</code>.</p>
 <table>
@@ -104,6 +103,29 @@
 <tr>
 <td><code>endpoint_snitch</code></td>
 <td>The snitch type for the node.</td>
+</tr>
+</tbody>
+</table>
+<h3>Creating Cassandra Nodes with Docker</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--seeds</code></td>
+<td>When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using <code>-seeds &lt;ip-address-1&gt;,&lt;ip-address-2&gt;</code></td>
+</tr>
+<tr>
+<td><code>-dc</code></td>
+<td>Give a name of the data center. e.g. <code>-dc DC-1</code></td>
+</tr>
+<tr>
+<td><code>-rack</code></td>
+<td>Give the rack name. e.g. <code>-rack R-1</code></td>
 </tr>
 </tbody>
 </table>
@@ -223,18 +245,14 @@
 <tr>
 <td><code>CREATE</code></td>
 <td>Use to create a keyspace or table.</td>
-<td><code>CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};</code> <br><br> <code>CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))</code></td>
-</tr>
-<tr>
-<td><code>INSERT</code></td>
-<td>Use to update or insert table data.</td>
-<td><code>INSERT INTO my_table (id) VALUES ('guid');</code></td>
+<td><code>CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};</code><br></td>
 </tr>
 </tbody>
 </table>
+<br>
+`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))` `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
 <h2>Junk Drawer</h2>
 <p>... All the things that don't have a nice tidy home yet...</p>
-<p>All data stored in Cassandra is associated with a token value.</p>
 <p>SimpleStrategy</p>
 <p>The replication_factor tells cassandra how many copies of each partition in the keyspace to store.</p>
 <p><code>create keyspace &lt;keyspace-name&gt; with replication = {'class': 'SimpleStrategy', 'replication_factor': 3};</code></p>
