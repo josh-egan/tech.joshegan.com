@@ -1,5 +1,3 @@
-# Title Placeholder
-
 ## Cassandra Resources
 
 - <https://cassandra.apache.org/>
