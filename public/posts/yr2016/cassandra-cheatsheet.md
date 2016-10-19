@@ -31,6 +31,7 @@ Term      | Meaning
 node      | A server running an instance of cassandra.
 token     | A single token associated with a piece of data. "Token" is also often used to refer to a range of tokens.
 vnode     | A virtual node. Virtual nodes are used to distribute token values on a single physical node.
+snitch    | Snitches are used by cassandra internally to learn about the nodes. See SimpleSnitch, GossipingPropertyFileSnitch, PropetyFileSnitch, etc.
 dc        | A data center is a grouping of nodes. Each data center has its own set of tokens.
 rack      | Each node in a data center is part of a rack. Racks do not require an even distribution of nodes. Data center replication will be evenly distributed among racks. Each rack will evenly distribute the replication among the nodes on the rack.
 keyspace  | Data is organized at the highest level into keyspaces. The oracle or mysql analog is tablespace. Replication is specified at the keyspace level.
@@ -70,11 +71,15 @@ Property          | Description
 
 ### Creating Cassandra Nodes with Docker
 
-Option    | Description
---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```bash
+docker run --name n2 -d tobert/cassandra -seeds 000.00.0.0 -dc DC1 -rack RACK1
+```
+
+Option   | Description
+-------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `-seeds` | When adding a new node to an existing Cassandra cluster, the new node should be initialized with a comma separated list of ip addresses of existing nodes using `-seeds <ip-address-1>,<ip-address-2>`
-`-dc`     | Give a name of the data center. e.g. `-dc DC-1`
-`-rack`   | Give the rack name. e.g. `-rack R-1`
+`-dc`    | Give a name of the data center. e.g. `-dc DC-1`
+`-rack`  | Give the rack name. e.g. `-rack R-1`
 
 ### cassandra-rackdc.properties
 
@@ -118,43 +123,49 @@ Command                            | Description
 ### CQL (Cassandra Query Language)
 
 Command  | Description                        | Examples
--------- | ---------------------------------- | --------------------------------------------------------------------------------------------------
-`CREATE` | Use to create a keyspace or table. | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br>
+-------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`CREATE` | Use to create a keyspace or table. | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br><br>`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))` `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
 
-<br>
-`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))` `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
+### keyspace
 
-## Junk Drawer
+Replication strategy is defined at the keyspace level.
 
-... All the things that don't have a nice tidy home yet...
+#### SimpleStrategy
 
-SimpleStrategy
-
-The replication_factor tells cassandra how many copies of each partition in the keyspace to store.
+The `replication_factor` tells cassandra how many copies of each partition in the keyspace to store.
 
 `create keyspace <keyspace-name> with replication = {'class': 'SimpleStrategy', 'replication_factor': 3};`
+
+#### NetworkTopologyStrategy
 
 When using NetworkTopologyStrategy, you specify how many copies of each partition to store in each data center.
 
 `create keyspace <keyspace-name> with replication = {'class': 'NetworkTopologyStrategy', '<dc-name>': 3, '<dc-name>': 2};`
 
-READS and WRITES
+### Reads and Writes
 
-Each node in the cluster functions the same.
+Each node in the cluster functions the same. The node that you connect to when making a query becomes the 'coordinator node'. Nodes that get written to in a statement are called 'replica nodes'.
 
-The node that you connect to when making a query becomes the 'coordinator node'.
+Single data center consistency options:
 
-Nodes that get written to in a statement are called replica nodes.
+Option   | Description
+-------- | ------------------------------------------------------------------------
+`ONE`    | Write/read succeeds after writing/reading data to/from a single node.
+`TWO`    | Write/read succeeds after writing/reading data to/from two nodes.
+`THREE`  | Write/read succeeds after writing/reading data to/from three nodes.
+`QUORUM` | Write/read succeeds after writing/reading data to/from a majority of the available nodes.
+`ALL`    | Write/read succeeds after writing/reading data to/from all of the available nodes.
+`ANY`    | Write/read succeeds after writing/reading data to/from any of the available nodes (including just making it to the coordinator node).
 
-Consistency options: ONE, TWO, THREE, QUORUM, ALL, ANY (any means that just making it to the coordinator node is considered success)
-
-When using multiple data centers, also have these consistency options:
+Multiple data centers consistency options:
 
 Option         | Description
 -------------- | ------------------------------------------------------------------------
 `EACH_QUORUM`  | A quorum succeeds in each data center before returning success
 `LOCAL_QUORUM` | A quorum succeeds in the data center that contains the coordinator node.
 `LOCAL_ONE`    | Same as ONE, but only looks in the data center of the coordinator node.
+
+If a node is down when a write occurs so that the node misses data, the data will be repaired during a read.
 
 To see what the default consistency is, run `consistency;`
 
