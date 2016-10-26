@@ -39,6 +39,16 @@ table     | Pretty close to mysql definition - columns are defined, and rows of 
 partition | All data is associated with a partition key. A table contains partitions.
 row       | Also close to mysql definition. Rows represent data within paritions.
 
+### Naming Conventions / Rules
+
+**Best advice:** Don't get creative. Stick with alpha, lowercase, snake-case names.
+
+- Snake-case is the preferred naming style in Cassandra (e.g. my_table)
+- No hyphens (e.g. ~~my-table~~)
+- No spaces (e.g. ~~my table~~)
+- Double quotes are required if something starts with a number (e.g. "2050predictions")
+- Double quotes are required if mixed case names are used (e.g. "myTable")
+
 ## Setting up a Cassandra cluster
 
 ### Creating a Sandbox Cluster
@@ -96,9 +106,11 @@ The cqlsh command line utility allows for interacting with Cassandra directly.
 Command                                        | Description
 ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------
 `cqlsh`                                        | Launch the shell and connect to the default node. Default is `localhost:9160`; this can be changed by setting `$CQLSH_HOST` and/or `$CQLSH_PORT`
+`cqlsh -h`                                     | Display the help docs.
 `cqlsh <address>`                              | Connect to a remote node. The address can be an ip address or a url.
 `cqlsh <address> -u <user-name>`               | Connect to a remote with the specified user. This will open up an interactive prompt if a password is required.
 `cqlsh <address> -u <user-name> -p <password>` | Authenticated remote login. Note that password will be visible as plain text on console if `-p` is used.
+`cqlsh -k <keyspace>`                          | Authenticate to the provided keyspace.
 `cqlsh -f <file-path.cql>`                     | Execute commands from the file and then exit.
 `cqlsh -e "<cql-command>"`                     | Execute a CQL command and then exit. For example, `cqlsh -e "SELECT id FROM sample_keyspace.my_table"`
 `cqlsh --cqlversion=<version>`                 | Use the specified version of CQL. For example, `cqlsh --cqlversion=3.0.3`
@@ -110,6 +122,7 @@ Command                            | Description
 `help`                             | Show the help docs.
 `use <keyspace>`                   | Use the specified keyspace. Allows accessing tables without prefixing with `keyspace.`.
 `tracing <on/off>`                 | Turn tracing on or off
+`desc`                             | Describe a keyspace or table.
 `nodetool`                         | Useful tool for interacting with nodes. The `nodetool` command can be run from cqlsh on any node in the cluster and will yield the same results.
 `nodetool help`                    | Display help docs.
 `nodetool status`                  | Shows the status of the cassandra nodes in the cluster
@@ -122,9 +135,43 @@ Command                            | Description
 
 ### CQL (Cassandra Query Language)
 
-Command  | Description                        | Examples
--------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`CREATE` | Use to create a keyspace or table. | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br><br>`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))` `INSERT` | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
+Cassandra originally using a Thrift API (2008). CQL was introduced in Cassandra 0.8 in 2011.
+
+CQL interacts with keyspaces, tables, and rows. Partitions, are implicitly handled within tables.
+
+Command    | Description                         | Examples
+---------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+`CREATE`   | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br><br>`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
+`INSERT`   | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
+`DROP`     | Drop / delete a table or keyspace.  | `DROP KEYSPACE sample;`<br/><br/>`DROP TABLE my_table;`
+`ALTER`    | Alter a table or keyspace.          | `ALTER KEYSPACE sample WITH DURABLE_WRITES = true;`
+`TRUNCATE` | Remove all data from a table.       | `TRUNCATE my_table;`
+`WITH`     | Used to specify properties.         | `CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';`
+
+
+### Cassandra Data Types
+
+http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html
+
+- Numeric
+    - `bigint`
+    - `decimal`
+    - `double`
+    - `float`
+    - `int`
+    - `varint`
+- String
+    - `ascii`
+    - `text`
+    - `varchar`
+- Date
+    - `timestamp`
+    - `timeuuid`
+- Other
+    - `boolean`
+    - `uuid`
+    - `inet`
+    - `blob`
 
 ### keyspace
 
@@ -141,6 +188,16 @@ The `replication_factor` tells cassandra how many copies of each partition in th
 When using NetworkTopologyStrategy, you specify how many copies of each partition to store in each data center.
 
 `create keyspace <keyspace-name> with replication = {'class': 'NetworkTopologyStrategy', '<dc-name>': 3, '<dc-name>': 2};`
+
+### tables
+
+#### partition keys
+
+The primary key is defined as the first partition key.
+
+A single primary key can be specified using `CREATE TABLE my_table (id varchar PRIMARY KEY, title varchar);` or `CREATE TABLE my_table (id varchar, title varchar, PRIMARY KEY (id))`.
+
+A composite primary key is specified using `CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY ((id, title)));`
 
 ### Reads and Writes
 
@@ -170,3 +227,5 @@ If a node is down when a write occurs so that the node misses data, the data wil
 To see what the default consistency is, run `consistency;`
 
 To set the default consistency to use from the command line, use `consistency <level>;` e.g. `consistency quorum;`
+
+If the consistency required cannot be achieved, the read or write will fail.
