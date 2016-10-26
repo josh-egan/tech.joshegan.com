@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-10-19" class="orange"><strong> October 19th, 2016</strong></time><h2>Cassandra Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-10-26" class="orange"><strong> October 26th, 2016</strong></time><h2>Cassandra Resources</h2>
 <ul>
 <li><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></li>
 <li><a href="http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html">http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html</a></li>
@@ -70,6 +70,15 @@
 </tr>
 </tbody>
 </table>
+<h3>Naming Conventions / Rules</h3>
+<p><strong>Best advice:</strong> Don't get creative. Stick with alpha, lowercase, snake-case names.</p>
+<ul>
+<li>Snake-case is the preferred naming style in Cassandra (e.g. my_table)</li>
+<li>No hyphens (e.g. <s>my-table</s>)</li>
+<li>No spaces (e.g. <s>my table</s>)</li>
+<li>Double quotes are required if something starts with a number (e.g. &quot;2050predictions&quot;)</li>
+<li>Double quotes are required if mixed case names are used (e.g. &quot;myTable&quot;)</li>
+</ul>
 <h2>Setting up a Cassandra cluster</h2>
 <h3>Creating a Sandbox Cluster</h3>
 <p>This sandbox is created using <a href="https://www.docker.com/">docker</a>, <a href="https://www.virtualbox.org/">VirtualBox</a>, and <a href="http://boot2docker.io/">boot2docker</a>.</p>
@@ -153,6 +162,10 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <td>Launch the shell and connect to the default node. Default is <code>localhost:9160</code>; this can be changed by setting <code>$CQLSH_HOST</code> and/or <code>$CQLSH_PORT</code></td>
 </tr>
 <tr>
+<td><code>cqlsh -h</code></td>
+<td>Display the help docs.</td>
+</tr>
+<tr>
 <td><code>cqlsh &lt;address&gt;</code></td>
 <td>Connect to a remote node. The address can be an ip address or a url.</td>
 </tr>
@@ -163,6 +176,10 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <tr>
 <td><code>cqlsh &lt;address&gt; -u &lt;user-name&gt; -p &lt;password&gt;</code></td>
 <td>Authenticated remote login. Note that password will be visible as plain text on console if <code>-p</code> is used.</td>
+</tr>
+<tr>
+<td><code>cqlsh -k &lt;keyspace&gt;</code></td>
+<td>Authenticate to the provided keyspace.</td>
 </tr>
 <tr>
 <td><code>cqlsh -f &lt;file-path.cql&gt;</code></td>
@@ -198,6 +215,10 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <tr>
 <td><code>tracing &lt;on/off&gt;</code></td>
 <td>Turn tracing on or off</td>
+</tr>
+<tr>
+<td><code>desc</code></td>
+<td>Describe a keyspace or table.</td>
 </tr>
 <tr>
 <td><code>nodetool</code></td>
@@ -238,6 +259,8 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 </tbody>
 </table>
 <h3>CQL (Cassandra Query Language)</h3>
+<p>Cassandra originally using a Thrift API (2008). CQL was introduced in Cassandra 0.8 in 2011.</p>
+<p>CQL interacts with keyspaces, tables, and rows. Partitions, are implicitly handled within tables.</p>
 <table>
 <thead>
 <tr>
@@ -250,10 +273,70 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <tr>
 <td><code>CREATE</code></td>
 <td>Use to create a keyspace or table.</td>
-<td><code>CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};</code><br><br><code>CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))</code> <code>INSERT</code></td>
+<td><code>CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};</code><br><br><code>CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))</code></td>
+</tr>
+<tr>
+<td><code>INSERT</code></td>
+<td>Use to update or insert table data.</td>
+<td><code>INSERT INTO my_table (id) VALUES ('guid');</code></td>
+</tr>
+<tr>
+<td><code>DROP</code></td>
+<td>Drop / delete a table or keyspace.</td>
+<td><code>DROP KEYSPACE sample;</code><br><br><code>DROP TABLE my_table;</code></td>
+</tr>
+<tr>
+<td><code>ALTER</code></td>
+<td>Alter a table or keyspace.</td>
+<td><code>ALTER KEYSPACE sample WITH DURABLE_WRITES = true;</code></td>
+</tr>
+<tr>
+<td><code>TRUNCATE</code></td>
+<td>Remove all data from a table.</td>
+<td><code>TRUNCATE my_table;</code></td>
+</tr>
+<tr>
+<td><code>WITH</code></td>
+<td>Used to specify properties.</td>
+<td><code>CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';</code></td>
 </tr>
 </tbody>
 </table>
+<h3>Cassandra Data Types</h3>
+<p><a href="http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html">http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html</a></p>
+<ul>
+<li>Numeric
+<ul>
+<li><code>bigint</code></li>
+<li><code>decimal</code></li>
+<li><code>double</code></li>
+<li><code>float</code></li>
+<li><code>int</code></li>
+<li><code>varint</code></li>
+</ul>
+</li>
+<li>String
+<ul>
+<li><code>ascii</code></li>
+<li><code>text</code></li>
+<li><code>varchar</code></li>
+</ul>
+</li>
+<li>Date
+<ul>
+<li><code>timestamp</code></li>
+<li><code>timeuuid</code></li>
+</ul>
+</li>
+<li>Other
+<ul>
+<li><code>boolean</code></li>
+<li><code>uuid</code></li>
+<li><code>inet</code></li>
+<li><code>blob</code></li>
+</ul>
+</li>
+</ul>
 <h3>keyspace</h3>
 <p>Replication strategy is defined at the keyspace level.</p>
 <h4>SimpleStrategy</h4>
@@ -262,6 +345,11 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <h4>NetworkTopologyStrategy</h4>
 <p>When using NetworkTopologyStrategy, you specify how many copies of each partition to store in each data center.</p>
 <p><code>create keyspace &lt;keyspace-name&gt; with replication = {'class': 'NetworkTopologyStrategy', '&lt;dc-name&gt;': 3, '&lt;dc-name&gt;': 2};</code></p>
+<h3>tables</h3>
+<h4>partition keys</h4>
+<p>The primary key is defined as the first partition key.</p>
+<p>A single primary key can be specified using <code>CREATE TABLE my_table (id varchar PRIMARY KEY, title varchar);</code> or <code>CREATE TABLE my_table (id varchar, title varchar, PRIMARY KEY (id))</code>.</p>
+<p>A composite primary key is specified using <code>CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY ((id, title)));</code></p>
 <h3>Reads and Writes</h3>
 <p>Each node in the cluster functions the same. The node that you connect to when making a query becomes the 'coordinator node'. Nodes that get written to in a statement are called 'replica nodes'.</p>
 <p>Single data center consistency options:</p>
@@ -324,4 +412,5 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 </table>
 <p>If a node is down when a write occurs so that the node misses data, the data will be repaired during a read.</p>
 <p>To see what the default consistency is, run <code>consistency;</code></p>
-<p>To set the default consistency to use from the command line, use <code>consistency &lt;level&gt;;</code> e.g. <code>consistency quorum;</code></p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
+<p>To set the default consistency to use from the command line, use <code>consistency &lt;level&gt;;</code> e.g. <code>consistency quorum;</code></p>
+<p>If the consistency required cannot be achieved, the read or write will fail.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
