@@ -1,8 +1,8 @@
 ## Cassandra Resources
 
-- <https://cassandra.apache.org/>
-- <http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html>
-- <https://app.pluralsight.com/library/courses/cassandra-developers>
+- https://cassandra.apache.org/
+- http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html
+- https://app.pluralsight.com/library/courses/cassandra-developers
 
 ## About Cassandra
 
@@ -139,15 +139,76 @@ Cassandra originally using a Thrift API (2008). CQL was introduced in Cassandra 
 
 CQL interacts with keyspaces, tables, and rows. Partitions, are implicitly handled within tables.
 
+*Note* - both `INSERT` and `UPDATE` are functionally upsert statements (insert or update).
+*Note* - Use the `IN ()` selector with caution. An `IN` will cause a single coordinator node to search through multiple partitions. It can become more efficient to perform multiple select queries rather than using a large IN clause to do a single select.
+
 Command    | Description                         | Examples
 ---------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `CREATE`   | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br><br>`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
 `INSERT`   | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
+`UPDATE`   | Update or insert data in a table.   | `UPDATE my_table SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';`
 `DROP`     | Drop / delete a table or keyspace.  | `DROP KEYSPACE sample;`<br/><br/>`DROP TABLE my_table;`
 `ALTER`    | Alter a table or keyspace.          | `ALTER KEYSPACE sample WITH DURABLE_WRITES = true;`
 `TRUNCATE` | Remove all data from a table.       | `TRUNCATE my_table;`
 `WITH`     | Used to specify properties.         | `CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';`
+`WRITETIME` | Function that returns a unix timestamp for when something was written. | `SELECT id, WRITETIME(author) FROM my_table;`
 
+**CQL Examples**
+
+```sql
+CREATE KEYSPACE pluralsight WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':1};
+
+CREATE TABLE courses (id varchar PRIMARY KEY);
+CREATE TABLE IF NOT EXISTS courses (id VARCHAR PRIMARY KEY);
+ALTER TABLE courses ADD duration int;
+ALTER TABLE courses ADD released timestamp;
+ALTER TABLE courses ADD author varchar;
+DROP TABLE courses;
+
+CREATE TABLE courses (
+  id varchar PRIMARY KEY,
+  name varchar,
+  author varchar,
+  audience int,
+  duration int,
+  hasClosedCaptions boolean,
+  released timestamp
+);
+
+SELECT id, title FROM pluralsight.courses;
+SELECT title, duration AS length FROM pluralsight.courses WHERE id = 'cassandra-developers';
+SELECT title, published FROM pluralsight.courses WHERE id IN ('cassandra-developers', 'node-intro');
+SELECT * FROM pluralsight.courses LIMIT 100;
+
+INSERT INTO pluralsight.courses (id, author) VALUES ('cassandra-developers', 'paul-ofallon');
+UPDATE pluralsight.courses SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';
+UPDATE pluralsight.courses SET author = 'paul-ofallon' WHERE id IN ('cassandra-developers', 'node-intro');
+
+SELECT id, WRITETIME(author) FROM pluralsight.courses;
+
+-- Delete a row
+DELETE FROM pluralsight.courses WHERE id = 'node-intro';
+
+-- Delete a column
+DELETE author FROM pluralsight.courses WHERE id = 'node-intro';
+UPDATE pluralsight.courses SET author = null WHERE id = 'node-intro';
+INSERT INTO pluralsight.courses (id, author) VALUES ('node-intro', null);
+
+-- Use a TTL (length of time in seconds) for a single column
+UPDATE pluralsight.users USING TTL 32400 SET reset_token = 'asdf' WHERE id = 'john-doe';
+SELECT TTL(reset_token) FROM pluralsight.users WHERE id = 'john-doe';
+
+-- Use a TTL for an entire row
+-- Only insert statements can be used to set a TTL for an entire row. Can't be done with UPDATE.
+INSERT INTO pluralsight.reset_tokens (id, token) VALUES ('john-doe', 'asdoij') USING TTL 10800;
+
+-- Use a TTL for the entire table. The entire table will be tombstoned after the TTL expires.
+CREATE TABLE reset_tokens (
+  id varchar PRIMARY KEY,
+  token varchar
+) WITH default_time_to_live = 10800;
+
+```
 
 ### Cassandra Data Types
 
@@ -229,3 +290,9 @@ To see what the default consistency is, run `consistency;`
 To set the default consistency to use from the command line, use `consistency <level>;` e.g. `consistency quorum;`
 
 If the consistency required cannot be achieved, the read or write will fail.
+
+### tombstones
+
+When something is deleted in Cassandra, a tombstone is created. The tombstone is treated just a like a write, so that nodes that are down can be repaired. When the node that was down when the delete occurred comes back online, the normal read repair process will update the node with the tombstone.
+
+Tombstones are automatically garbage collected on a configurable interval (default is 10 days). It is important not to clean up tombstones too quickly, because if the tombstones are removed, and then a node that was offline when the tombstone was created comes back online, the the read repair will restore the data from the node that was offline when the delete occurred, making it so that the data that was supposed to be deleted comes back into the database.
