@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-10-26" class="orange"><strong> October 26th, 2016</strong></time><h2>Cassandra Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-11-02" class="orange"><strong> November 2nd, 2016</strong></time><h2>Cassandra Resources</h2>
 <ul>
 <li><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></li>
 <li><a href="http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html">http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html</a></li>
@@ -261,6 +261,8 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <h3>CQL (Cassandra Query Language)</h3>
 <p>Cassandra originally using a Thrift API (2008). CQL was introduced in Cassandra 0.8 in 2011.</p>
 <p>CQL interacts with keyspaces, tables, and rows. Partitions, are implicitly handled within tables.</p>
+<p><em>Note</em> - both <code>INSERT</code> and <code>UPDATE</code> are functionally upsert statements (insert or update).
+<em>Note</em> - Use the <code>IN ()</code> selector with caution. An <code>IN</code> will cause a single coordinator node to search through multiple partitions. It can become more efficient to perform multiple select queries rather than using a large IN clause to do a single select.</p>
 <table>
 <thead>
 <tr>
@@ -279,6 +281,11 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <td><code>INSERT</code></td>
 <td>Use to update or insert table data.</td>
 <td><code>INSERT INTO my_table (id) VALUES ('guid');</code></td>
+</tr>
+<tr>
+<td><code>UPDATE</code></td>
+<td>Update or insert data in a table.</td>
+<td><code>UPDATE my_table SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';</code></td>
 </tr>
 <tr>
 <td><code>DROP</code></td>
@@ -300,8 +307,67 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <td>Used to specify properties.</td>
 <td><code>CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';</code></td>
 </tr>
+<tr>
+<td><code>WRITETIME</code></td>
+<td>Function that returns a unix timestamp for when something was written.</td>
+<td><code>SELECT id, WRITETIME(author) FROM my_table;</code></td>
+</tr>
 </tbody>
 </table>
+<p><strong>CQL Examples</strong></p>
+<pre><code class="language-sql"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> KEYSPACE pluralsight <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">REPLICATION</span> = {<span class="hljs-string">'class'</span>:<span class="hljs-string">'SimpleStrategy'</span>,<span class="hljs-string">'replication_factor'</span>:<span class="hljs-number">1</span>};</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> courses (<span class="hljs-keyword">id</span> <span class="hljs-built_in">varchar</span> PRIMARY <span class="hljs-keyword">KEY</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span> courses (<span class="hljs-keyword">id</span> <span class="hljs-built_in">VARCHAR</span> PRIMARY <span class="hljs-keyword">KEY</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> courses <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">duration</span> <span class="hljs-built_in">int</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> courses <span class="hljs-keyword">ADD</span> released <span class="hljs-keyword">timestamp</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> courses <span class="hljs-keyword">ADD</span> author <span class="hljs-built_in">varchar</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> courses;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> courses (
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">varchar</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+  <span class="hljs-keyword">name</span> <span class="hljs-built_in">varchar</span>,
+  author <span class="hljs-built_in">varchar</span>,
+  audience <span class="hljs-built_in">int</span>,
+  <span class="hljs-keyword">duration</span> <span class="hljs-built_in">int</span>,
+  hasClosedCaptions <span class="hljs-built_in">boolean</span>,
+  released <span class="hljs-keyword">timestamp</span>
+);</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, title <span class="hljs-keyword">FROM</span> pluralsight.courses;</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> title, <span class="hljs-keyword">duration</span> <span class="hljs-keyword">AS</span> <span class="hljs-keyword">length</span> <span class="hljs-keyword">FROM</span> pluralsight.courses <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'cassandra-developers'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> title, published <span class="hljs-keyword">FROM</span> pluralsight.courses <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">'cassandra-developers'</span>, <span class="hljs-string">'node-intro'</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> pluralsight.courses <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">100</span>;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> pluralsight.courses (<span class="hljs-keyword">id</span>, author) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'cassandra-developers'</span>, <span class="hljs-string">'paul-ofallon'</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> pluralsight.courses <span class="hljs-keyword">SET</span> author = <span class="hljs-string">'paul-ofallon'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'cassandra-developers'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> pluralsight.courses <span class="hljs-keyword">SET</span> author = <span class="hljs-string">'paul-ofallon'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">IN</span> (<span class="hljs-string">'cassandra-developers'</span>, <span class="hljs-string">'node-intro'</span>);</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span>, WRITETIME(author) <span class="hljs-keyword">FROM</span> pluralsight.courses;</span>
+
+<span class="hljs-comment">-- Delete a row</span>
+<span class="hljs-operator"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> pluralsight.courses <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span>
+
+<span class="hljs-comment">-- Delete a column</span>
+<span class="hljs-operator"><span class="hljs-keyword">DELETE</span> author <span class="hljs-keyword">FROM</span> pluralsight.courses <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> pluralsight.courses <span class="hljs-keyword">SET</span> author = <span class="hljs-literal">null</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> pluralsight.courses (<span class="hljs-keyword">id</span>, author) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'node-intro'</span>, <span class="hljs-literal">null</span>);</span>
+
+<span class="hljs-comment">-- Use a TTL (length of time in seconds) for a single column</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> pluralsight.<span class="hljs-keyword">users</span> <span class="hljs-keyword">USING</span> TTL <span class="hljs-number">32400</span> <span class="hljs-keyword">SET</span> reset_token = <span class="hljs-string">'asdf'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> TTL(reset_token) <span class="hljs-keyword">FROM</span> pluralsight.<span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
+
+<span class="hljs-comment">-- Use a TTL for an entire row</span>
+<span class="hljs-comment">-- Only insert statements can be used to set a TTL for an entire row. Can't be done with UPDATE.</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> pluralsight.reset_tokens (<span class="hljs-keyword">id</span>, token) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'john-doe'</span>, <span class="hljs-string">'asdoij'</span>) <span class="hljs-keyword">USING</span> TTL <span class="hljs-number">10800</span>;</span>
+
+<span class="hljs-comment">-- Use a TTL for the entire table. The entire table will be tombstoned after the TTL expires.</span>
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> reset_tokens (
+  <span class="hljs-keyword">id</span> <span class="hljs-built_in">varchar</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+  token <span class="hljs-built_in">varchar</span>
+) <span class="hljs-keyword">WITH</span> default_time_to_live = <span class="hljs-number">10800</span>;</span>
+
+</code></pre>
 <h3>Cassandra Data Types</h3>
 <p><a href="http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html">http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html</a></p>
 <ul>
@@ -413,4 +479,7 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <p>If a node is down when a write occurs so that the node misses data, the data will be repaired during a read.</p>
 <p>To see what the default consistency is, run <code>consistency;</code></p>
 <p>To set the default consistency to use from the command line, use <code>consistency &lt;level&gt;;</code> e.g. <code>consistency quorum;</code></p>
-<p>If the consistency required cannot be achieved, the read or write will fail.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
+<p>If the consistency required cannot be achieved, the read or write will fail.</p>
+<h3>tombstones</h3>
+<p>When something is deleted in Cassandra, a tombstone is created. The tombstone is treated just a like a write, so that nodes that are down can be repaired. When the node that was down when the delete occurred comes back online, the normal read repair process will update the node with the tombstone.</p>
+<p>Tombstones are automatically garbage collected on a configurable interval (default is 10 days). It is important not to clean up tombstones too quickly, because if the tombstones are removed, and then a node that was offline when the tombstone was created comes back online, the the read repair will restore the data from the node that was offline when the delete occurred, making it so that the data that was supposed to be deleted comes back into the database.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
