@@ -123,6 +123,8 @@ Command                            | Description
 `use <keyspace>`                   | Use the specified keyspace. Allows accessing tables without prefixing with `keyspace.`.
 `tracing <on/off>`                 | Turn tracing on or off
 `desc`                             | Describe a keyspace or table.
+`source <filepath>`                | Execute a file containing CQL statements.
+`expand <on/off>`                  | If `expand` is on, each row printed to the console will be on its own line. Much easier to read!
 `nodetool`                         | Useful tool for interacting with nodes. The `nodetool` command can be run from cqlsh on any node in the cluster and will yield the same results.
 `nodetool help`                    | Display help docs.
 `nodetool status`                  | Shows the status of the cassandra nodes in the cluster
@@ -147,6 +149,7 @@ Command    | Description                         | Examples
 `CREATE`   | Use to create a keyspace or table.  | `CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};`<br><br>`CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))`
 `INSERT`   | Use to update or insert table data. | `INSERT INTO my_table (id) VALUES ('guid');`
 `UPDATE`   | Update or insert data in a table.   | `UPDATE my_table SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';`
+`DELETE`   | Delete data from a table.           | `DELETE FROM my_table WHERE id = 'asdf'`
 `DROP`     | Drop / delete a table or keyspace.  | `DROP KEYSPACE sample;`<br/><br/>`DROP TABLE my_table;`
 `ALTER`    | Alter a table or keyspace.          | `ALTER KEYSPACE sample WITH DURABLE_WRITES = true;`
 `TRUNCATE` | Remove all data from a table.       | `TRUNCATE my_table;`
@@ -221,6 +224,7 @@ http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html
     - `float`
     - `int`
     - `varint`
+    - `counter`
 - String
     - `ascii`
     - `text`
@@ -259,6 +263,16 @@ The primary key is defined as the first partition key.
 A single primary key can be specified using `CREATE TABLE my_table (id varchar PRIMARY KEY, title varchar);` or `CREATE TABLE my_table (id varchar, title varchar, PRIMARY KEY (id))`.
 
 A composite primary key is specified using `CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY ((id, title)));`
+
+#### clustering keys
+
+A composite key is specified using `PRIMARY KEY(partition_key, clustering_key)`. For example: `CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY (id, title));`
+
+When clustering keys are used, the data inserted can be visualized as an entirely separate row. All of the common data must be inserted each time unless static columns are used.
+
+#### static
+
+The `STATIC` modifying makes static fields associated with the partition key rather than including all of that data in each of the clusterking key rows.
 
 ### Reads and Writes
 
