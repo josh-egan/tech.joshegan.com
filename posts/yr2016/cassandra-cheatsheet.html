@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-11-02" class="orange"><strong> November 2nd, 2016</strong></time><h2>Cassandra Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-11-09" class="orange"><strong> November 9th, 2016</strong></time><h2>Cassandra Resources</h2>
 <ul>
 <li><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></li>
 <li><a href="http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html">http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html</a></li>
@@ -221,6 +221,14 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <td>Describe a keyspace or table.</td>
 </tr>
 <tr>
+<td><code>source &lt;filepath&gt;</code></td>
+<td>Execute a file containing CQL statements.</td>
+</tr>
+<tr>
+<td><code>expand &lt;on/off&gt;</code></td>
+<td>If <code>expand</code> is on, each row printed to the console will be on its own line. Much easier to read!</td>
+</tr>
+<tr>
 <td><code>nodetool</code></td>
 <td>Useful tool for interacting with nodes. The <code>nodetool</code> command can be run from cqlsh on any node in the cluster and will yield the same results.</td>
 </tr>
@@ -286,6 +294,11 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <td><code>UPDATE</code></td>
 <td>Update or insert data in a table.</td>
 <td><code>UPDATE my_table SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';</code></td>
+</tr>
+<tr>
+<td><code>DELETE</code></td>
+<td>Delete data from a table.</td>
+<td><code>DELETE FROM my_table WHERE id = 'asdf'</code></td>
 </tr>
 <tr>
 <td><code>DROP</code></td>
@@ -379,6 +392,7 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <li><code>float</code></li>
 <li><code>int</code></li>
 <li><code>varint</code></li>
+<li><code>counter</code></li>
 </ul>
 </li>
 <li>String
@@ -416,6 +430,11 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <p>The primary key is defined as the first partition key.</p>
 <p>A single primary key can be specified using <code>CREATE TABLE my_table (id varchar PRIMARY KEY, title varchar);</code> or <code>CREATE TABLE my_table (id varchar, title varchar, PRIMARY KEY (id))</code>.</p>
 <p>A composite primary key is specified using <code>CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY ((id, title)));</code></p>
+<h4>clustering keys</h4>
+<p>A composite key is specified using <code>PRIMARY KEY(partition_key, clustering_key)</code>. For example: <code>CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY (id, title));</code></p>
+<p>When clustering keys are used, the data inserted can be visualized as an entirely separate row. All of the common data must be inserted each time unless static columns are used.</p>
+<h4>static</h4>
+<p>The <code>STATIC</code> modifying makes static fields associated with the partition key rather than including all of that data in each of the clusterking key rows.</p>
 <h3>Reads and Writes</h3>
 <p>Each node in the cluster functions the same. The node that you connect to when making a query becomes the 'coordinator node'. Nodes that get written to in a statement are called 'replica nodes'.</p>
 <p>Single data center consistency options:</p>
