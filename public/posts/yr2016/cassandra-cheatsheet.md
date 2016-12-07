@@ -43,11 +43,11 @@ row       | Also close to mysql definition. Rows represent data within paritions
 
 **Best advice:** Don't get creative. Stick with alpha, lowercase, snake-case names.
 
-- Snake-case is the preferred naming style in Cassandra (e.g. my_table)
-- No hyphens (e.g. ~~my-table~~)
-- No spaces (e.g. ~~my table~~)
-- Double quotes are required if something starts with a number (e.g. "2050predictions")
-- Double quotes are required if mixed case names are used (e.g. "myTable")
+- Snake-case is the preferred naming style in Cassandra (e.g. `my_table`)
+- No hyphens (e.g. `my-table`)
+- No spaces (e.g. `my table`)
+- Double quotes are required if something starts with a number (e.g. ``"2050predictions"``)
+- Double quotes are required if mixed case names are used (e.g. `"myTable"`)
 
 ## Setting up a Cassandra cluster
 
@@ -214,6 +214,28 @@ CREATE TABLE reset_tokens (
 -- If you have a table of id, partition_key, and you want to get one row for each id and the first partition_key, you can use this query:
 SELECT DISTINCT id, partition_key FROM table;
 
+-- Working with Collections
+-- set<type>
+INSERT INTO courses (id, name, features) VALUES ('node-intro', 'Introduction to Node.js', {'cc', 'transcript'});
+UPDATE courses SET features = features + {'cc'} WHERE id = 'node-intro'; -- the + symbol adds to the set.
+UPDATE courses SET features = features - {'cc'} WHERE id = 'node-intro'; -- the - symbol removes from the set.
+UPDATE courses SET features = {} WHERE id = 'node-intro'; -- create an empty set.
+
+-- list<type>
+INSERT INTO courses (id, clips) VALUES ('node-intro', ['Getting Started']);
+UPDATE courses SET clips = ['Introduction'] + clips WHERE id = 'node-intro'; -- prepend to the front of the list
+UPDATE courses SET clips = clips + ['Introduction'] WHERE id = 'node-intro'; -- append to the back of the list
+UPDATE courses SET clips = clips - ['Introduction'] WHERE id = 'node-intro'; -- removes all matching elements from the list.
+UPDATE courses SET clips[0] = 'Introduction' WHERE id = 'node-intro'; -- add to list by position. Use indexing as you would in an array.
+DELETE clips[0] FROM courses WHERE id = 'node-intro';
+
+-- map<key-type,value-type>
+INSERT INTO users (id, last_login) VALUES ('john-doe', {'abcde': '2015-06-30 09:02:24'});
+UPDATE users SET last_login['abcde'] = '2015-09-12 07:01:34' WHERE id = 'john-doe';
+UPDATE users SET last_login = last_login + {'abcde': '2015-06-30 09:02:24'} WHERE id = 'john-doe';
+UPDATE users SET last_login = last_login - {'abcde': '2015-06-30 09:02:24'} WHERE id = 'john-doe';
+DELETE last_login['abcde'] FROM users WHERE id = 'john-doe'
+UPDATE users set last_login = {} WHERE id = 'john-doe'
 ```
 
 ### Cassandra Data Types
@@ -240,6 +262,11 @@ http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html
     - `uuid`
     - `inet`
     - `blob`
+- Collections
+    - TTLs work for individual elements in a collection rather than the entire collection.
+    - `set<int>` A set allows only unique values and does not preserve order.
+    - `list<int>` A list allows duplicate values and preserves order.
+    - `map<text,timestamp>` A map is a dictionary of key value pairs.
 
 ### keyspace
 
@@ -272,6 +299,8 @@ A composite primary key is specified using `CREATE TABLE my_table (id varchar, t
 A composite key is specified using `PRIMARY KEY(partition_key, clustering_key)`. For example: `CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY (id, title));`
 
 When clustering keys are used, the data inserted can be visualized as an entirely separate row. All of the common data must be inserted each time unless static columns are used.
+
+A partition can hold a maximum of 2 billion cells. All of the data from a single partition must fit on a single node in the cluster. To address these limitations, consider ways to appropriately bucket the data. For example, when storing timestamps for events, buckets could be created for year, month, and day, depending on the volume that is anticipated. Another approach would be to create a `bucket_id` key that is a string of your choosing (e.g. `"2016-12-07"`).
 
 #### static
 
