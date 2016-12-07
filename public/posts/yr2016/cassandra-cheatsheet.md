@@ -211,6 +211,9 @@ CREATE TABLE reset_tokens (
   token varchar
 ) WITH default_time_to_live = 10800;
 
+-- If you have a table of id, partition_key, and you want to get one row for each id and the first partition_key, you can use this query:
+SELECT DISTINCT id, partition_key FROM table;
+
 ```
 
 ### Cassandra Data Types
