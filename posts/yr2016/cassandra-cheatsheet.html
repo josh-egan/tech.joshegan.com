@@ -73,11 +73,11 @@
 <h3>Naming Conventions / Rules</h3>
 <p><strong>Best advice:</strong> Don't get creative. Stick with alpha, lowercase, snake-case names.</p>
 <ul>
-<li>Snake-case is the preferred naming style in Cassandra (e.g. my_table)</li>
-<li>No hyphens (e.g. <s>my-table</s>)</li>
-<li>No spaces (e.g. <s>my table</s>)</li>
-<li>Double quotes are required if something starts with a number (e.g. &quot;2050predictions&quot;)</li>
-<li>Double quotes are required if mixed case names are used (e.g. &quot;myTable&quot;)</li>
+<li>Snake-case is the preferred naming style in Cassandra (e.g. <code>my_table</code>)</li>
+<li>No hyphens (e.g. <code>my-table</code>)</li>
+<li>No spaces (e.g. <code>my table</code>)</li>
+<li>Double quotes are required if something starts with a number (e.g. <code>&quot;2050predictions&quot;</code>)</li>
+<li>Double quotes are required if mixed case names are used (e.g. <code>&quot;myTable&quot;</code>)</li>
 </ul>
 <h2>Setting up a Cassandra cluster</h2>
 <h3>Creating a Sandbox Cluster</h3>
@@ -383,7 +383,29 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <span class="hljs-comment">-- If you have a table of id, partition_key, and you want to get one row for each id and the first partition_key, you can use this query:</span>
 <span class="hljs-operator"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> <span class="hljs-keyword">id</span>, partition_key <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span>;</span>
 
-</code></pre>
+<span class="hljs-comment">-- Working with Collections</span>
+<span class="hljs-comment">-- set&lt;type&gt;</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> courses (<span class="hljs-keyword">id</span>, <span class="hljs-keyword">name</span>, features) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'node-intro'</span>, <span class="hljs-string">'Introduction to Node.js'</span>, {<span class="hljs-string">'cc'</span>, <span class="hljs-string">'transcript'</span>});</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> features = features + {<span class="hljs-string">'cc'</span>} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- the + symbol adds to the set.</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> features = features - {<span class="hljs-string">'cc'</span>} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- the - symbol removes from the set.</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> features = {} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- create an empty set.</span>
+
+<span class="hljs-comment">-- list&lt;type&gt;</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> courses (<span class="hljs-keyword">id</span>, clips) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'node-intro'</span>, [<span class="hljs-string">'Getting Started'</span>]);</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> clips = [<span class="hljs-string">'Introduction'</span>] + clips <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- prepend to the front of the list</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> clips = clips + [<span class="hljs-string">'Introduction'</span>] <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- append to the back of the list</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> clips = clips - [<span class="hljs-string">'Introduction'</span>] <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- removes all matching elements from the list.</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> courses <span class="hljs-keyword">SET</span> clips[<span class="hljs-number">0</span>] = <span class="hljs-string">'Introduction'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span> <span class="hljs-comment">-- add to list by position. Use indexing as you would in an array.</span>
+<span class="hljs-operator"><span class="hljs-keyword">DELETE</span> clips[<span class="hljs-number">0</span>] <span class="hljs-keyword">FROM</span> courses <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'node-intro'</span>;</span>
+
+<span class="hljs-comment">-- map&lt;key-type,value-type&gt;</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">users</span> (<span class="hljs-keyword">id</span>, last_login) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'john-doe'</span>, {<span class="hljs-string">'abcde'</span>: <span class="hljs-string">'2015-06-30 09:02:24'</span>});</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">SET</span> last_login[<span class="hljs-string">'abcde'</span>] = <span class="hljs-string">'2015-09-12 07:01:34'</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">SET</span> last_login = last_login + {<span class="hljs-string">'abcde'</span>: <span class="hljs-string">'2015-06-30 09:02:24'</span>} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">SET</span> last_login = last_login - {<span class="hljs-string">'abcde'</span>: <span class="hljs-string">'2015-06-30 09:02:24'</span>} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">DELETE</span> last_login[<span class="hljs-string">'abcde'</span>] <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>
+<span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">set</span> last_login = {} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>
+</span></code></pre>
 <h3>Cassandra Data Types</h3>
 <p><a href="http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html">http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html</a></p>
 <ul>
@@ -419,6 +441,14 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <li><code>blob</code></li>
 </ul>
 </li>
+<li>Collections
+<ul>
+<li>TTLs work for individual elements in a collection rather than the entire collection.</li>
+<li><code>set&lt;int&gt;</code> A set allows only unique values and does not preserve order.</li>
+<li><code>list&lt;int&gt;</code> A list allows duplicate values and preserves order.</li>
+<li><code>map&lt;text,timestamp&gt;</code> A map is a dictionary of key value pairs.</li>
+</ul>
+</li>
 </ul>
 <h3>keyspace</h3>
 <p>Replication strategy is defined at the keyspace level.</p>
@@ -436,6 +466,7 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <h4>clustering keys</h4>
 <p>A composite key is specified using <code>PRIMARY KEY(partition_key, clustering_key)</code>. For example: <code>CREATE TABLE my_table (id varchar, title varchar, name varchar, PRIMARY KEY (id, title));</code></p>
 <p>When clustering keys are used, the data inserted can be visualized as an entirely separate row. All of the common data must be inserted each time unless static columns are used.</p>
+<p>A partition can hold a maximum of 2 billion cells. All of the data from a single partition must fit on a single node in the cluster. To address these limitations, consider ways to appropriately bucket the data. For example, when storing timestamps for events, buckets could be created for year, month, and day, depending on the volume that is anticipated. Another approach would be to create a <code>bucket_id</code> key that is a string of your choosing (e.g. <code>&quot;2016-12-07&quot;</code>).</p>
 <h4>static</h4>
 <p>The <code>STATIC</code> modifying makes static fields associated with the partition key rather than including all of that data in each of the clusterking key rows.</p>
 <h3>Reads and Writes</h3>
