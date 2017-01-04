@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2016-12-07" class="orange"><strong> December 7th, 2016</strong></time><h2>Cassandra Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for cassandra"/><meta property="og:description" content="Cheatsheet for cassandra"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="Cassandra Cheatsheet - tech.joshegan.com"><title>Cassandra Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2016/cassandra-cheatsheet">Cassandra Cheatsheet</a></h1><p></p>Posted on<time datetime="2016-04-18"><strong> April 18th, 2016</strong></time>, updated on<time datetime="2017-01-04" class="orange"><strong> January 4th, 2017</strong></time><h2>Cassandra Resources</h2>
 <ul>
 <li><a href="https://cassandra.apache.org/">https://cassandra.apache.org/</a></li>
 <li><a href="http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html">http://techblog.netflix.com/2011/11/benchmarking-cassandra-scalability-on.html</a></li>
@@ -405,7 +405,17 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">SET</span> last_login = last_login - {<span class="hljs-string">'abcde'</span>: <span class="hljs-string">'2015-06-30 09:02:24'</span>} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>;</span>
 <span class="hljs-operator"><span class="hljs-keyword">DELETE</span> last_login[<span class="hljs-string">'abcde'</span>] <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>
 <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">set</span> last_login = {} <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">id</span> = <span class="hljs-string">'john-doe'</span>
-</span></code></pre>
+
+<span class="hljs-comment">-- secondary indexes</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">users</span> (<span class="hljs-keyword">id</span> <span class="hljs-built_in">varchar</span>, first_name <span class="hljs-built_in">varchar</span>, tags <span class="hljs-keyword">set</span>&lt;<span class="hljs-built_in">varchar</span>&gt;, PRIMARY <span class="hljs-keyword">KEY</span> (<span class="hljs-keyword">id</span>));</span>
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">users</span>(tags);</span>
+<span class="hljs-operator"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">users</span> (<span class="hljs-keyword">id</span>, first_name, tags) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'john-doe'</span>,<span class="hljs-string">'John'</span>, {<span class="hljs-string">'java'</span>});</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">users</span> <span class="hljs-keyword">WHERE</span> tags CONTAINS <span class="hljs-string">'java'</span>;</span>
+
+<span class="hljs-comment">-- a secondary index for a map</span>
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">table</span>(<span class="hljs-keyword">KEYS</span>(map_column));</span>
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">WHERE</span> map_column CONTAINS <span class="hljs-keyword">KEY</span> <span class="hljs-string">'foo'</span>;</span>
+</code></pre>
 <h3>Cassandra Data Types</h3>
 <p><a href="http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html">http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html</a></p>
 <ul>
@@ -447,6 +457,23 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <li><code>set&lt;int&gt;</code> A set allows only unique values and does not preserve order.</li>
 <li><code>list&lt;int&gt;</code> A list allows duplicate values and preserves order.</li>
 <li><code>map&lt;text,timestamp&gt;</code> A map is a dictionary of key value pairs.</li>
+<li><code>tuple&lt;int,text,varchar,double,int&gt;</code> A tuple can have many different data types, but they must always appear in the same order.</li>
+<li>Complex types can be nested. e.g. <code>map&lt;text,frozen&lt;tuple&lt;int,double&gt;&gt;&gt;</code>. Whenever a complex type is nested, it must be <code>frozen</code>. Nested complex types are written and read as blobs, so they are not particularly efficient.</li>
+<li>User Defined types
+<ul>
+<li><code>CREATE TYPE clip (name varchar, duration int);</code></li>
+<li><code>CREATE TYPE person (name varchar, id varchar);</code></li>
+<li><code>CREATE TABLE courses (id text, author frozen&lt;person&gt;);</code></li>
+<li>User defined types must always use the frozen keyword.</li>
+<li>User defined types have the following advantages over using a tuple:
+<ul>
+<li>Ability to identify components by name, not just order.</li>
+<li>Can be very helpful when multiple components have the same type.</li>
+<li>Can be used across multiple tables.</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -469,6 +496,17 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <p>A partition can hold a maximum of 2 billion cells. All of the data from a single partition must fit on a single node in the cluster. To address these limitations, consider ways to appropriately bucket the data. For example, when storing timestamps for events, buckets could be created for year, month, and day, depending on the volume that is anticipated. Another approach would be to create a <code>bucket_id</code> key that is a string of your choosing (e.g. <code>&quot;2016-12-07&quot;</code>).</p>
 <h4>static</h4>
 <p>The <code>STATIC</code> modifying makes static fields associated with the partition key rather than including all of that data in each of the clusterking key rows.</p>
+<h4>Secondary index</h4>
+<p>A secondary index allows you to query based on columns that are not part of the primary or clustering keys.</p>
+<p>Do not use a secondary index when...</p>
+<ul>
+<li>The column has high (or very low) cardinality. (Cardinality is a measure of the number of elements in a set.) e.g., it would not be a good idea to make an index on an email column, where every entry will be unique. Also not a good idea to make an index on a boolean column where each entry will be one of two values.</li>
+<li>The table contains a <code>counter</code> column.</li>
+<li>The column is frequently updated or deleted.</li>
+<li>The table has very large partitions.</li>
+<li>Cassandra currently does not support indexing static columns.</li>
+</ul>
+<p>In cases where a secondary index cannot, or should not, be used, a separate table can be used as a manual index. For example, if you have a courses table with a static tags collections and you want to be able to query for courses by tag, you can create a separate table that has a primary key of (tag, course_id) which can serve as an index.</p>
 <h3>Reads and Writes</h3>
 <p>Each node in the cluster functions the same. The node that you connect to when making a query becomes the 'coordinator node'. Nodes that get written to in a statement are called 'replica nodes'.</p>
 <p>Single data center consistency options:</p>
@@ -533,6 +571,12 @@ docker run --name n2 <span class="hljs-operator">-d</span> tobert/cassandra -see
 <p>To see what the default consistency is, run <code>consistency;</code></p>
 <p>To set the default consistency to use from the command line, use <code>consistency &lt;level&gt;;</code> e.g. <code>consistency quorum;</code></p>
 <p>If the consistency required cannot be achieved, the read or write will fail.</p>
+<h4>Batches</h4>
+<p>A batch is not a transaction - it does not have rollback support. A batch does guarantee that every command in the batch will be executed. Batches are useful for keeping related data in sync.</p>
+<pre><code class="language-sql"><span class="hljs-operator"><span class="hljs-keyword">BEGIN</span> BATCH
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span>
+</span></code></pre>
 <h3>tombstones</h3>
 <p>When something is deleted in Cassandra, a tombstone is created. The tombstone is treated just a like a write, so that nodes that are down can be repaired. When the node that was down when the delete occurred comes back online, the normal read repair process will update the node with the tombstone.</p>
 <p>Tombstones are automatically garbage collected on a configurable interval (default is 10 days). It is important not to clean up tombstones too quickly, because if the tombstones are removed, and then a node that was offline when the tombstone was created comes back online, the the read repair will restore the data from the node that was offline when the delete occurred, making it so that the data that was supposed to be deleted comes back into the database.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
