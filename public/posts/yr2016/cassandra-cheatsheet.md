@@ -236,6 +236,16 @@ UPDATE users SET last_login = last_login + {'abcde': '2015-06-30 09:02:24'} WHER
 UPDATE users SET last_login = last_login - {'abcde': '2015-06-30 09:02:24'} WHERE id = 'john-doe';
 DELETE last_login['abcde'] FROM users WHERE id = 'john-doe'
 UPDATE users set last_login = {} WHERE id = 'john-doe'
+
+-- secondary indexes
+CREATE TABLE users (id varchar, first_name varchar, tags set<varchar>, PRIMARY KEY (id));
+CREATE INDEX ON users(tags);
+INSERT INTO users (id, first_name, tags) VALUES ('john-doe','John', {'java'});
+SELECT * FROM users WHERE tags CONTAINS 'java';
+
+-- a secondary index for a map
+CREATE INDEX ON table(KEYS(map_column));
+SELECT * FROM table WHERE map_column CONTAINS KEY 'foo';
 ```
 
 ### Cassandra Data Types
@@ -267,6 +277,17 @@ http://docs.datastax.com/en/cql/3.3/cql/cql_reference/cql_data_types_c.html
     - `set<int>` A set allows only unique values and does not preserve order.
     - `list<int>` A list allows duplicate values and preserves order.
     - `map<text,timestamp>` A map is a dictionary of key value pairs.
+    - `tuple<int,text,varchar,double,int>` A tuple can have many different data types, but they must always appear in the same order.
+    - Complex types can be nested. e.g. `map<text,frozen<tuple<int,double>>>`. Whenever a complex type is nested, it must be `frozen`. Nested complex types are written and read as blobs, so they are not particularly efficient.
+  - User Defined types
+    - `CREATE TYPE clip (name varchar, duration int);`
+    - `CREATE TYPE person (name varchar, id varchar);`
+    - `CREATE TABLE courses (id text, author frozen<person>);`
+    - User defined types must always use the frozen keyword.
+    - User defined types have the following advantages over using a tuple:
+      - Ability to identify components by name, not just order.
+      - Can be very helpful when multiple components have the same type.
+      - Can be used across multiple tables.
 
 ### keyspace
 
@@ -306,6 +327,19 @@ A partition can hold a maximum of 2 billion cells. All of the data from a single
 
 The `STATIC` modifying makes static fields associated with the partition key rather than including all of that data in each of the clusterking key rows.
 
+#### Secondary index
+
+A secondary index allows you to query based on columns that are not part of the primary or clustering keys.
+
+Do not use a secondary index when...
+- The column has high (or very low) cardinality. (Cardinality is a measure of the number of elements in a set.) e.g., it would not be a good idea to make an index on an email column, where every entry will be unique. Also not a good idea to make an index on a boolean column where each entry will be one of two values.
+- The table contains a `counter` column.
+- The column is frequently updated or deleted.
+- The table has very large partitions.
+- Cassandra currently does not support indexing static columns.
+
+In cases where a secondary index cannot, or should not, be used, a separate table can be used as a manual index. For example, if you have a courses table with a static tags collections and you want to be able to query for courses by tag, you can create a separate table that has a primary key of (tag, course_id) which can serve as an index.
+
 ### Reads and Writes
 
 Each node in the cluster functions the same. The node that you connect to when making a query becomes the 'coordinator node'. Nodes that get written to in a statement are called 'replica nodes'.
@@ -336,6 +370,16 @@ To see what the default consistency is, run `consistency;`
 To set the default consistency to use from the command line, use `consistency <level>;` e.g. `consistency quorum;`
 
 If the consistency required cannot be achieved, the read or write will fail.
+
+#### Batches
+
+A batch is not a transaction - it does not have rollback support. A batch does guarantee that every command in the batch will be executed. Batches are useful for keeping related data in sync.
+
+```sql
+BEGIN BATCH
+
+INSERT INTO
+```
 
 ### tombstones
 
