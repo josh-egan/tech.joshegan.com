@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for HTML"/><meta property="og:description" content="Cheatsheet for HTML"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="HTML Cheatsheet - tech.joshegan.com"><title>HTML Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/html-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/html-cheatsheet">HTML Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-01-10" class="orange"><strong> January 10th, 2017</strong></time><h2>HTML Resources</h2>
+<ul>
+<li><a href="https://app.pluralsight.com/paths/skills/html5">https://app.pluralsight.com/paths/skills/html5</a></li>
+<li><a href="http://www.w3schools.com/tags/default.asp">http://www.w3schools.com/tags/default.asp</a></li>
+<li><a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a> (HTML5 spec)</li>
+<li><a href="http://validator.w3.org/">http://validator.w3.org/</a></li>
+</ul>
+<h2>History of HTML</h2>
+<ul>
+<li>In 1989, Tim Berners-Lee invented HyperText Markup Language (HTML).</li>
+<li>HTML was created to share research documents containing text, data, and images with links to other documents.</li>
+<li>HTML is a markup language meant to processed by the client application, typically a browser.</li>
+</ul>
+<h2>Sample HTML5 Page</h2>
+<pre><code class="language-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">base</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://www.joshegan.com/"</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">"_blank"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>My Page Title<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"UTF-8"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"description"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"HTML Cheatsheet"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"keywords"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"HTML,HTML5"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"author"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"Josh Egan"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"width=device-width, initial-scale=1.0"</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/css"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"/styles/my-styles.css"</span> /&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">async</span>  <span class="hljs-attribute">src</span>=<span class="hljs-value">"//cse.google.com/adsense/search/async-ads.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>`
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"/path/to/script.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>HTML Cheatsheet<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>HTML Resources<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://app.pluralsight.com/paths/skills/html5"</span>&gt;</span>https://app.pluralsight.com/paths/skills/html5<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://validator.w3.org/"</span>&gt;</span>http://validator.w3.org/<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>Sample HTML5 Page<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+
+
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">defer</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-built_in">window</span>.alert(<span class="hljs-string">"the page has been loaded!"</span>)
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- this is a comment --&gt;</span>
+  <span class="hljs-comment">&lt;!--
+    Comments can
+    be multiline
+  --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<h2>HTML tags</h2>
+<h3>Anatomy of an HTML Tag</h3>
+<ul>
+<li>Angle brackets (<code>&lt;</code>, <code>&gt;</code>) are used to indicate the beginning and end of a tag.</li>
+<li>The name of the tag comes immediately after the opening angle bracket <code>&lt;</code>.</li>
+<li>An html tag has an opening tag and a closing tag. The closing tag begins with a forward slash <code>/</code>. For example, <code>&lt;body&gt;&lt;/body&gt;</code>.</li>
+<li>Tags can include attributes. An attribute is specified after the name of the tag and before the closing angle bracket. Some attributes are binary and do not require a value. For attributes that do require a value, the attribute value is defined using an <code>=</code> followed by the value surrounded by double quotes <code>&quot;</code>. For example, <code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code></li>
+<li>A shorthand syntax where the forward slash is included at the end of the opening tag can sometimes be used when a tag has no content. For example, <code>&lt;meta charset=&quot;UTF-8&quot; /&gt;</code></li>
+</ul>
+<h3>Block vs. inline</h3>
+<p>Block elements are container elements for grouping other elements together. They may contain other block elements and inline elements.</p>
+<p>Block elements include:</p>
+<ul>
+<li><code>&lt;div&gt;</code></li>
+</ul>
+<p>Inline elements are for text and links that should be displayed inline. Inline elements cannot contain block elements, but they can contain inline elements.</p>
+<p>Inline elements include:</p>
+<ul>
+<li><code>&lt;span&gt;</code></li>
+<li><code>&lt;a&gt;</code></li>
+<li><code>&lt;p&gt;</code></li>
+</ul>
+<h3>Whitespace</h3>
+<p>Whitespace in the source code is generally ignored in HTML. However, whitespace is respected within the <code>&lt;pre&gt;</code> tag.</p>
+<p>The <code>&lt;br/&gt;</code> tag can be used to force a line break.</p>
+<h4>Character entities</h4>
+<p>Character entities can be used to define whitespace and other characters that have special meaning in HTML.</p>
+<p>The most common character entities have names, but the most robust way of referencing them is by number. The numbers are supported by more browsers.</p>
+<ul>
+<li><code>&amp;nbsp;</code> non-breaking space. Two words separated by a non-breaking space will not break into a new line. This can be useful when a line break might be disruptive. e.g. 10 mph. (Resize the page and you'll see that you won't get a line break between the 10 and the mph.)</li>
+<li><code>&amp;#8209;</code> non-breaking hyphen (<code>-</code>)</li>
+<li><code>&amp;amp;</code> ampersand (<code>&amp;</code>)</li>
+<li><code>&amp;lt;</code> less than. (<code>&lt;</code>)</li>
+<li><code>&amp;gt;</code> greater than. (<code>&gt;</code>)</li>
+</ul>
+<p>Character entity references:</p>
+<ul>
+<li><a href="https://dev.w3.org/html5/html-author/charref">https://dev.w3.org/html5/html-author/charref</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references">https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references</a></li>
+</ul>
+<h3>HTML Tags Reference</h3>
+<p>For a more thorough reference, see <a href="http://www.w3schools.com/tags/default.asp">http://www.w3schools.com/tags/default.asp</a></p>
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Example</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;!DOCTYPE&gt;</code></td>
+<td><code>&lt;!DOCTYPE html&gt;</code></td>
+<td>HTML5 uses <code>&lt;!DOCTYPE html&gt;</code>. See <a href="https://www.w3.org/QA/2002/04/valid-dtd-list.html">this page</a> for others.</td>
+</tr>
+<tr>
+<td><code>&lt;html&gt;</code></td>
+<td><code>&lt;html&gt;&lt;/html&gt;</code></td>
+<td>The html tag is the root element for the page. There can only be one per page.</td>
+</tr>
+<tr>
+<td><code>&lt;head&gt;</code></td>
+<td><code>&lt;head&gt;&lt;/head&gt;</code></td>
+<td>The head tag contains document metadata. The information contained in the <code>&lt;head&gt;</code> is used by browsers and search engines.</td>
+</tr>
+<tr>
+<td><code>&lt;base&gt;</code></td>
+<td><code>&lt;base href=&quot;//joshegan.com/&quot; target=&quot;_blank&quot;&gt;</code></td>
+<td>The base tag is used inside the <code>head</code> tag to define the base url to be used for all links on the page and/or the default target for all hyperlinks on the page. This can be useful for setting the base to the root of the site regardless of which page you are currently on.</td>
+</tr>
+<tr>
+<td><code>&lt;title&gt;</code></td>
+<td><code>&lt;title&gt;My Page Title&lt;/title&gt;</code></td>
+<td>Used inside the <code>&lt;head&gt;</code> tag. Sets the title for the page.</td>
+</tr>
+<tr>
+<td><code>&lt;meta&gt;</code></td>
+<td><code>&lt;meta charset=&quot;UTF-8&quot;&gt;</code><br><code>&lt;meta name=&quot;description&quot; content=&quot;HTML Cheatsheet&quot;&gt;</code></td>
+<td>Used inside the <code>&lt;head&gt;</code> tag. Use the meta tag to set metadata about the document. You can use many of these tags to define multiple pieces of metadata.</td>
+</tr>
+<tr>
+<td><code>&lt;style&gt;</code></td>
+<td><code>&lt;style&gt; h1 {color:red;} &lt;/style&gt;</code></td>
+<td>Use the style tag inside the <code>head</code> tag to define inline styles. Generally, using this tag is not a good idea.</td>
+</tr>
+<tr>
+<td><code>&lt;link&gt;</code></td>
+<td><code>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;theme.css&quot;&gt;</code></td>
+<td>The link tag is used inside the <code>head</code> tag to reference external stylesheets.</td>
+</tr>
+<tr>
+<td><code>&lt;script&gt;</code></td>
+<td><code>&lt;script type=&quot;text/javascript&quot;&gt; window.alert(&quot;hello!&quot;) &lt;/script&gt;</code><br><code>&lt;script async src=&quot;path/to/script.js&quot;&gt;&lt;/script&gt;</code></td>
+<td>The script tag is used to reference a JavaScript file or to define JavaScript inline. This tag can be used in the <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> tags. If the <code>src</code> attribute is used, the script tag must be empty. The <code>type</code> attribute is optional in HTML5. The <code>async</code> attribute will tell the browser to load the script asynchronously. The <code>defer</code> attribute will tell the page to load the script after the page has finished parsing.</td>
+</tr>
+<tr>
+<td><code>&lt;body&gt;</code></td>
+<td><code>&lt;body&gt;&lt;/body&gt;</code></td>
+<td>The body tag contains the document data. The tags within the <code>&lt;body&gt;</code> tag will be displayed in the browser.</td>
+</tr>
+<tr>
+<td><code>&lt;h1&gt;</code></td>
+<td><code>&lt;h1&gt;Page Title&lt;/h1&gt;</code></td>
+<td>The h1 tag defines the primary heading for the page. There should only be one h1 tag on a page. This tag is used by search engines.</td>
+</tr>
+<tr>
+<td><code>&lt;h2&gt;</code> <code>&lt;h3</code> <code>&lt;h4&gt;</code> <code>&lt;h5&gt;</code> <code>&lt;h6&gt;</code></td>
+<td><code>&lt;h2&gt;Sub Section 1&lt;/h2&gt;</code><br><code>&lt;h3&gt;Part 1&lt;/h3&gt;</code><br><code>&lt;h3&gt;Part 2&lt;/h3&gt;</code><br><code>&lt;h4&gt;2.1&lt;/h4&gt;</code><br><code>&lt;h4&gt;2.2&lt;/h4&gt;</code></td>
+<td>The sub headings h2, h3, h4, h5, and h6 should be used semantically to indicate subsections within subsections.</td>
+</tr>
+<tr>
+<td><code>&lt;div&gt;</code></td>
+<td><code>&lt;div id=&quot;container&quot; class=&quot;mainContainer&quot;&gt;&lt;/div&gt;</code></td>
+<td>The div tag is the most commonly used block element for displaying content sections, or content divisions, within a page.</td>
+</tr>
+<tr>
+<td><code>&lt;p&gt;</code></td>
+<td><code>&lt;p&gt;The quick brown fox&lt;/p&gt;</code></td>
+<td>The p tag defines a paragraph. It is unique in that it is displayed as a block element but it cannot contain other block elements.</td>
+</tr>
+<tr>
+<td><code>&lt;pre&gt;</code></td>
+<td><code>&lt;pre&gt;</code><br><code>This formatting</code><br><code>is preserved.</code><br><code>&lt;/pre&gt;</code></td>
+<td>The pre tag is used for preformatted text. It will preserve whitespace from the source code.</td>
+</tr>
+<tr>
+<td><code>&lt;br/&gt;</code></td>
+<td><code>&lt;br/&gt;</code></td>
+<td>The br tag is used for explicit line breaks.</td>
+</tr>
+<tr>
+<td><code>&lt;hr/&gt;</code></td>
+<td><code>&lt;hr/&gt;</code></td>
+<td>The hr tag is used to define a horizontal rule, or a horizontal line that will be displayed on the page.</td>
+</tr>
+<tr>
+<td><code>&lt;span&gt;</code></td>
+<td>`<span class="emphasize">some text</span></td>
+<td>The span element is an inline element that is typically used for applying a style to a short span of text.</td>
+</tr>
+<tr>
+<td><code>&lt;sup&gt;</code></td>
+<td>`<sup>citation</sup></td>
+<td>The sup tag is used to make a superscript.</td>
+</tr>
+<tr>
+<td><code>&lt;sub&gt;</code></td>
+<td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td>
+<td>The sub tag is used to make a subscript.</td>
+</tr>
+<tr>
+<td><code>&lt;abbr&gt;</code></td>
+<td><code>&lt;abbr title=&quot;HyperText Markup Language&quot;&gt;HTML&lt;/abbr&gt;</code></td>
+<td>The abbr tag is used for abbrevations or acronyms. The title attribute will be displayed on hover.</td>
+</tr>
+<tr>
+<td><code>&lt;code&gt;</code></td>
+<td><code>&lt;code&gt;let a = x + y&lt;/code&gt;</code></td>
+<td>The code tag is used to indicate code snippets. Used in combination with the <code>&lt;pre&gt;</code> tag, it can be used for a code block.</td>
+</tr>
+<tr>
+<td><code>&lt;blockquote&gt;</code></td>
+<td><code>&lt;blockquote cite=&quot;https://www.lds.org/scriptures/nt/matt/7.12?lang=eng#11&quot;&gt;Therefore all things whatsoever ye would that men should do to you, do ye even so to them: for this is the law and the prophets.&lt;/blockquote&gt;</code></td>
+<td>Use the blockquote tag to define a section that is quoted from another source.</td>
+</tr>
+<tr>
+<td><code>&lt;q&gt;</code></td>
+<td><code>&lt;q&gt;It was the best of times.&lt;/q&gt;</code></td>
+<td>Use the q tag for inline quotes.</td>
+</tr>
+</tbody>
+</table></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
