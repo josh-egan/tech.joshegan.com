@@ -1,0 +1,17 @@
+{
+  "html-cheatsheet": {
+    "title": "HTML Cheatsheet",
+    "description": "Cheatsheet for HTML",
+    "postDateString": "January 10th, 2017",
+    "postDateTime": "2017-01-10"
+  },
+  "sample": {
+    "title": "Post Title - REQUIRED",
+    "description": "Post description used in meta data - REQUIRED",
+    "postDateString": "January 2nd, 2015 - REQUIRED",
+    "postDateTime": "2015-01-02 - REQUIRED",
+    "updateDateString": "February 3rd, 2015 - OPTIONAL",
+    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
+    "isDraft": "true"
+  }
+}
