@@ -3,7 +3,9 @@
     "title": "HTML Cheatsheet",
     "description": "Cheatsheet for HTML",
     "postDateString": "January 10th, 2017",
-    "postDateTime": "2017-01-10"
+    "postDateTime": "2017-01-10",
+    "updateDateString": "January 18th, 2017",
+    "updateDateTime": "2017-01-18"
   },
   "sample": {
     "title": "Post Title - REQUIRED",

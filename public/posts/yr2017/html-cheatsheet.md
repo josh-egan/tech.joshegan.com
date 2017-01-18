@@ -44,11 +44,48 @@
     <li>
       <a href="http://validator.w3.org/">http://validator.w3.org/</a>
     </li>
+    <li>
+      <a href="http://stackoverflow.com/questions/41725457/regex-to-match-list-of-numbers#answer-41725562">The most recent answer on stack overflow at time of writing.</a>
+    </li>
   </ul>
 
+  <h3>Page Outline</h3>
+  <ol>
+    <li>
+      <a href="#terminology">Terminology</a>
+    </li>
+    <li>
+      <a href="#glossary">Glossary</a>
+    </li>
+  </ol>
+
+  <a name="terminology"><h4>Terminology</h4></a>
+  <h4 id="glossary">Glossary</h4>
+
+  <table summary="This summary will appear to screen readers. No representation visually.">
+    <caption>This appears above the table</caption>
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr colspan="3">
+        <td>The footer must come before the body!</td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <tr>
+        <td>This row</td>
+        <td>has</td>
+        <td rowspan="2">three columns</td>
+      </tr>
+    </tbody>
+  </table>
+
   <h2>Sample HTML5 Page</h2>
-
-
 
   <script defer type="text/javascript">
     window.alert("the page has been loaded!")
@@ -85,6 +122,11 @@ Inline elements include:
 - `<span>`
 - `<a>`
 - `<p>`
+
+### Lists
+- Unordered lists: `<ul> <li></li><li></li> </ul>`
+- Ordered lists: `<ol> <li></li><li></li> </ol>`
+- Definition lists: `<dl> <dt>HTML</dt> <dd>HyperText Markup Language</dd> </dl>`
 
 ### Whitespace
 
@@ -138,3 +180,4 @@ Tag | Example | Notes
 `<code>` | `<code>let a = x + y</code>` | The code tag is used to indicate code snippets. Used in combination with the `<pre>` tag, it can be used for a code block.
 `<blockquote>` | `<blockquote cite="https://www.lds.org/scriptures/nt/matt/7.12?lang=eng#11">Therefore all things whatsoever ye would that men should do to you, do ye even so to them: for this is the law and the prophets.</blockquote>` | Use the blockquote tag to define a section that is quoted from another source.
 `<q>` | `<q>It was the best of times.</q>` | Use the q tag for inline quotes.
+`<a>` | `<a href="/path/to/page">Click here!</a>`<br/>`<a href="#terminology">see definitions</a>`<br/>`<a name="terminology" title="Technical Definitions"><h2>Terminology</h2></a>` | Use the anchor tag for links within a page or to other pages.
