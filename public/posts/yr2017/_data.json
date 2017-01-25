@@ -1,4 +1,10 @@
 {
+  "html-sandbox": {
+    "title": "HTML Sandbox",
+    "description": "Sandbox for experimenting with HTML",
+    "postDateString": "January 25th, 2017",
+    "postDateTime": "2017-01-25"
+  },
   "html-cheatsheet": {
     "title": "HTML Cheatsheet",
     "description": "Cheatsheet for HTML",
