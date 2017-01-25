@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Sandbox for experimenting with HTML"/><meta property="og:description" content="Sandbox for experimenting with HTML"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="HTML Sandbox - tech.joshegan.com"><title>HTML Sandbox - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/html-sandbox"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/html-sandbox">HTML Sandbox</a></h1><p></p>Posted on<time datetime="2017-01-25" class="orange"><strong> January 25th, 2017</strong></time><p>Each code block on this page is editable. Feel free to modify the examples to try out different things.</p>
+<h2>Mashup</h2>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://app.pluralsight.com/paths/skills/html5"</span>&gt;</span>https://app.pluralsight.com/paths/skills/html5<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+    On a new line.
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://validator.w3.org/"</span>&gt;</span>http://validator.w3.org/<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    On the same line.
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+</code></pre>
+<h2>&lt;a&gt;</h2>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://duckduckgo.com/"</span>
+   <span class="hljs-attribute">title</span>=<span class="hljs-value">"The search engine that doesn't track you."</span>
+   <span class="hljs-attribute">target</span>=<span class="hljs-value">"_blank"</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"DDG_Dax-01.svg"</span>
+        <span class="hljs-attribute">alt</span>=<span class="hljs-value">"DuckDuckGo Logo"</span>
+        <span class="hljs-attribute">height</span>=<span class="hljs-value">"30px"</span>/&gt;</span>
+   DuckDuckGo
+<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+</code></pre>
+<style>
+.renderedHtml {
+  border: 1px dashed #777777;
+  padding: 20px;
+}
+</style>
+<script>
+var elements = document.getElementsByClassName('language-html')
+for(var i = 0; i < elements.length; i++) {
+  var codeElement = elements[i]
+  var preElement = codeElement.parentNode
+  var container = preElement.parentNode
+
+  codeElement.setAttribute('contentEditable', true)
+
+  var renderedHtmlElement = document.createElement('div')
+  renderedHtmlElement.className = 'renderedHtml'
+  renderedHtmlElement.innerHTML = codeElement.textContent
+  container.insertBefore(renderedHtmlElement, preElement.nextSibling)
+
+  codeElement.onkeyup = handleKeyUpFactory(renderedHtmlElement, codeElement)
+}
+
+function handleKeyUpFactory(renderEl, codeEl) {
+  return function() { renderEl.innerHTML = codeEl.textContent }
+}
+</script></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
