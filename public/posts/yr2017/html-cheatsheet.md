@@ -62,7 +62,7 @@
   <a name="terminology"><h4>Terminology</h4></a>
   <h4 id="glossary">Glossary</h4>
 
-  <table summary="This summary will appear to screen readers. No representation visually.">
+  <table cellspacing="5em" cellpadding="10em" summary="This summary will appear to screen readers. No representation visually.">
     <caption>This appears above the table</caption>
     <thead>
       <tr>
@@ -181,3 +181,5 @@ Tag | Example | Notes
 `<blockquote>` | `<blockquote cite="https://www.lds.org/scriptures/nt/matt/7.12?lang=eng#11">Therefore all things whatsoever ye would that men should do to you, do ye even so to them: for this is the law and the prophets.</blockquote>` | Use the blockquote tag to define a section that is quoted from another source.
 `<q>` | `<q>It was the best of times.</q>` | Use the q tag for inline quotes.
 `<a>` | `<a href="/path/to/page">Click here!</a>`<br/>`<a href="#terminology">see definitions</a>`<br/>`<a name="terminology" title="Technical Definitions"><h2>Terminology</h2></a>` | Use the anchor tag for links within a page or to other pages.
+`<img>` | `<img src="/public/images/image.png" alt="Image description." />` | Use the image tag for displaying images. Optimize images to needed size so that only the data needed is pulled down by the client.
+
