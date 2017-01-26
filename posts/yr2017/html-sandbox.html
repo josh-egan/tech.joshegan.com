@@ -1,26 +1,46 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Sandbox for experimenting with HTML"/><meta property="og:description" content="Sandbox for experimenting with HTML"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="HTML Sandbox - tech.joshegan.com"><title>HTML Sandbox - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/html-sandbox"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/html-sandbox">HTML Sandbox</a></h1><p></p>Posted on<time datetime="2017-01-25" class="orange"><strong> January 25th, 2017</strong></time><p>Each code block on this page is editable. Feel free to modify the examples to try out different things.</p>
-<h2>Mashup</h2>
-<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://app.pluralsight.com/paths/skills/html5"</span>&gt;</span>https://app.pluralsight.com/paths/skills/html5<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
-    On a new line.
-  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"http://validator.w3.org/"</span>&gt;</span>http://validator.w3.org/<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-    On the same line.
-  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
-</code></pre>
 <h2>&lt;a&gt;</h2>
 <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://duckduckgo.com/"</span>
    <span class="hljs-attribute">title</span>=<span class="hljs-value">"The search engine that doesn't track you."</span>
    <span class="hljs-attribute">target</span>=<span class="hljs-value">"_blank"</span>&gt;</span>
    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"DDG_Dax-01.svg"</span>
         <span class="hljs-attribute">alt</span>=<span class="hljs-value">"DuckDuckGo Logo"</span>
-        <span class="hljs-attribute">height</span>=<span class="hljs-value">"30px"</span>/&gt;</span>
+        <span class="hljs-attribute">height</span>=<span class="hljs-value">"50px"</span>/&gt;</span>
    DuckDuckGo
 <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+</code></pre>
+<h2>Lists</h2>
+<pre><code class="language-html">List types:
+
+<span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+    Ordered Lists
+    <span class="hljs-tag">&lt;<span class="hljs-title">ol</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Learn HTML<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Learn CSS<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Learn JavaScript<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ol</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+    Unordered Lists
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Milk<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Eggs<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Cheese<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+    Definition Lists
+    <span class="hljs-tag">&lt;<span class="hljs-title">dl</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>HTML<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>HyperText Markup Language<span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>CSS<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>Cascading Style Sheets<span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">dl</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+</code></pre>
+<h2>Character Entities</h2>
+<pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-title">table</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Entity Code<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Entity<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;amp;amp;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;amp;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;amp;lt;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;lt;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;amp;gt;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>&amp;gt;<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>
 </code></pre>
 <style>
 .renderedHtml {
