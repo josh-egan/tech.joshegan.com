@@ -1,21 +1,5 @@
 Each code block on this page is editable. Feel free to modify the examples to try out different things.
 
-## Mashup
-
-```html
-<ul>
-  <li>
-    <a href="https://app.pluralsight.com/paths/skills/html5">https://app.pluralsight.com/paths/skills/html5</a>
-    <br />
-    On a new line.
-  </li>
-  <li>
-    <a href="http://validator.w3.org/">http://validator.w3.org/</a>
-    On the same line.
-  </li>
-</ul>
-```
-
 ## &lt;a&gt;
 
 ```html
@@ -24,9 +8,48 @@ Each code block on this page is editable. Feel free to modify the examples to tr
    target="_blank">
    <img src="DDG_Dax-01.svg"
         alt="DuckDuckGo Logo"
-        height="30px"/>
+        height="50px"/>
    DuckDuckGo
 </a>
+```
+
+## Lists
+
+```html
+List types:
+
+<ul>
+  <li>
+    Ordered Lists
+    <ol>
+      <li>Learn HTML</li>
+      <li>Learn CSS</li>
+      <li>Learn JavaScript</li>
+    </ol>
+  </li>
+  <li>
+    Unordered Lists
+    <ul><li>Milk</li><li>Eggs</li><li>Cheese</li></ul>
+  </li>
+  <li>
+    Definition Lists
+    <dl>
+      <dt>HTML</dt><dd>HyperText Markup Language</dd>
+      <dt>CSS</dt><dd>Cascading Style Sheets</dd>
+    </dl>
+  </li>
+</ul>
+```
+
+## Character Entities
+
+```html
+<table>
+  <tr><th>Entity Code</th><th>Entity</th></tr>
+  <tr><td>&amp;amp;</td><td>&amp;</td></tr>
+  <tr><td>&amp;lt;</td><td>&lt;</td></tr>
+  <tr><td>&amp;gt;</td><td>&gt;</td></tr>
+</table>
 ```
 
 <style>
