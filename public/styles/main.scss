@@ -19,19 +19,36 @@ body {
 }
 
 h1 {
-  margin: 20px 0;
-  font-size: 220%;
   font-family: $title-font-family;
+  font-size: 220%;
+  margin: 20px 0;
+}
+
+h2 {
+  font-size: 160%;
+  margin: 15px 0;
+}
+
+h3 {
+  font-size: 140%;
+  margin: 10px 0;
 }
 
 h4 {
-  margin: 15px 0;
-  font-size: 140%;
+  font-weight: 400;
+  font-size: 130%;
+  margin: 10px 0;
 }
 
 h5 {
-  margin: 10px 0;
   font-size: 120%;
+  margin: 10px 0;
+}
+
+h6 {
+  font-weight: bold;
+  font-size: 100%;
+  margin: 10px 0;
 }
 
 p, ul, ol {

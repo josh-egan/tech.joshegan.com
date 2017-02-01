@@ -1,5 +1,19 @@
 Each code block on this page is editable. Feel free to modify the examples to try out different things.
 
+## Headers
+
+```html
+<h1>Page Title</h1>
+<h2>First Section</h2>
+<h3>Sub Section 1</h3>
+<h3>Sub Section 2</h3>
+<h2>Second Section</h2>
+<h3>Sub Section 3</h3>
+<h4>Sub Sub</h4>
+<h5>Sub Sub Sub</h5>
+<h6>Sub Sub Sub Sub</h6>
+```
+
 ## &lt;a&gt;
 
 ```html
