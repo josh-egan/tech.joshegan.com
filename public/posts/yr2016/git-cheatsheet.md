@@ -74,7 +74,7 @@ The `.gitignore` file should be at the root of the project directory. This file 
 
 See the docs for a complete reference: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore)
 
-```
+```applescript
 # Lines that start with a pound sign (#) are comments
 # Blank lines are not interpreted
 
@@ -102,7 +102,7 @@ See the docs for a complete reference: [https://git-scm.com/docs/gitattributes](
 
 The `-text` option tells git not to normalize the line endings on that file. In other words, leave this file alone.
 
-```
+```apache
 *.txt       text
 *.vcproj    eol=crlf
 *.sh        eol=lf

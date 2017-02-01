@@ -199,7 +199,6 @@ describe('math module', function () {
     })
   })
 })
-
 ```
 
 Note that one limitation of the mocha watcher is that it currently doesn't pick up new files. So anytime you create a new file, you'll have to kill the watcher with `CTRL+C` and then restart it.
