@@ -139,7 +139,6 @@ describe(<span class="hljs-string">'math module'</span>, <span class="hljs-funct
     })
   })
 })
-
 </code></pre>
 <p>Note that one limitation of the mocha watcher is that it currently doesn't pick up new files. So anytime you create a new file, you'll have to kill the watcher with <code>CTRL+C</code> and then restart it.</p>
 <p>Let's go back to the <code>package.json</code> file and refactor it a bit. Notice how our scripts include so much duplication? Well, there's a nice little trick we can use to cut out the duplication. Modify the <code>test-watch</code> script as follows:</p>

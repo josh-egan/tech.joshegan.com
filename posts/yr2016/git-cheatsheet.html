@@ -99,7 +99,7 @@ git merge upstream/master
 <h3>.gitignore</h3>
 <p>The <code>.gitignore</code> file should be at the root of the project directory. This file tells git to ignore, or not track, the specified files.</p>
 <p>See the docs for a complete reference: <a href="https://git-scm.com/docs/gitignore">https://git-scm.com/docs/gitignore</a></p>
-<pre><code><span class="hljs-comment"># Lines that start with a pound sign (#) are comments</span>
+<pre><code class="language-applescript"><span class="hljs-comment"># Lines that start with a pound sign (#) are comments</span>
 <span class="hljs-comment"># Blank lines are not interpreted</span>
 
 <span class="hljs-comment"># Ignore specific files</span>
@@ -122,10 +122,10 @@ bin
 <p>The <code>.gitattributes</code> file should be at the root of the project directory. This file tells git how to handle certain files or file types.</p>
 <p>See the docs for a complete reference: <a href="https://git-scm.com/docs/gitattributes">https://git-scm.com/docs/gitattributes</a></p>
 <p>The <code>-text</code> option tells git not to normalize the line endings on that file. In other words, leave this file alone.</p>
-<pre><code>*<span class="hljs-class">.txt</span>       text
-*<span class="hljs-class">.vcproj</span>    eol=crlf
-*<span class="hljs-class">.sh</span>        eol=lf
-*<span class="hljs-class">.jpg</span>       -text
+<pre><code class="language-apache">*.txt       text
+*.vcproj    eol=crlf
+*.sh        eol=lf
+*.jpg       -text
 </code></pre>
 <h2>Git Commands</h2>
 <p>When working with <code>git</code> commands, options can be combined. For example, <code>git commit -am</code> is the same as <code>git commit -a -m</code> and <code>git status -su</code> is the same as <code>git status -s -u</code>.</p>
