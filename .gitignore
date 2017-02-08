@@ -1,5 +1,6 @@
-node_modules
-null
-.idea
-dist
-.publish
+.idea/
+node_modules/
+dist/
+.publish/
+
+*.log
