@@ -150,6 +150,21 @@ Character entity references:
 - https://dev.w3.org/html5/html-author/charref
 - https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 
+### Semantic HTML Tags
+
+Tag | Notes
+--- | ---
+`<article>` | Use to wrap related, self-contained content. Excellent for blog posts, etc.
+`<aside>` | Related, but not of primary importance to the main content.
+
+### Media Tags
+
+Tag | Notes
+--- | ---
+`<video>` | Play video.
+`<audio>` | Play audio.
+`<canvas>` | Lots of magic is available in a canvas tag.
+
 ### HTML Tags Reference
 
 For a more thorough reference, see http://www.w3schools.com/tags/default.asp
@@ -182,4 +197,4 @@ Tag | Example | Notes
 `<q>` | `<q>It was the best of times.</q>` | Use the q tag for inline quotes.
 `<a>` | `<a href="/path/to/page">Click here!</a>`<br/>`<a href="#terminology">see definitions</a>`<br/>`<a name="terminology" title="Technical Definitions"><h2>Terminology</h2></a>` | Use the anchor tag for links within a page or to other pages.
 `<img>` | `<img src="/public/images/image.png" alt="Image description." />` | Use the image tag for displaying images. Optimize images to needed size so that only the data needed is pulled down by the client.
-
+`<bdi>` | `<bdi>إيان</bdi>` | Use for displaying bi-directional text. Often useful for user generated content.

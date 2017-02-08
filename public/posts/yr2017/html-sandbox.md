@@ -57,12 +57,46 @@ List types:
 
 ## Character Entities
 
+Character entity references:
+- https://dev.w3.org/html5/html-author/charref
+- https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+
 ```html
 <table>
   <tr><th>Entity Code</th><th>Entity</th></tr>
   <tr><td>&amp;amp;</td><td>&amp;</td></tr>
   <tr><td>&amp;lt;</td><td>&lt;</td></tr>
   <tr><td>&amp;gt;</td><td>&gt;</td></tr>
+</table>
+```
+
+## Tables
+
+```html
+<table cellspacing="5em" cellpadding="10em" summary="This summary will appear to screen readers. No representation visually.">
+  <caption>The caption appears above the table</caption>
+  <thead>
+    <tr>
+      <th>Column 1</th>
+      <th>Column 2</th>
+      <th>Column 3</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="3">The footer must come before the body!</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr>
+      <td>This row</td>
+      <td>has</td>
+      <td rowspan="2">three columns</td>
+    </tr>
+    <tr>
+      <td colspan="2">Spanning columns!</td>
+    </tr>
+  </tbody>
 </table>
 ```
 
