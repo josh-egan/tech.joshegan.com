@@ -4,6 +4,7 @@
 - http://www.w3schools.com/tags/default.asp
 - https://www.w3.org/TR/html5/ (HTML5 spec)
 - http://validator.w3.org/
+- http://caniuse.com/
 
 ## History of HTML
 
@@ -156,6 +157,27 @@ Tag | Notes
 --- | ---
 `<article>` | Use to wrap related, self-contained content. Excellent for blog posts, etc.
 `<aside>` | Related, but not of primary importance to the main content.
+`<audio>` | Use for playing audio.
+`<video>` | Use for playing video.
+`<bdi>` | Use for showing text that is bi-directional. Useful if your website supports user generated content in multiple languages.
+`<canvas>` | Use for drawing on the page. 
+`<datalist>` | Use for forms.
+`<details>` | Show more details in a way that used to only be possible via javascript.
+`<embed>` | Use in place of the `<object>` element to embed external resources like flash.
+`<figure>` | Use for providing captions for images.
+`<header>` | Contains the header of a logical container. Can be styled / placed wherever is desired.
+`<footer>` | Contains the footer of a logical container. Typically one per page, but there could be multiple depending on the use case.
+`<main>` | The main content of the page. There should only be one per page.
+`<math>` | For displaying equations.
+`<mark>` | For highlighting text.
+`<meter>` | For displaying a range of values.
+`<nav>` | For displaying navigation links. Typically the main site nav.
+`<output>` | Display the results of a calculation. 
+`<progress>` | Progress bar
+`<section>` | For displaying a logical group of content. Use a section for grouping content logically, use a div for grouping content to for styling. 
+`<time>` | Display a date time.
+`<wbr>` | Word break element. Indicates where to break a word if wrapping becomes necessary. 
+`<>` | 
 
 ### Media Tags
 

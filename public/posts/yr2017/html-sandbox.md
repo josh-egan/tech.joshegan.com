@@ -100,6 +100,34 @@ Character entity references:
 </table>
 ```
 
+## &lt;meter&gt;
+
+```html
+<meter min="0" max="100" value="72">72 out of 100</meter>
+```
+
+## &lt;progress&gt;
+
+```html
+<progress max="0" value="50"></progress>
+```
+
+## &lt;time&gt;
+
+Use the `pubdate` attribute to indicate the publication date of an article. There can be many `<time>` elements on a page, but the `pubdate` attribute should be used on only one element on a given page.
+
+```html
+<time datetime="2017-03-01T10:03:21-7:00" pubdate>March 1st, 2017</time>
+```
+
+## &lt;wbr&gt;
+
+```html
+<div style="width:200px; border: solid black 1px;">
+  supercalifragilistic<wbr>expialidocious
+</div>
+```
+
 <style>
 .renderedHtml {
   border: 1px dashed #777777;

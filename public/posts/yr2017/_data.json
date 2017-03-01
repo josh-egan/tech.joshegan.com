@@ -3,15 +3,17 @@
     "title": "HTML Sandbox",
     "description": "Sandbox for experimenting with HTML",
     "postDateString": "January 25th, 2017",
-    "postDateTime": "2017-01-25"
+    "postDateTime": "2017-01-25",
+    "updateDateString": "March 1st, 2017",
+    "updateDateTime": "2017-03-01"
   },
   "html-cheatsheet": {
     "title": "HTML Cheatsheet",
     "description": "Cheatsheet for HTML",
     "postDateString": "January 10th, 2017",
     "postDateTime": "2017-01-10",
-    "updateDateString": "January 25th, 2017",
-    "updateDateTime": "2017-01-25"
+    "updateDateString": "March 1st, 2017",
+    "updateDateTime": "2017-03-01"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
