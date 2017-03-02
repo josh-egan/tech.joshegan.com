@@ -1,9 +1,10 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for HTML"/><meta property="og:description" content="Cheatsheet for HTML"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="HTML Cheatsheet - tech.joshegan.com"><title>HTML Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/html-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/html-cheatsheet">HTML Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-01-10"><strong> January 10th, 2017</strong></time>, updated on<time datetime="2017-01-25" class="orange"><strong> January 25th, 2017</strong></time><h2>HTML Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="Cheatsheet for HTML"/><meta property="og:description" content="Cheatsheet for HTML"/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="HTML Cheatsheet - tech.joshegan.com"><title>HTML Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/html-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/html-cheatsheet">HTML Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-01-10"><strong> January 10th, 2017</strong></time>, updated on<time datetime="2017-03-01" class="orange"><strong> March 1st, 2017</strong></time><h2>HTML Resources</h2>
 <ul>
 <li><a href="https://app.pluralsight.com/paths/skills/html5">https://app.pluralsight.com/paths/skills/html5</a></li>
 <li><a href="http://www.w3schools.com/tags/default.asp">http://www.w3schools.com/tags/default.asp</a></li>
 <li><a href="https://www.w3.org/TR/html5/">https://www.w3.org/TR/html5/</a> (HTML5 spec)</li>
 <li><a href="http://validator.w3.org/">http://validator.w3.org/</a></li>
+<li><a href="http://caniuse.com/">http://caniuse.com/</a></li>
 </ul>
 <h2>History of HTML</h2>
 <ul>
@@ -158,6 +159,90 @@
 <tr>
 <td><code>&lt;aside&gt;</code></td>
 <td>Related, but not of primary importance to the main content.</td>
+</tr>
+<tr>
+<td><code>&lt;audio&gt;</code></td>
+<td>Use for playing audio.</td>
+</tr>
+<tr>
+<td><code>&lt;video&gt;</code></td>
+<td>Use for playing video.</td>
+</tr>
+<tr>
+<td><code>&lt;bdi&gt;</code></td>
+<td>Use for showing text that is bi-directional. Useful if your website supports user generated content in multiple languages.</td>
+</tr>
+<tr>
+<td><code>&lt;canvas&gt;</code></td>
+<td>Use for drawing on the page.</td>
+</tr>
+<tr>
+<td><code>&lt;datalist&gt;</code></td>
+<td>Use for forms.</td>
+</tr>
+<tr>
+<td><code>&lt;details&gt;</code></td>
+<td>Show more details in a way that used to only be possible via javascript.</td>
+</tr>
+<tr>
+<td><code>&lt;embed&gt;</code></td>
+<td>Use in place of the <code>&lt;object&gt;</code> element to embed external resources like flash.</td>
+</tr>
+<tr>
+<td><code>&lt;figure&gt;</code></td>
+<td>Use for providing captions for images.</td>
+</tr>
+<tr>
+<td><code>&lt;header&gt;</code></td>
+<td>Contains the header of a logical container. Can be styled / placed wherever is desired.</td>
+</tr>
+<tr>
+<td><code>&lt;footer&gt;</code></td>
+<td>Contains the footer of a logical container. Typically one per page, but there could be multiple depending on the use case.</td>
+</tr>
+<tr>
+<td><code>&lt;main&gt;</code></td>
+<td>The main content of the page. There should only be one per page.</td>
+</tr>
+<tr>
+<td><code>&lt;math&gt;</code></td>
+<td>For displaying equations.</td>
+</tr>
+<tr>
+<td><code>&lt;mark&gt;</code></td>
+<td>For highlighting text.</td>
+</tr>
+<tr>
+<td><code>&lt;meter&gt;</code></td>
+<td>For displaying a range of values.</td>
+</tr>
+<tr>
+<td><code>&lt;nav&gt;</code></td>
+<td>For displaying navigation links. Typically the main site nav.</td>
+</tr>
+<tr>
+<td><code>&lt;output&gt;</code></td>
+<td>Display the results of a calculation.</td>
+</tr>
+<tr>
+<td><code>&lt;progress&gt;</code></td>
+<td>Progress bar</td>
+</tr>
+<tr>
+<td><code>&lt;section&gt;</code></td>
+<td>For displaying a logical group of content. Use a section for grouping content logically, use a div for grouping content to for styling.</td>
+</tr>
+<tr>
+<td><code>&lt;time&gt;</code></td>
+<td>Display a date time.</td>
+</tr>
+<tr>
+<td><code>&lt;wbr&gt;</code></td>
+<td>Word break element. Indicates where to break a word if wrapping becomes necessary.</td>
+</tr>
+<tr>
+<td><code>&lt;&gt;</code></td>
+<td></td>
 </tr>
 </tbody>
 </table>
