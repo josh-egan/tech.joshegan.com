@@ -100,6 +100,34 @@ Character entity references:
 </table>
 ```
 
+## forms
+
+```html
+<form action="/submit-data-endpoint">
+  <input type="text" placeholder="email@domain.com">
+  <input type="password" placeholder="password" required>
+  <button type="submit">Submit</button>
+</form>
+```
+
+## radio buttons
+```html
+<label><input type="radio" name="this-is-the-key" checked> North</label>
+<label><input type="radio" name="this-is-the-key"> South</label>
+<label><input type="radio" name="whoa-different-key"> East</label>
+<label><input type="radio" name="this-is-the-key"> West</label>
+```
+
+## checkboxes
+```html
+<label><input type="checkbox" name="personality"> Nice</label>
+<label><input type="checkbox" name="personality"> Kind</label>
+<label><input type="checkbox" name="personality"> Cheerful</label>
+<label><input type="checkbox" name="personality"> Grouchy</label>
+<br>
+<label><input type="checkbox" name="terms" checked> Yes! Spam my inbox mercilessly with marketing materials!</label>
+```
+
 ## &lt;meter&gt;
 
 ```html
