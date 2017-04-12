@@ -11,6 +11,18 @@
 </ol>
 </li>
 </ul>
+<p>For our acceptance, integration, and unit tests, we use the following libraries:</p>
+<ul>
+<li><a href="http://mochajs.org/">mocha</a> with <code>bdd</code> style.</li>
+<li><a href="http://chaijs.com/">chai</a> with the <code>expect</code> assertions because <code>expect(undefined).to.equal('foo')</code> will execute whereas <code>undefined.should.equal('foo')</code> will explode. We also use the <a href="http://chaijs.com/plugins/chai-as-promised/">chai-as-promised</a> plugin.</li>
+<li><a href="https://github.com/testdouble/testdouble.js">testdouble</a> for mocking. We used to use sinon.js but changed over because we were feeling many of <a href="http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html">these</a> pain points.</li>
+</ul>
+<p>We use the following tools for executing our tests:</p>
+<ul>
+<li><a href="https://www.jetbrains.com/webstorm/">Webstorm</a> has an excellent built in test runner that works seamlessly with <code>mocha</code>. One of the best parts of using Webstorm to run tests is having clickable links in the stack traces.</li>
+<li><a href="https://wallabyjs.com/">Wallaby.js</a> is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we pair / mob everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the Webstorm runner in continuous execution mode has been good enough for me.)</li>
+<li>We also occasionally use the good 'ole watch mode that is build into mocha.</li>
+</ul>
 <p>We've had lots of discussions about how to test and what to test. The purpose of testing is to deliver features faster with very few bugs. So our tests are written with that end-goal in mind. We generally  In one project, we have abstracted most of the functionality into re-usable, private npm packages because each implementation was so similar. So in that project, we only have acceptance tests, and the acceptance tests cover all of the possible paths. We have found that even though the acceptance tests take a little longer to run than unit tests, it's faster in the end to write and maintain these tests for this particular project.</p>
 <p>Some tips for making npm scripts work well:</p>
 <ul>
