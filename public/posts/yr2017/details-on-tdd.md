@@ -1,4 +1,4 @@
-I was already familiar with unit testing and the concept of TDD before I started at Pluralsight. However, I have learned much more on this subject. I wanted to do a quick dump on some of the details that I have learned.
+I was already familiar with unit testing and the concept of TDD before I started at Pluralsight, but I soon realized that my understanding was just scratching the surface. I have learned much more on this subject so I wanted to do a quick write-up on what I have learned.
 
 - [Double Loop TDD](http://coding-is-like-cooking.info/2013/04/outside-in-development-with-double-loop-tdd/)
 - [Testing Pyramid](https://martinfowler.com/bliki/TestPyramid.html)
@@ -42,4 +42,3 @@ Some tips for making npm scripts work well:
   }
 }
 ```
-
