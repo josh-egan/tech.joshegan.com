@@ -10,7 +10,9 @@
     "title": "Details on TDD",
     "description": "Some details and thoughts about how we do testing at Pluralsight.",
     "postDateString": "April 12th, 2017",
-    "postDateTime": "2017-04-12"
+    "postDateTime": "2017-04-12",
+    "updateDateString": "May 4th, 2017",
+    "updateDateTime": "2017-05-04"
   },
   "html-sandbox": {
     "title": "HTML Sandbox",
