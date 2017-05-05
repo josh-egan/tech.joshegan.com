@@ -1,17 +1,9 @@
 {
-  "bootstrapping-a-harp-blog": {
-    "title": "Bootstrapping a Harp Blog",
-    "description": "A simple, step by step guide to bootstrapping a harp blog.",
-    "postDateString": "May 23rd, 2015",
-    "postDateTime": "2015-05-06",
-    "isDraft": "true"
-  },
   "on-agile-conf-reflections": {
     "title": "Reflections from the OnAgile Virtual Conference",
     "description": "My thoughts and reflections from the OnAgile Virtual Conference",
     "postDateString": "May 26th, 2015",
     "postDateTime": "2015-05-26",
-    "isDraft": "true"
   },
   "getting-started-with-keepass": {
     "title": "Getting Started with KeePass",

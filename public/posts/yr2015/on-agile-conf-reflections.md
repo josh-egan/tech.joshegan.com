@@ -1,6 +1,6 @@
 This year I attended the [OnAgile Virtual Conference](http://agilealliance.org/programs/onagile-virtual-conference/). And by 'attended' I mean I logged into the site that hosted the virtual conference and watched the sessions on demand a couple weeks after the event actually took place. I've been watching at a comfortable pace for myself, a few sessions in a sitting. I've also watched sessions that took place simultaneously. There are pros and cons to the virtual world. Watching all the sessions I'm interested in on my own time regardless of session collisions -- definitely a plus.
 
-In an effort to better digest what I hear, I take notes. In an attempt to organize my thoughts, I write. So these are some of my thoughts and reflections from the OnAgile Virtual Conference.
+In an effort to better digest what I hear, I take notes. In an attempt to organize my thoughts, I write. So these are some of my notes, thoughts, and reflections from the OnAgile Virtual Conference.
 
 # You Can't be Agile When You're Waist Deep in Mud!
 Presented by Martin Fowler and Rachel Laycock, this keynote emphasized following technical practices to ensure that you can really stay agile. This presentation was more of a summary of practices, rather than a deep exploration of any one of them. Here are some of the highlights:
@@ -26,7 +26,7 @@ Presented by Martin Fowler and Rachel Laycock, this keynote emphasized following
 - Always be looking for quick feedback cycles.
 - The feedback cycle needs to be fast enought to satiate individual tolerance.
 - Refactoring
-- [The book by Martin Fowler about refactoring](include link to amazon here.)
+- The book by Martin Fowler about refactoring
 - The point of refactoring is to make changes to the internal structure of the code without changing its external behavior.
 - Take very very small steps, so small they don't seem worth taking. This makes it much more difficult to introduce a bug. It also makes it so that you can catch a breaking change immediately.
 - You should not be 'refactoring' and have a bunch of broken tests.
