@@ -1,4 +1,11 @@
 {
+  "mongodb-cheatsheet": {
+    "title": "mongoDB Cheatsheet",
+    "description": "My collection of notes, resources, and recipes for using mongoDB.",
+    "postDateString": "May 4th, 2017",
+    "postDateTime": "2017-05-04",
+    "isDraft": true
+  },
   "learned-at-pluralsight": {
     "title": "What I Learned at Pluralsight",
     "description": "A 10,000 foot view of the things that I learned while working for Pluralsight.",
