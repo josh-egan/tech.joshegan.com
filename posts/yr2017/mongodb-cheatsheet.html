@@ -1,9 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><h2 class="green">DRAFT</h2><p></p>Posted on<time datetime="2017-05-04" class="orange"><strong> May 4th, 2017</strong></time><h2>Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-05-05" class="orange"><strong> May 5th, 2017</strong></time><h2>Resources</h2>
 <h3>mongoDB</h3>
 <ul>
 <li><a href="https://docs.mongodb.com/">https://docs.mongodb.com/</a></li>
-<li><a href="https://www.tutorialspoint.com/mongodb/">https://www.tutorialspoint.com/mongodb/</a></li>
+<li><a href="https://docs.mongodb.com/manual/">https://docs.mongodb.com/manual/</a></li>
+<li><a href="https://docs.mongodb.com/getting-started/shell/">https://docs.mongodb.com/getting-started/shell/</a></li>
 <li><a href="https://university.mongodb.com/">https://university.mongodb.com/</a></li>
+<li><a href="https://www.tutorialspoint.com/mongodb/">https://www.tutorialspoint.com/mongodb/</a></li>
 </ul>
 <h3>mongoose</h3>
 <ul>
@@ -11,7 +13,110 @@
 <li><a href="http://mongoosejs.com/docs/guide.html">http://mongoosejs.com/docs/guide.html</a></li>
 </ul>
 <h2>About</h2>
-<h2>Aggregation</h2>
+<h3>What sets mongo apart?</h3>
+<ul>
+<li>noSQL</li>
+<li>document store</li>
+<li>Schema-less. A given collection can hold documents of differing schemas.</li>
+</ul>
+<h3>History</h3>
+<blockquote>
+<p>The company was first established in 2007 as 10gen. Based in New York City, 10gen was founded by former DoubleClick founder and CTO Dwight Merriman and former DoubleClick CEO and Gilt Groupe founder Kevin P. Ryan with former Doubleclick engineer and ShopWiki founder and CTO Eliot Horowitz and received $81 million in venture capital funding from Flybridge Capital Partners, In-Q-Tel, Intel Capital, New Enterprise Associates (NEA), Red Hat, Sequoia Capital, and Union Square Ventures. 10gen originally aimed to build a platform as a service architecture based entirely on open source components; however, the company was unable to find an existing database platform that met their &quot;principles&quot; for a cloud architecture. As a result, the company began to develop a document-oriented database system it called MongoDB. After realizing the potential of the software on its own, 10gen's team decided to scrap its cloud platform and focus on maintaining MongoDB instead. - <a href="https://en.wikipedia.org/wiki/MongoDB_Inc.#History">Wikipedia</a></p>
+</blockquote>
+<h3>Terminology</h3>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database</td>
+<td>A physical container for collections. Each database gets its own set of files on the file system. A single MongoDB server typically has multiple databases.</td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>A group of MongoDB documents. It is the equivalent of an RDBMS table.</td>
+</tr>
+<tr>
+<td>Document</td>
+<td>A set of key-value pairs. Documents have dynamic schema. Dynamic schema means that documents in the same collection do not need to have the same set of fields or structure, and common fields in a collection's documents may hold different types of data. A document is the equivalent of an RDBMS row.</td>
+</tr>
+<tr>
+<td>Field</td>
+<td>A key-value pair of data within a document. A field is the equivalent of an RDBMS column.</td>
+</tr>
+</tbody>
+</table>
+<h2>Installation</h2>
+<p><a href="https://docs.mongodb.com/manual/installation/">https://docs.mongodb.com/manual/installation/</a></p>
+<p>Installation on a mac:</p>
+<pre><code class="language-bash">brew update
+brew install mongodb
+brew services start mongodb
+</code></pre>
+<p>The default port on a mongo installation is <code>27017</code>.</p>
+<h2>mongoDB CLI</h2>
+<p>Launch the mongoDB shell:</p>
+<pre><code class="language-bash">mongo
+mongo --help
+mongo -u username -p password --port <span class="hljs-number">12345</span> --host localhost
+mongo --shell my-script.js
+</code></pre>
+<p>To exit the mongo shell type <code>exit</code>, type <code>quit()</code>, or use the keyboard shortcut <code>Ctrl+C</code>.</p>
+<p>For a full list of options available when launching mongo see <a href="https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo">https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo</a>.</p>
+<h3>Root Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>help</code></td>
+<td>Prints the help docs for the root commands.</td>
+</tr>
+</tbody>
+</table>
+<h3>Database Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db</code></td>
+<td>Displays the database that you're currently using.</td>
+</tr>
+<tr>
+<td><code>show dbs</code></td>
+<td>Displays the databases available on the server.</td>
+</tr>
+<tr>
+<td><code>use &lt;db&gt;</code></td>
+<td>Set the named database as the current database.</td>
+</tr>
+<tr>
+<td><code>db.help()</code></td>
+<td>Print the help docs for all of the database commands.</td>
+</tr>
+<tr>
+<td><code>db.stats()</code></td>
+<td>Print the stats for the current database.</td>
+</tr>
+</tbody>
+</table>
+<h2>Core Concepts</h2>
+<h3>Documents</h3>
+<p>Every document contains a unique <code>_id</code> field. This field can be provided when inserting a document. If this field is not provided, then it will be automatically created. The <code>_id</code> field is a 12 byte hexadecimal number.</p>
+<h3>Aggregation</h3>
 <ul>
 <li><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/">https://docs.mongodb.com/manual/reference/operator/aggregation/</a></li>
 </ul></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
