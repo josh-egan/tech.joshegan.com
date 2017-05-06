@@ -59,14 +59,31 @@ brew services start mongodb
 </code></pre>
 <p>The default port on a mongo installation is <code>27017</code>.</p>
 <h2>mongoDB CLI</h2>
+<p><a href="https://docs.mongodb.com/manual/reference/mongo-shell/">https://docs.mongodb.com/manual/reference/mongo-shell/</a></p>
+<p>The mongo shell is an interactive javascript shell. All of the commands are implemented in javascript. To see an implementation of a function, just leave off the parentheses and the function definition will be printed to the console.</p>
 <p>Launch the mongoDB shell:</p>
 <pre><code class="language-bash">mongo
 mongo --help
 mongo -u username -p password --port <span class="hljs-number">12345</span> --host localhost
 mongo --shell my-script.js
+mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 </code></pre>
 <p>To exit the mongo shell type <code>exit</code>, type <code>quit()</code>, or use the keyboard shortcut <code>Ctrl+C</code>.</p>
 <p>For a full list of options available when launching mongo see <a href="https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo">https://docs.mongodb.com/manual/reference/program/mongo/#bin.mongo</a>.</p>
+<h3>Customize the Prompt</h3>
+<p>The prompt can be customized! That's cool. Full docs: <a href="https://docs.mongodb.com/manual/tutorial/configure-mongo-shell/#customize-the-prompt">https://docs.mongodb.com/manual/tutorial/configure-mongo-shell/#customize-the-prompt</a></p>
+<ol>
+<li>Open your <a href="https://docs.mongodb.com/manual/reference/program/mongo/#mongo-mongorc-file"><code>~/.mongorc.js</code></a> file.</li>
+<li>Add a function named <code>prompt</code>. This function must return a string.</li>
+<li>It appears that this function has access to all of the commands that are available in the mongo CLI, so you can really make this thing display anything you can dream up.</li>
+<li>If you want to use a special function like <code>show</code>, you'll need to use the JavaScript equivalent of the shell command. A list of equivalents can be found here: <a href="https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo">https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo</a></li>
+</ol>
+<p>If I end up doing much work from the command line hitting production boxes, I can imagine this being very useful. I could customize the output based on which host I'm on as a way to constantly remind me which database I'm connected to.</p>
+<p>Here's the function I currently have in my <code>.mongorc.js</code> file:</p>
+<pre><code class="language-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">prompt</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'\n\n'</span> + db + <span class="hljs-string">' &gt; '</span>
+}
+</code></pre>
 <h3>Root Commands</h3>
 <table>
 <thead>
@@ -110,6 +127,33 @@ mongo --shell my-script.js
 <tr>
 <td><code>db.stats()</code></td>
 <td>Print the stats for the current database.</td>
+</tr>
+</tbody>
+</table>
+<h3>Collection Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>show collections</code></td>
+<td>Prints the list of collections in the current database.</td>
+</tr>
+<tr>
+<td><code>db.collection.help()</code></td>
+<td>Print the help docs for methods available on collection objects.</td>
+</tr>
+<tr>
+<td><code>db.collection.find().help()</code></td>
+<td>Show the help for the find method. Complex methods such as the <code>find</code> method have their own help docs.</td>
+</tr>
+<tr>
+<td><code>db.&lt;collectionName&gt;.&lt;method&gt;()</code></td>
+<td>To execute a method on a collection, the name of the collection is used on the <code>db</code> object. e.g. <code>db.users.stats()</code></td>
 </tr>
 </tbody>
 </table>
