@@ -21,6 +21,7 @@ git config --global alias.cm "commit -m"
 git config --global alias.cam "commit -am"
 git config --global alias.d "diff"
 git config --global alias.ds "diff --staged"
+git config --global alias.bd "branch -d"
 git config --global alias.rpo "remote prune origin"
 ```
 
