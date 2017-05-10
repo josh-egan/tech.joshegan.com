@@ -28,6 +28,8 @@ git config --global alias.rpo "remote prune origin"
 ## Global Configuration Preferences
 
 ```bash
+echo ".idea/" >> $HOME/.gitignore
+git config --global core.excludesfile $HOME/.gitignore
 git config --global core.autocrlf true
 git config --global core.safecrlf false
 git config --global push.default simple
