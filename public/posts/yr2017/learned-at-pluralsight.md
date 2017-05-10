@@ -19,6 +19,9 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
 - Application architecture patterns
     - Presentation / Application / Domain
     - Feature Based
+- Domain Driven Design (DDD) Principles
+    - [Anti-corruption Layer](http://ddd.fed.wiki.org/view/welcome-visitors/view/anticorruption-layer) -- [an example of building one](https://martinfowler.com/articles/refactoring-external-service.html)
+    - [Command Query Responsibility Segregation (CQRS)](https://martinfowler.com/bliki/CQRS.html)
 
 ## Technologies
 
