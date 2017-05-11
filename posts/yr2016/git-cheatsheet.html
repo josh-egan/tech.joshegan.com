@@ -50,7 +50,9 @@ git config --global alias.bd <span class="hljs-string">"branch -d"</span>
 git config --global alias.rpo <span class="hljs-string">"remote prune origin"</span>
 </code></pre>
 <h2>Global Configuration Preferences</h2>
-<pre><code class="language-bash">git config --global core.autocrlf <span class="hljs-literal">true</span>
+<pre><code class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">".idea/"</span> &gt;&gt; <span class="hljs-variable">$HOME</span>/.gitignore
+git config --global core.excludesfile <span class="hljs-variable">$HOME</span>/.gitignore
+git config --global core.autocrlf <span class="hljs-literal">true</span>
 git config --global core.safecrlf <span class="hljs-literal">false</span>
 git config --global push.default simple
 git config --global color.ui <span class="hljs-literal">true</span>
