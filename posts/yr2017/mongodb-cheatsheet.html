@@ -73,7 +73,7 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 <h3>Customize the Prompt</h3>
 <p>The prompt can be customized! That's cool. Full docs: <a href="https://docs.mongodb.com/manual/tutorial/configure-mongo-shell/#customize-the-prompt">https://docs.mongodb.com/manual/tutorial/configure-mongo-shell/#customize-the-prompt</a></p>
 <ol>
-<li>Open your <a href="https://docs.mongodb.com/manual/reference/program/mongo/#mongo-mongorc-file"><code>~/.mongorc.js</code></a> file.</li>
+<li>Open (create first if needed) your <a href="https://docs.mongodb.com/manual/reference/program/mongo/#mongo-mongorc-file"><code>~/.mongorc.js</code></a> file.</li>
 <li>Add a function named <code>prompt</code>. This function must return a string.</li>
 <li>It appears that this function has access to all of the commands that are available in the mongo CLI, so you can really make this thing display anything you can dream up.</li>
 <li>If you want to use a special function like <code>show</code>, you'll need to use the JavaScript equivalent of the shell command. A list of equivalents can be found here: <a href="https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo">https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo</a></li>
@@ -131,6 +131,7 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 </tbody>
 </table>
 <h3>Collection Commands</h3>
+<p>In this section, <code>cn</code> is used as an abbreviation for <code>collectionName</code>.</p>
 <table>
 <thead>
 <tr>
@@ -148,19 +149,119 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 <td>Print the help docs for methods available on collection objects.</td>
 </tr>
 <tr>
-<td><code>db.collection.find().help()</code></td>
-<td>Show the help for the find method. Complex methods such as the <code>find</code> method have their own help docs.</td>
+<td><code>db.&lt;cn&gt;.&lt;method&gt;()</code></td>
+<td>To execute a method on a collection, the name of the collection is used on the <code>db</code> object. e.g. <code>db.users.stats()</code></td>
 </tr>
 <tr>
-<td><code>db.&lt;collectionName&gt;.&lt;method&gt;()</code></td>
-<td>To execute a method on a collection, the name of the collection is used on the <code>db</code> object. e.g. <code>db.users.stats()</code></td>
+<td><code>db.&lt;cn&gt;.insertOne({key: 'value'})</code></td>
+<td>Create a single document. If the collection does not exist, it will be created. Use JavaScript object syntax.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.insertMany([])</code></td>
+<td>Create many documents. Supply an array of objects.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.find()</code></td>
+<td>Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this <code>find</code> method.</td>
 </tr>
 </tbody>
 </table>
+<h4><code>db.&lt;cn&gt;.find()</code></h4>
+<p>The find method is one of the more complex collection methods, so it gets its own section here in the post. Complex methods have their own help docs. The <code>find</code> help docs can be accessed via: <code>db.collection.find().help()</code></p>
+<p>Here's some seed data that can be used to try out these commands on:</p>
+<pre><code class="language-javascript">db.inventory.insertMany([
+   { item: <span class="hljs-string">"journal"</span>, qty: <span class="hljs-number">25</span>, size: { h: <span class="hljs-number">14</span>, w: <span class="hljs-number">21</span>, uom: <span class="hljs-string">"cm"</span> }, status: <span class="hljs-string">"A"</span> },
+   { item: <span class="hljs-string">"notebook"</span>, qty: <span class="hljs-number">50</span>, size: { h: <span class="hljs-number">8.5</span>, w: <span class="hljs-number">11</span>, uom: <span class="hljs-string">"in"</span> }, status: <span class="hljs-string">"A"</span> },
+   { item: <span class="hljs-string">"paper"</span>, qty: <span class="hljs-number">100</span>, size: { h: <span class="hljs-number">8.5</span>, w: <span class="hljs-number">11</span>, uom: <span class="hljs-string">"in"</span> }, status: <span class="hljs-string">"D"</span> },
+   { item: <span class="hljs-string">"planner"</span>, qty: <span class="hljs-number">75</span>, size: { h: <span class="hljs-number">22.85</span>, w: <span class="hljs-number">30</span>, uom: <span class="hljs-string">"cm"</span> }, status: <span class="hljs-string">"D"</span> },
+   { item: <span class="hljs-string">"postcard"</span>, qty: <span class="hljs-number">45</span>, size: { h: <span class="hljs-number">10</span>, w: <span class="hljs-number">15.25</span>, uom: <span class="hljs-string">"cm"</span> }, status: <span class="hljs-string">"A"</span> }
+]);
+</code></pre>
+<p>The anatomy of the find method:</p>
+<p><code>var cursor = find(&lt;predicate&gt;, &lt;projection&gt;)</code></p>
+<h5>The predicate</h5>
+<p>The find predicate is used to define query criteria. The full <a href="https://docs.mongodb.com/manual/tutorial/query-documents/">query help docs</a>.</p>
+<table>
+<thead>
+<tr>
+<th>mongo query</th>
+<th>SQL equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db.inventory.find({})</code></td>
+<td><code>SELECT * FROM inventory</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({ status: 'D' })</code></td>
+<td><code>SELECT * FROM inventory WHERE status = &quot;D&quot;</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({ item: { $in: ['paper', 'planner'] } })</code></td>
+<td><code>SELECT * FROM inventory WHERE item IN (&quot;paper&quot;, &quot;planner&quot;)</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({ status: 'A', qty: { $lt: 48 } })</code></td>
+<td><code>SELECT * FROM inventory WHERE status = &quot;A&quot; AND qty &lt; 48</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({ $or: [ { status: 'A' }, { qty: { $gt: 90 } } ] })</code></td>
+<td><code>SELECT * FROM inventory WHERE status = &quot;A&quot; OR qty &gt; 90</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({ item: /^p/, $or: [ { status: 'A' }, { qty: { $gt: 90 } } ] })</code></td>
+<td><code>SELECT * FROM inventory WHERE item LIKE &quot;p%&quot; AND (status = &quot;A&quot; OR qty &gt; 90)</code></td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://docs.mongodb.com/manual/reference/operator/query-comparison/">Query operators</a>: <code>$eq</code>, <code>$ne</code>, <code>$gt</code>, <code>$gte</code>, <code>$lt</code>, <code>$lte</code>, <code>$in</code>, <code>$nin</code></p>
+<h5>The projection</h5>
+<p>Projection is used to transform the found object into a new object. Projection can be used to include or exclude fields, rename fields, and also to do simple transformations.</p>
+<p>To include a field use a <code>1</code>, to exclude a field use a <code>0</code>. A projection cannot have a mixture of inclusions and exclusions, although you can exclude the <code>_id</code> field.</p>
+<table>
+<thead>
+<tr>
+<th>mongo query</th>
+<th>SQL equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>db.inventory.find({})</code></td>
+<td><code>SELECT * FROM inventory</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({}, { item: 1, status: 1 })</code></td>
+<td><code>SELECT _id, item, status FROM inventory</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({}, { _id: 0, item: 1 })</code></td>
+<td><code>SELECT item FROM inventory</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({}, { _id: 0, size: 0 })</code></td>
+<td><code>SELECT item, qty, status FROM inventory</code></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({}, { _id: 0, &quot;size.uom&quot;: 1 })</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>db.inventory.find({}, { _id: 0, itemName: &quot;$item&quot; })</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5>The cursor</h5>
+<p>The <code>find()</code> method returns a cursor. There are a <a href="https://docs.mongodb.com/manual/reference/method/js-cursor/">whole bunch</a> of cursor methods. Some of the cursor methods include: <code>sort</code>, <code>limit</code>, <code>min</code>, <code>max</code>, and <code>forEach</code></p>
+<p><code>db.inventory.find({}).limit(3).sort({ qty: 1})</code></p>
 <h2>Core Concepts</h2>
 <h3>Documents</h3>
 <p>Every document contains a unique <code>_id</code> field. This field can be provided when inserting a document. If this field is not provided, then it will be automatically created. The <code>_id</code> field is a 12 byte hexadecimal number.</p>
 <h3>Aggregation</h3>
 <ul>
 <li><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/">https://docs.mongodb.com/manual/reference/operator/aggregation/</a></li>
-</ul></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
+</ul>
+<h4>Projection Operator</h4>
+<p>Within aggregation, projection can do more than within a find() command. Aggregation projection docs are <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/project/">here</a>.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
