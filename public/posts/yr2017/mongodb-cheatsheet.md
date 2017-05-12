@@ -71,7 +71,7 @@ For a full list of options available when launching mongo see [https://docs.mong
 
 The prompt can be customized! That's cool. Full docs: https://docs.mongodb.com/manual/tutorial/configure-mongo-shell/#customize-the-prompt
 
-1. Open your [`~/.mongorc.js`](https://docs.mongodb.com/manual/reference/program/mongo/#mongo-mongorc-file) file.
+1. Open (create first if needed) your [`~/.mongorc.js`](https://docs.mongodb.com/manual/reference/program/mongo/#mongo-mongorc-file) file.
 1. Add a function named `prompt`. This function must return a string.
 1. It appears that this function has access to all of the commands that are available in the mongo CLI, so you can really make this thing display anything you can dream up.
 1. If you want to use a special function like `show`, you'll need to use the JavaScript equivalent of the shell command. A list of equivalents can be found here: https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/#differences-between-interactive-and-scripted-mongo
@@ -105,12 +105,73 @@ Command | Notes
 
 ### Collection Commands
 
+In this section, `cn` is used as an abbreviation for `collectionName`.
+
 Command | Notes
 --- | ---
 `show collections` | Prints the list of collections in the current database.
 `db.collection.help()` | Print the help docs for methods available on collection objects.
-`db.collection.find().help()` | Show the help for the find method. Complex methods such as the `find` method have their own help docs.
-`db.<collectionName>.<method>()` | To execute a method on a collection, the name of the collection is used on the `db` object. e.g. `db.users.stats()`
+`db.<cn>.<method>()` | To execute a method on a collection, the name of the collection is used on the `db` object. e.g. `db.users.stats()`
+`db.<cn>.insertOne({key: 'value'})` | Create a single document. If the collection does not exist, it will be created. Use JavaScript object syntax.
+`db.<cn>.insertMany([])` | Create many documents. Supply an array of objects.
+`db.<cn>.find()` | Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this `find` method.
+
+#### `db.<cn>.find()`
+
+The find method is one of the more complex collection methods, so it gets its own section here in the post. Complex methods have their own help docs. The `find` help docs can be accessed via: `db.collection.find().help()` 
+
+Here's some seed data that can be used to try out these commands on:
+
+```javascript
+db.inventory.insertMany([
+   { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+   { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+   { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+   { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+   { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+]);
+```
+
+The anatomy of the find method: 
+
+`var cursor = find(<predicate>, <projection>)`
+
+##### The predicate
+
+The find predicate is used to define query criteria. The full [query help docs](https://docs.mongodb.com/manual/tutorial/query-documents/).
+
+mongo query | SQL equivalent
+--- | ---
+`db.inventory.find({})` | `SELECT * FROM inventory`
+`db.inventory.find({ status: 'D' })` | `SELECT * FROM inventory WHERE status = "D"`
+`db.inventory.find({ item: { $in: ['paper', 'planner'] } })` | `SELECT * FROM inventory WHERE item IN ("paper", "planner")`
+`db.inventory.find({ status: 'A', qty: { $lt: 48 } })` | `SELECT * FROM inventory WHERE status = "A" AND qty < 48`
+`db.inventory.find({ $or: [ { status: 'A' }, { qty: { $gt: 90 } } ] })` | `SELECT * FROM inventory WHERE status = "A" OR qty > 90`
+`db.inventory.find({ item: /^p/,  $or: [ { status: 'A' }, { qty: { $gt: 90 } } ] })` | `SELECT * FROM inventory WHERE item LIKE "p%" AND (status = "A" OR qty > 90)`
+ 
+[Query operators](https://docs.mongodb.com/manual/reference/operator/query-comparison/): `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, `$in`, `$nin`
+
+##### The projection
+
+Projection is used to transform the found object into a new object. Projection can be used to include or exclude fields, rename fields, and also to do simple transformations.
+
+To include a field use a `1`, to exclude a field use a `0`. A projection cannot have a mixture of inclusions and exclusions, although you can exclude the `_id` field.
+
+mongo query | SQL equivalent
+--- | ---
+`db.inventory.find({})` | `SELECT * FROM inventory`
+`db.inventory.find({}, { item: 1, status: 1 })` | `SELECT _id, item, status FROM inventory`
+`db.inventory.find({}, { _id: 0, item: 1 })` | `SELECT item FROM inventory`
+`db.inventory.find({}, { _id: 0, size: 0 })` | `SELECT item, qty, status FROM inventory`
+`db.inventory.find({}, { _id: 0, "size.uom": 1 })` | 
+`db.inventory.find({}, { _id: 0, itemName: "$item" })` | 
+
+##### The cursor
+
+The `find()` method returns a cursor. There are a [whole bunch](https://docs.mongodb.com/manual/reference/method/js-cursor/) of cursor methods. Some of the cursor methods include: `sort`, `limit`, `min`, `max`, and `forEach`
+
+`db.inventory.find({}).limit(3).sort({ qty: 1})`
+
 
 ## Core Concepts
 
@@ -121,3 +182,7 @@ Every document contains a unique `_id` field. This field can be provided when in
 ### Aggregation
 
 - https://docs.mongodb.com/manual/reference/operator/aggregation/
+
+#### Projection Operator
+
+Within aggregation, projection can do more than within a find() command. Aggregation projection docs are [here](https://docs.mongodb.com/manual/reference/operator/aggregation/project/).
