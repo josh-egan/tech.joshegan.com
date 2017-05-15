@@ -1,0 +1,3 @@
+*.sh        eol=lf
+*.jpg       -text
+*.svg       -text
