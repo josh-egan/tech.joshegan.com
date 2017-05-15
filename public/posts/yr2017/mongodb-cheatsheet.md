@@ -91,6 +91,8 @@ function prompt () {
 Command | Notes
 --- | ---
 `help` | Prints the help docs for the root commands.
+`exit` | Close the mongo db shell.
+`quit()` | Another way to close the shell.
 
 
 ### Database Commands
