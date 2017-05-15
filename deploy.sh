@@ -6,8 +6,8 @@ NVM_DIR="$HOME/.nvm"
 currentNodeVersion=$(nvm current)
 requiredNodeVersion=$(head -n 1 .nvmrc)
 
-nvm use $requiredNodeVersion
+nvm use ${requiredNodeVersion}
 
 npm run deploy
 
-nvm use $currentNodeVersion
+nvm use ${currentNodeVersion}
