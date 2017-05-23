@@ -125,7 +125,7 @@ Command | Notes
 The find method is one of the more complex collection methods, so it gets its own section here in the post. Complex methods have their own help docs. The `find` help docs can be accessed via: `db.collection.find().help()` 
 
 Here's some seed data that can be used to try out these commands on:
-m
+
 ```javascript
 db.inventory.insertMany([
    { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
@@ -175,7 +175,6 @@ mongo query | SQL equivalent
 The `find()` method returns a cursor. There are a [whole bunch](https://docs.mongodb.com/manual/reference/method/js-cursor/) of cursor methods. Some of the cursor methods include: `sort`, `limit`, `min`, `max`, and `forEach`
 
 `db.inventory.find({}).limit(3).sort({ qty: 1})`
-
 
 ## Core Concepts
 
