@@ -117,13 +117,15 @@ Command | Notes
 `db.<cn>.insertOne({key: 'value'})` | Create a single document. If the collection does not exist, it will be created. Use JavaScript object syntax.
 `db.<cn>.insertMany([])` | Create many documents. Supply an array of objects.
 `db.<cn>.find()` | Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this `find` method.
+`db.<cn>.deleteOne({key: 'value'})` | Delete a single document. This method accepts a query object similar to the query object accepted by the `find` method.
+`db.<cn>.deleteMany({key: 'value'})` | Delete all documents that match the query object.
 
 #### `db.<cn>.find()`
 
 The find method is one of the more complex collection methods, so it gets its own section here in the post. Complex methods have their own help docs. The `find` help docs can be accessed via: `db.collection.find().help()` 
 
 Here's some seed data that can be used to try out these commands on:
-
+m
 ```javascript
 db.inventory.insertMany([
    { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
