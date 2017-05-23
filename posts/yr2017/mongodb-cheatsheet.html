@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-05-05" class="orange"><strong> May 5th, 2017</strong></time><h2>Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-05-05"><strong> May 5th, 2017</strong></time>, updated on<time datetime="2017-05-23" class="orange"><strong> May 23rd, 2017</strong></time><h2>Resources</h2>
 <h3>mongoDB</h3>
 <ul>
 <li><a href="https://docs.mongodb.com/">https://docs.mongodb.com/</a></li>
@@ -171,6 +171,14 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 <tr>
 <td><code>db.&lt;cn&gt;.find()</code></td>
 <td>Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this <code>find</code> method.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.deleteOne({key: 'value'})</code></td>
+<td>Delete a single document. This method accepts a query object similar to the query object accepted by the <code>find</code> method.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.deleteMany({key: 'value'})</code></td>
+<td>Delete all documents that match the query object.</td>
 </tr>
 </tbody>
 </table>
