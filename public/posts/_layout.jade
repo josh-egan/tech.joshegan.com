@@ -1,35 +1,29 @@
-- var shared = '../_shared/'
+extends ../_shared/html-page
 
-doctype html
-html(lang="en")
-  head
-    != partial(shared + "meta")
+- var postUrl = site_url
+- for (var i = 0; i < current.path.length; i++)
+- postUrl += "/" + current.path[i]
 
-    - var computedTitle = title + " - " + site_title
-    meta(property='og:title', content= computedTitle)
-    title= computedTitle
+block head
+  - var computedTitle = title + " - " + site_title
+  meta(property='og:title', content= computedTitle)
+  title= computedTitle
 
-    - var postUrl = site_url
-    - for (var i = 0; i < current.path.length; i++)
-    - postUrl += "/" + current.path[i]
-    meta(property='og:url', content=postUrl)
-    meta(property='og:type', content='article')
+  meta(property='og:url', content=postUrl)
+  meta(property='og:type', content='article')
 
-    != partial(shared + "styles")
+  link(rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css")
+  script(src="/scripts/sidebar-opacity.js")
 
-    link(rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css")
-
-    script(src="/scripts/sidebar-opacity.js")
-
-  body.post-wrapper(id="body")
-
+block body
+  .post-wrapper
     header.nav.mobile-nav
       a(href="/")
         i.fa.fa-home.fa-2x
         span= site_title
 
     article.post
-      != partial(shared + "post-header.jade", {post: {url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime, isDraft: isDraft }})
+      != partial("../_shared/post-header.jade", {post: {url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime, isDraft: isDraft }})
 
       != yield
 
@@ -68,4 +62,4 @@ html(lang="en")
         a(href="https://disqus.com/?ref_noscript" rel="nofollow")
           | comments powered by Disqus.
 
-    != partial(shared + "footer")
+

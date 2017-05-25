@@ -1,23 +1,18 @@
-doctype html
-html(lang="en")
-  head
-    != partial("_shared/meta")
-    
-    meta(property='og:title', content= site_title)
-    title= site_title       
-    
-    meta(property='og:url', content=site_url)
-    meta(property='og:type', content='website')
-    
-    != partial("_shared/styles")
-    
-  body.wrapper
+extends _shared/html-page
+
+block head
+  meta(property='og:title', content= site_title)
+  title= site_title
+
+  meta(property='og:url', content=site_url)
+  meta(property='og:type', content='website')
+
+block body
+  .wrapper
     header.nav
       a(href="/")
         i.fa.fa-home.fa-2x
         span= site_title
-        
+
     section.posts
       != yield
-    
-    != partial("_shared/footer")

@@ -7,7 +7,7 @@
   window.addEventListener('scroll', scrollEventHandler);
 
   function scrollEventHandler() {
-    var body = document.getElementById("body");
+    var body = document.body;
     var sidebar = document.getElementById("sidebar");
     if (!body || !sidebar || sidebar.style.display === 'none') return;
 
