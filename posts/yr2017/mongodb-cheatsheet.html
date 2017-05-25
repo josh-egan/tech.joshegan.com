@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-05-05"><strong> May 5th, 2017</strong></time>, updated on<time datetime="2017-05-23" class="orange"><strong> May 23rd, 2017</strong></time><h2>Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="HandheldFriendly" content="True"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:description" content="My collection of notes, resources, and recipes for using mongoDB."/><meta property="og:site_name" content="tech.joshegan.com"/><meta property="og:title" content="mongoDB Cheatsheet - tech.joshegan.com"><title>mongoDB Cheatsheet - tech.joshegan.com</title><meta property="og:url" content="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"/><link rel="stylesheet" type="text/css" href="/styles/main.css"/><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body id="body" class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a href="http://tech.joshegan.com/posts/yr2017/mongodb-cheatsheet">mongoDB Cheatsheet</a></h1><p></p>Posted on<time datetime="2017-05-05"><strong> May 5th, 2017</strong></time>, updated on<time datetime="2017-05-25" class="orange"><strong> May 25th, 2017</strong></time><h2>Resources</h2>
 <h3>mongoDB</h3>
 <ul>
 <li><a href="https://docs.mongodb.com/">https://docs.mongodb.com/</a></li>
@@ -18,6 +18,7 @@
 <li>noSQL</li>
 <li>document store</li>
 <li>Schema-less. A given collection can hold documents of differing schemas.</li>
+<li>Does not support true transactions. mongoDB wouldn't be a good choice for applications that will be dealing with sensitive data that require transactions, e.g. banking applications.</li>
 </ul>
 <h3>History</h3>
 <blockquote>
@@ -139,7 +140,8 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 </tbody>
 </table>
 <h3>Collection Commands</h3>
-<p>In this section, <code>cn</code> is used as an abbreviation for <code>collectionName</code>.</p>
+<p>In this section, <code>cn</code> is used as an abbreviation for <code>collectionName</code>. Full docs for all collection methods: <a href="https://docs.mongodb.com/manual/reference/method/js-collection/">https://docs.mongodb.com/manual/reference/method/js-collection/</a></p>
+<p>To create a collection, just insert a document into the collection. Mongo will create the collection if it does not exist.</p>
 <table>
 <thead>
 <tr>
@@ -173,12 +175,48 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 <td>Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this <code>find</code> method.</td>
 </tr>
 <tr>
+<td><code>db.&lt;cn&gt;.count()</code></td>
+<td>Count the number of documents in a collection. A query can optionally be passed as a parameter.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.updateOne({name: 'foo'}, {$set: {age: 7}}, {upsert: true})</code></td>
+<td>Update a document. The first param is a query filter and uses the same rules as the filter for the <code>find</code> function. The second param is the update to apply and should use <a href="https://docs.mongodb.com/manual/reference/operator/update/">update operators</a>. The third param is an options object.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.updateMany(filter, update, options)</code></td>
+<td>Same signature as <code>updateOne</code>, but this function will update all documents that match the filter instead of only the first match.</td>
+</tr>
+<tr>
 <td><code>db.&lt;cn&gt;.deleteOne({key: 'value'})</code></td>
 <td>Delete a single document. This method accepts a query object similar to the query object accepted by the <code>find</code> method.</td>
 </tr>
 <tr>
 <td><code>db.&lt;cn&gt;.deleteMany({key: 'value'})</code></td>
 <td>Delete all documents that match the query object.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.explain().&lt;method&gt;()</code></td>
+<td>Show the query plan that would have been executed for the specified method.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.createIndex({orderDate: 1})</code></td>
+<td>Creates an index on the specified keys. <code>1 == ascending</code> and <code>-1 == descending</code></td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.getIndexes()</code></td>
+<td>See all of the indexes on a collection.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.dropIndex(indexName)</code></td>
+<td>Removes the specified index.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.drop()</code></td>
+<td>Remove a collection from the database. Also removes any indexes on that collection.</td>
+</tr>
+<tr>
+<td><code>db.&lt;cn&gt;.stats()</code></td>
+<td>Shows the stats for the collection.</td>
 </tr>
 </tbody>
 </table>
@@ -275,9 +313,14 @@ mongo localhost:<span class="hljs-number">27017</span>/myDatabase my-script.js
 <h2>Core Concepts</h2>
 <h3>Documents</h3>
 <p>Every document contains a unique <code>_id</code> field. This field can be provided when inserting a document. If this field is not provided, then it will be automatically created. The <code>_id</code> field is a 12 byte hexadecimal number.</p>
+<h3>Transactions</h3>
+<p>mongoDB does not support true transactions because writing to a single document is atomic, but further atomicity cannot be guaranteed. The best transaction-like action that is available is the <a href="https://docs.mongodb.com/manual/tutorial/perform-two-phase-commits/">two-phase commit</a>. A two phase commit is not atomic, which means that if the first write succeeds but the second write fails, a read from a separate process might read the first document before the rollback occurs and that first document is removed.</p>
 <h3>Aggregation</h3>
 <ul>
+<li><a href="https://docs.mongodb.com/manual/aggregation/">https://docs.mongodb.com/manual/aggregation/</a></li>
 <li><a href="https://docs.mongodb.com/manual/reference/operator/aggregation/">https://docs.mongodb.com/manual/reference/operator/aggregation/</a></li>
 </ul>
 <h4>Projection Operator</h4>
-<p>Within aggregation, projection can do more than within a find() command. Aggregation projection docs are <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/project/">here</a>.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
+<p>Within aggregation, projection can do more than within a find() command. Aggregation projection docs are <a href="https://docs.mongodb.com/manual/reference/operator/aggregation/project/">here</a>.</p>
+<h3>Text Search</h3>
+<p>mongoDB supports searching for text within documents. First create a <a href="https://docs.mongodb.com/manual/core/index-text/#index-feature-text">text index</a> and then execute a <a href="https://docs.mongodb.com/manual/text-search/">text search</a>.</p></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
