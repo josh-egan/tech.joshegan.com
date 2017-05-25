@@ -20,6 +20,7 @@
 - noSQL
 - document store
 - Schema-less. A given collection can hold documents of differing schemas.
+- Does not support true transactions. mongoDB wouldn't be a good choice for applications that will be dealing with sensitive data that require transactions, e.g. banking applications.
 
 ### History
 
@@ -107,7 +108,9 @@ Command | Notes
 
 ### Collection Commands
 
-In this section, `cn` is used as an abbreviation for `collectionName`.
+In this section, `cn` is used as an abbreviation for `collectionName`. Full docs for all collection methods: [https://docs.mongodb.com/manual/reference/method/js-collection/](https://docs.mongodb.com/manual/reference/method/js-collection/)
+
+To create a collection, just insert a document into the collection. Mongo will create the collection if it does not exist.
 
 Command | Notes
 --- | ---
@@ -117,8 +120,17 @@ Command | Notes
 `db.<cn>.insertOne({key: 'value'})` | Create a single document. If the collection does not exist, it will be created. Use JavaScript object syntax.
 `db.<cn>.insertMany([])` | Create many documents. Supply an array of objects.
 `db.<cn>.find()` | Retrieve documents. This method has a lot going on. See the section below dedicated specifically to this `find` method.
+`db.<cn>.count()` | Count the number of documents in a collection. A query can optionally be passed as a parameter.
+`db.<cn>.updateOne({name: 'foo'}, {$set: {age: 7}}, {upsert: true})` | Update a document. The first param is a query filter and uses the same rules as the filter for the `find` function. The second param is the update to apply and should use [update operators](https://docs.mongodb.com/manual/reference/operator/update/). The third param is an options object.
+`db.<cn>.updateMany(filter, update, options)` | Same signature as `updateOne`, but this function will update all documents that match the filter instead of only the first match.
 `db.<cn>.deleteOne({key: 'value'})` | Delete a single document. This method accepts a query object similar to the query object accepted by the `find` method.
 `db.<cn>.deleteMany({key: 'value'})` | Delete all documents that match the query object.
+`db.<cn>.explain().<method>()` | Show the query plan that would have been executed for the specified method.
+`db.<cn>.createIndex({orderDate: 1})` | Creates an index on the specified keys. `1 == ascending` and `-1 == descending`
+`db.<cn>.getIndexes()` | See all of the indexes on a collection.
+`db.<cn>.dropIndex(indexName)` | Removes the specified index.
+`db.<cn>.drop()` | Remove a collection from the database. Also removes any indexes on that collection.
+`db.<cn>.stats()` | Shows the stats for the collection.
 
 #### `db.<cn>.find()`
 
@@ -182,10 +194,19 @@ The `find()` method returns a cursor. There are a [whole bunch](https://docs.mon
 
 Every document contains a unique `_id` field. This field can be provided when inserting a document. If this field is not provided, then it will be automatically created. The `_id` field is a 12 byte hexadecimal number.
 
+### Transactions
+
+mongoDB does not support true transactions because writing to a single document is atomic, but further atomicity cannot be guaranteed. The best transaction-like action that is available is the [two-phase commit](https://docs.mongodb.com/manual/tutorial/perform-two-phase-commits/). A two phase commit is not atomic, which means that if the first write succeeds but the second write fails, a read from a separate process might read the first document before the rollback occurs and that first document is removed.
+
 ### Aggregation
 
+- https://docs.mongodb.com/manual/aggregation/
 - https://docs.mongodb.com/manual/reference/operator/aggregation/
 
 #### Projection Operator
 
 Within aggregation, projection can do more than within a find() command. Aggregation projection docs are [here](https://docs.mongodb.com/manual/reference/operator/aggregation/project/).
+
+### Text Search
+
+mongoDB supports searching for text within documents. First create a [text index](https://docs.mongodb.com/manual/core/index-text/#index-feature-text) and then execute a [text search](https://docs.mongodb.com/manual/text-search/).
