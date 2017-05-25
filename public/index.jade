@@ -1,25 +1,30 @@
 - var SNIPPET_LENGTH = 300;
-- var yearNames = Object.keys(public.posts)
+- var posts = []
+- var directoryNames = Object.keys(public.posts)
 
-- for (var i = yearNames.length - 1; i >= 0; i--)
-  - var yearName = yearNames[i]
-  - var yearData = public.posts[yearName]
-  
-  for post, postName in yearData._data
+each directoryName in directoryNames
+  for post, postName in public.posts[directoryName]._data
     - if (site_environment === "PRODUCTION" && post.isDraft) continue
-      
-    - var relativePath = "posts/" + yearName + "/" + postName
-    - var postPartial = partial(relativePath)
-    - if (!postPartial) continue
-    - var tagsRemoved = postPartial.replace(/(<([^>]+)>)/ig, '')
-    - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
-    - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
-    - post.url = site_url + "/" + relativePath
+    - var clone = JSON.parse(JSON.stringify(post))
+    - clone.postName = postName
+    - clone.directoryName = directoryName
+    - posts.push(clone)
 
-    article.post
-      != partial("_shared/post-header", {post: post})
+- posts.sort(function(a, b) { return a.postDateTime > b.postDateTime ? -1 : 1 })
 
-      p
-        != snippet
-        |  . . .
-        a(href=post.url)= " Read More"
+each post in posts
+  - var relativePath = "posts/" + post.directoryName + "/" + post.postName
+  - var postPartial = partial(relativePath)
+  - if (!postPartial) continue
+  - var tagsRemoved = postPartial.replace(/(<([^>]+)>)/ig, '')
+  - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
+  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
+  - post.url = site_url + "/" + relativePath
+
+  article.post
+    != partial("_shared/post-header", { post: post })
+
+    p
+      != snippet
+      |  . . .
+      a(href=post.url)= " Read More"
