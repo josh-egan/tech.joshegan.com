@@ -1,4 +1,4 @@
-- var shared = '../_shared/'
+- var shared = '../../_shared/'
 
 doctype html
 html(lang="en")
@@ -11,7 +11,7 @@ html(lang="en")
 
     - var postUrl = site_url
     - for (var i = 0; i < current.path.length; i++)
-    - postUrl += "/" + current.path[i]
+        - postUrl += "/" + current.path[i]
     meta(property='og:url', content=postUrl)
     meta(property='og:type', content='article')
 
