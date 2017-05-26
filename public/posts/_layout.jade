@@ -24,7 +24,11 @@ block body
         span= site_title
 
     article.post
-      +postHeader({url: postUrl, title: title, postDate: postDate, updateDate: updateDate, isDraft: isDraft })
+      +postHeader({url: postUrl, title: title, postDate: postDate, updateDate: updateDate, isDraft: isDraft, isBookReview: isBookReview })
+
+      if coverImageUrl
+        a(href=(purchaseUrl || '#') target="_blank" title=bookTitle)
+          img.post-book-cover(src=coverImageUrl alt=bookTitle)
 
       != yield
 

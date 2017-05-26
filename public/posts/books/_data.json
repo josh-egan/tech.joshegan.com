@@ -4,6 +4,7 @@
     "title": "Remote",
     "description": "Thoughts and notes from my reading of Remote: Office Not Required",
     "postDate": "2017-05-25",
+    "bookTitle": "Remote: Office Not Required",
     "coverImageUrl": "images/remote_front_cover.png",
     "purchaseUrl": "https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr=",
     "isDraft": "true"
@@ -14,6 +15,7 @@
     "description": "Post description used in meta data - REQUIRED",
     "postDate": "2015-01-02 - REQUIRED",
     "updateDate": "2015-02-03 - OPTIONAL",
+    "bookTitle": "Remote: Office Not Required - OPTIONAL",
     "coverImageUrl": "images/remote_front_cover.png - OPTIONAL",
     "purchaseUrl": "https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr= - OPTIONAL",
     "isDraft": "true - OPTIONAL"
