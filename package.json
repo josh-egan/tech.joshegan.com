@@ -12,7 +12,8 @@
     "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.1",
     "gulp-watch": "^4.2.4",
-    "harp": "git://github.com/josh-egan/harp.git"
+    "harp": "git://github.com/josh-egan/harp.git",
+    "moment": "^2.18.1"
   },
   "scripts": {
     "watch": "node_modules/.bin/gulp watch",
