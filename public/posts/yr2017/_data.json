@@ -2,50 +2,38 @@
   "mongodb-cheatsheet": {
     "title": "mongoDB Cheatsheet",
     "description": "My collection of notes, resources, and recipes for using mongoDB.",
-    "postDateString": "May 5th, 2017",
-    "postDateTime": "2017-05-05",
-    "updateDateString": "May 25th, 2017",
-    "updateDateTime": "2017-05-25"
+    "postDate": "2017-05-05",
+    "updateDate": "2017-05-25"
   },
   "learned-at-pluralsight": {
     "title": "What I Learned at Pluralsight",
     "description": "A 10,000 foot view of the things that I learned while working for Pluralsight.",
-    "postDateString": "May 4th, 2017",
-    "postDateTime": "2017-05-04",
-    "updateDateString": "May 10th, 2017",
-    "updateDateTime": "2017-05-10"
+    "postDate": "2017-05-04",
+    "updateDate": "2017-05-10"
   },
   "details-on-tdd": {
     "title": "Details on TDD",
     "description": "Some details and thoughts about how we do testing at Pluralsight.",
-    "postDateString": "April 12th, 2017",
-    "postDateTime": "2017-04-12",
-    "updateDateString": "May 4th, 2017",
-    "updateDateTime": "2017-05-04"
+    "postDate": "2017-04-12",
+    "updateDate": "2017-05-04"
   },
   "html-sandbox": {
     "title": "HTML Sandbox",
     "description": "Sandbox for experimenting with HTML",
-    "postDateString": "January 25th, 2017",
-    "postDateTime": "2017-01-25",
-    "updateDateString": "March 2nd, 2017",
-    "updateDateTime": "2017-03-02"
+    "postDate": "2017-01-25",
+    "updateDate": "2017-03-02"
   },
   "html-cheatsheet": {
     "title": "HTML Cheatsheet",
     "description": "Cheatsheet for HTML",
-    "postDateString": "January 10th, 2017",
-    "postDateTime": "2017-01-10",
-    "updateDateString": "March 1st, 2017",
-    "updateDateTime": "2017-03-01"
+    "postDate": "2017-01-10",
+    "updateDate": "2017-03-01"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
     "description": "Post description used in meta data - REQUIRED",
-    "postDateString": "January 2nd, 2015 - REQUIRED",
-    "postDateTime": "2015-01-02 - REQUIRED",
-    "updateDateString": "February 3rd, 2015 - OPTIONAL",
-    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
-    "isDraft": "true"
+    "postDate": "2015-01-02 - REQUIRED",
+    "updateDate": "2015-02-03 - OPTIONAL",
+    "isDraft": "true - OPTIONAL"
   }
 }

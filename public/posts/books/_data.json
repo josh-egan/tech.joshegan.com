@@ -3,8 +3,7 @@
     "isBook": true,
     "title": "Remote",
     "description": "Thoughts and notes from my reading of Remote: Office Not Required",
-    "postDateString": "May 25th, 2017",
-    "postDateTime": "2017-05-25",
+    "postDate": "2017-05-25",
     "coverImageUrl": "images/remote_front_cover.png",
     "purchaseUrl": "https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr=",
     "isDraft": "true"
@@ -12,10 +11,8 @@
   "sample": {
     "title": "Post Title - REQUIRED",
     "description": "Post description used in meta data - REQUIRED",
-    "postDateString": "January 2nd, 2015 - REQUIRED",
-    "postDateTime": "2015-01-02 - REQUIRED",
-    "updateDateString": "February 3rd, 2015 - OPTIONAL",
-    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
-    "isDraft": "true"
+    "postDate": "2015-01-02 - REQUIRED",
+    "updateDate": "2015-02-03 - OPTIONAL",
+    "isDraft": "true - OPTIONAL"
   }
 }

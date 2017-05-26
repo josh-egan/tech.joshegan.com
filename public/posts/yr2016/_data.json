@@ -2,33 +2,26 @@
   "aws-nodejs-server": {
     "title": "Launching an AWS Node.js Server",
     "description": "Detailed steps for launching a node.js server on aws.",
-    "postDateString": "April 5th, 2016",
-    "postDateTime": "2016-04-05",
+    "postDate": "2016-04-05",
     "isDraft": "true"
   },
   "cassandra-cheatsheet": {
     "title": "Cassandra Cheatsheet",
     "description": "Cheatsheet for cassandra",
-    "postDateString": "April 18th, 2016",
-    "postDateTime": "2016-04-18",
-    "updateDateString": "January 4th, 2017",
-    "updateDateTime": "2017-01-04"
+    "postDate": "2016-04-18",
+    "updateDate": "2017-01-04"
   },
   "git-cheatsheet": {
     "title": "Git Cheatsheet",
     "description": "A cheatsheet of common git commands.",
-    "postDateString": "March 7th, 2016",
-    "postDateTime": "2016-03-07",
-    "updateDateString": "May 15th, 2017",
-    "updateDateTime": "2017-05-15"
+    "postDate": "2016-03-07",
+    "updateDate": "2017-05-15"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
     "description": "Post description used in meta data - REQUIRED",
-    "postDateString": "January 2nd, 2015 - REQUIRED",
-    "postDateTime": "2015-01-02 - REQUIRED",
-    "updateDateString": "February 3rd, 2015 - OPTIONAL",
-    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
-    "isDraft": "true"
+    "postDate": "2015-01-02 - REQUIRED",
+    "updateDate": "2015-02-03 - OPTIONAL",
+    "isDraft": "true - OPTIONAL"
   }
 }

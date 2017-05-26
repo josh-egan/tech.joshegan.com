@@ -2,42 +2,34 @@
   "on-agile-conf-reflections": {
     "title": "Reflections from the OnAgile Virtual Conference",
     "description": "My thoughts and reflections from the OnAgile Virtual Conference",
-    "postDateString": "May 26th, 2015",
-    "postDateTime": "2015-05-26"
+    "postDate": "2015-05-26"
   },
   "getting-started-with-keepass": {
     "title": "Getting Started with KeePass",
     "description": "A brief introduction to using KeePass.",
-    "postDateString": "October 9th, 2015",
-    "postDateTime": "2015-10-09",
-    "updateDateString": "May 5th, 2017",
-    "updateDateTime": "2017-05-05"
+    "postDate": "2015-10-09",
+    "updateDate": "2017-05-05"
   },
   "getting-started-with-mocha-and-chai": {
     "title": "Getting Started with Mocha and Chai",
     "description": "A quick look into getting going with the mocha test framework and the chai assertion library.",
-    "postDateString": "September 22nd, 2015",
-    "postDateTime": "2015-09-22"
+    "postDate": "2015-09-22"
   },
   "getting-started-with-markdown": {
     "title": "Getting Started with Markdown",
     "description": "A few details that should help someone new to markdown get going.",
-    "postDateString": "June 12th, 2015",
-    "postDateTime": "2015-06-12"
+    "postDate": "2015-06-12"
   },
   "building-a-blog": {
     "title": "Buiding a Blog",
     "description": "A brief chronicle of my journey to create a blog.",
-    "postDateString": "June 12th, 2015",
-    "postDateTime": "2015-06-12"
+    "postDate": "2015-06-12"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
     "description": "Post description used in meta data - REQUIRED",
-    "postDateString": "January 2nd, 2015 - REQUIRED",
-    "postDateTime": "2015-01-02 - REQUIRED",
-    "updateDateString": "February 3rd, 2015 - OPTIONAL",
-    "updateDateTime": "2015-02-03 - REQUIRED IF updateDateString is provided",
-    "isDraft": "true"
+    "postDate": "2015-01-02 - REQUIRED",
+    "updateDate": "2015-02-03 - OPTIONAL",
+    "isDraft": "true - OPTIONAL"
   }
 }

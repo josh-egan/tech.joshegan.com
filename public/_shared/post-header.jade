@@ -1,21 +1,24 @@
 mixin postHeader(post)
+  - var dateInputFormat = 'YYYY-MM-DD'
+  - var dateDisplayFormat = 'MMM Do, YYYY'
+
   h1
     a(href=post.url)= post.title
 
   if post.isDraft
     h2.green DRAFT
 
-  if post.updateDateString
+  if post.updateDate
     p
-      | Posted on
-      time(datetime= post.postDateTime)
-        strong= " " + post.postDateString
-      | , updated on
-      time.orange(datetime= post.updateDateTime)
-        strong= " " + post.updateDateString
+      | Posted on&nbsp;
+      time(datetime= post.postDate)
+        strong= moment(post.postDate, dateInputFormat).format(dateDisplayFormat)
+      | , updated on&nbsp;
+      time.orange(datetime= post.updateDate)
+        strong= moment(post.updateDate, dateInputFormat).format(dateDisplayFormat)
 
   else
     p
-      | Posted on
-      time.orange(datetime= post.postDateTime)
-        strong= " " + post.postDateString
+      | Posted on&nbsp;
+      time.orange(datetime= post.postDate)
+        strong= moment(post.postDate, dateInputFormat).format(dateDisplayFormat)

@@ -24,7 +24,7 @@ block body
         span= site_title
 
     article.post
-      +postHeader({url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime, isDraft: isDraft })
+      +postHeader({url: postUrl, title: title, postDate: postDate, updateDate: updateDate, isDraft: isDraft })
 
       != yield
 
