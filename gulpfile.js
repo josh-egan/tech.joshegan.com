@@ -29,7 +29,7 @@ var harpConfig = {
 };
 
 var paths = {
-  projectDir: './',
+  projectDir: __dirname,
   outputDir: './dist',
   outputFiles: './dist/**/*',
   srcFiles: './public/**/*'
@@ -44,7 +44,11 @@ gulp.task('deploy', ['build-for-prod'], function () {
 
 gulp.task('build-for-prod', function (done) {
   applyHarpConfig(harpConfig.prod);
-  harp.compile(paths.projectDir, paths.outputDir, done);
+  harp.compile(paths.projectDir, paths.outputDir, function(err) {
+    if (err)
+      console.error(err);
+    done(err);
+  });
 });
 
 gulp.task('watch', ['dev-server'], function () {
