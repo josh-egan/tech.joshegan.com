@@ -1,21 +1,21 @@
-h1
-  a(href=post.url)= post.title
+mixin postHeader(post)
+  h1
+    a(href=post.url)= post.title
 
-if post.isDraft
-  h2.green
-    | DRAFT
+  if post.isDraft
+    h2.green DRAFT
 
-if post.updateDateString
-  p
-  | Posted on
-  time(datetime= post.postDateTime)
-    strong= " " + post.postDateString
-  | , updated on
-  time.orange(datetime= post.updateDateTime)
-    strong= " " + post.updateDateString
+  if post.updateDateString
+    p
+      | Posted on
+      time(datetime= post.postDateTime)
+        strong= " " + post.postDateString
+      | , updated on
+      time.orange(datetime= post.updateDateTime)
+        strong= " " + post.updateDateString
 
-else
-  p
-  | Posted on
-  time.orange(datetime= post.postDateTime)
-    strong= " " + post.postDateString
+  else
+    p
+      | Posted on
+      time.orange(datetime= post.postDateTime)
+        strong= " " + post.postDateString

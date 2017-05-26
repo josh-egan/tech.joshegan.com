@@ -1,3 +1,5 @@
+include _shared/post-header
+
 - var SNIPPET_LENGTH = 300;
 - var posts = []
 - var directoryNames = Object.keys(public.posts)
@@ -22,7 +24,7 @@ each post in posts
   - post.url = site_url + "/" + relativePath
 
   article.post
-    != partial("_shared/post-header", { post: post })
+    +postHeader(post)
 
     p
       != snippet

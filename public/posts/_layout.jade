@@ -1,4 +1,5 @@
 extends ../_shared/html-page
+include ../_shared/post-header
 
 - var postUrl = site_url
 - for (var i = 0; i < current.path.length; i++)
@@ -23,7 +24,7 @@ block body
         span= site_title
 
     article.post
-      != partial("../_shared/post-header.jade", {post: {url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime, isDraft: isDraft }})
+      +postHeader({url: postUrl, title: title, postDateString: postDateString, postDateTime: postDateTime, updateDateString: updateDateString, updateDateTime: updateDateTime, isDraft: isDraft })
 
       != yield
 
