@@ -8,6 +8,9 @@ mixin postHeader(post)
   if post.isDraft
     h2.green DRAFT
 
+  if post.isBookReview
+    .book-review Book Review
+
   if post.updateDate
     p
       | Posted on&nbsp;
