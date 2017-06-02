@@ -8,9 +8,6 @@ mixin postHeader(post)
   if post.isDraft
     h2.green DRAFT
 
-  if post.isBookReview
-    .book-review Book Review
-
   if post.updateDate
     p
       | Posted on&nbsp;
@@ -25,3 +22,13 @@ mixin postHeader(post)
       | Posted on&nbsp;
       time.orange(datetime= post.postDate)
         strong= moment(post.postDate, dateInputFormat).format(dateDisplayFormat)
+
+  if post.isBookReview || post.finishedReadingDate
+    p
+      if post.isBookReview
+        strong Book Review:&nbsp;
+
+      if post.finishedReadingDate
+        | Finished reading on&nbsp;
+        time(datetime= post.finishedReadingDate)
+          strong= moment(post.finishedReadingDate, dateInputFormat).format(dateDisplayFormat)
