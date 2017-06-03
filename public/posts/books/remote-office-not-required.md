@@ -71,7 +71,7 @@ There are a number of common concerns that people have with working remotely. He
     
 ## Advantages of Remote Work
 
-- "Working remotely makes it easier to spot managers drumming up busywork for themselves and others." [108-110, 176-177]
+- "Working remotely makes it easier to spot managers drumming up busywork for themselves and others." Manager and meetings (M&Ms) tend to be among the biggest killers of productivity. [108-110, 176-177] There is a [TED Talk](https://www.ted.com/talks/jason_fried_why_work_doesn_t_happen_at_work) by one of the authors on this topic specifically.
 - When an employee moves, he can continue to work for the company regardless of where he moves to. [141-142]
 - "It's a lot harder to fake your way as a remote worker." [158-159]
 - Remote employees can live wherever they want, including being nomadic. [219]
