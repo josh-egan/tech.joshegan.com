@@ -90,6 +90,8 @@ There are a number of common concerns that people have with working remotely. He
 
 This is a list of companies that have whole-heartedly embraced working remotely. Some of these companies are mentioned in the book, but this list of companies is not provided in the book. It is a highly related topic so I figured I would include the list here.
 
-- [https://weworkremotely.com/](https://weworkremotely.com/) has a list of job postings that are from companies who are posting remote positions.
-- [37 Signals](https://37signals.com/); this company is now called [Basecamp](https://basecamp.com/)
+- [https://weworkremotely.com/](https://weworkremotely.com/) has a list of job postings that are exclusively from companies who are posting remote positions.
+- [StackOverflow Jobs](https://stackoverflow.com/jobs?sort=i&q=remote)
+- [37 Signals](https://37signals.com/) -- this company is now called [Basecamp](https://basecamp.com/)
 - [iFit](https://www.ifit.com/)
+- [clevertech](https://clevertech.biz/)
