@@ -12,6 +12,13 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
 - [Retrospectives](https://www.agilealliance.org/agile-retrospectives-as-a-tool-for-team-learning/)
 - [REST apis](http://www.restapitutorial.com/) and several standards, e.g. [JSON API](http://jsonapi.org/)
 - [12 Factor App](https://12factor.net/)
+- Database migration process
+    - Setup a multi-purpose base class to handle migrations. This class can manage all of the following states via feature toggles. This base class can also be called from a script to move data from the old db to the new db.
+    - Turn on the shadow writes to the new db and then run a script to move all of the data from the old db to the new db. By the time this script finishes, the two databases should be equivalent.
+    - Shadow read / write to new db. Compare results to old db and log discrepancies as errors. Always trust the values from the old db. 
+    - Run a script after a week or two of use to compare the entire contents of the old and new dbs. If there are any discrepancies, figure out why the discrepancy occurred, fix all discrepancies, and then start over on the shadow reads / writes.
+    - Read / write to new repo and trust values from new repo. Continue to shadow read / write to old db, compare results, and log discrepancies as errors.
+    - Turn off shadow reads / writes to the old db. Delete the old table.
 
 ## Architecture
 
