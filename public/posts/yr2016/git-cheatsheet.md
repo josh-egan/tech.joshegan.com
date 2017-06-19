@@ -24,6 +24,8 @@ git config --global alias.ds "diff --staged"
 git config --global alias.b "branch"
 git config --global alias.ba "branch -a"
 git config --global alias.bd "branch -d"
+git config --global alias.bda "\!git branch | grep -v master | xargs git branch -d"
+git config --global alias.brda "\!git branch --remotes --merged master | grep -v master | sed -e 's/\// :/' | xargs -n2 git push"
 git config --global alias.rpo "remote prune origin"
 ```
 
