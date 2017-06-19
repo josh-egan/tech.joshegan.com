@@ -14,7 +14,7 @@ https://www.codeschool.com/learn/git                      | CodeSchool courses o
 ## Awesome Git Aliases
 
 ```bash
-git config --global alias.aliases "config --get-regexp ^alias\."
+git config --global alias.aliases "\!git config --list | grep alias | sed -e 's/alias\.//' | sed -e $'s/=/\t/'"
 git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.s "status -bsu"
 git config --global alias.pr "pull --rebase"
