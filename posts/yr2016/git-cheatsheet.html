@@ -40,19 +40,29 @@
 </table>
 <h2>Awesome Git Aliases</h2>
 <pre><code class="language-bash">git config --global alias.aliases <span class="hljs-string">"\!git config --list | grep alias | sed -e 's/alias\.//' | sed -e $'s/=/\t/'"</span>
-git config --global alias.lga <span class="hljs-string">"log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span>
-git config --global alias.s <span class="hljs-string">"status -bsu"</span>
-git config --global alias.pr <span class="hljs-string">"pull --rebase"</span>
-git config --global alias.cm <span class="hljs-string">"commit -m"</span>
-git config --global alias.cam <span class="hljs-string">"commit -am"</span>
-git config --global alias.d <span class="hljs-string">"diff"</span>
-git config --global alias.ds <span class="hljs-string">"diff --staged"</span>
 git config --global alias.b <span class="hljs-string">"branch"</span>
 git config --global alias.ba <span class="hljs-string">"branch -a"</span>
 git config --global alias.bd <span class="hljs-string">"branch -d"</span>
 git config --global alias.bda <span class="hljs-string">"\!git branch | grep -v master | xargs git branch -d"</span>
 git config --global alias.brda <span class="hljs-string">"\!git branch --remotes --merged master | grep -v master | sed -e 's/\// :/' | xargs -n2 git push"</span>
+git config --global alias.cam <span class="hljs-string">"commit -am"</span>
+git config --global alias.cm <span class="hljs-string">"commit -m"</span>
+git config --global alias.ch <span class="hljs-string">"checkout"</span>
+git config --global alias.chb <span class="hljs-string">"checkout -b"</span>
+git config --global alias.d <span class="hljs-string">"diff"</span>
+git config --global alias.ds <span class="hljs-string">"diff --staged"</span>
+git config --global alias.lga <span class="hljs-string">"log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span>
+git config --global alias.pr <span class="hljs-string">"pull --rebase"</span>
 git config --global alias.rpo <span class="hljs-string">"remote prune origin"</span>
+git config --global alias.s <span class="hljs-string">"status -bsu"</span>
+</code></pre>
+<h2>Super Git Scripts</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># Find remote branches that have not had activity for a specified amount of time.</span>
+<span class="hljs-keyword">for</span> k <span class="hljs-keyword">in</span> $(git branch --remotes); <span class="hljs-keyword">do</span> 
+  <span class="hljs-keyword">if</span> [ -z <span class="hljs-string">"<span class="hljs-variable">$(git log -1 --after='24 months ago' $k)</span>"</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$k</span>
+  <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
 </code></pre>
 <h2>Global Configuration Preferences</h2>
 <pre><code class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">".idea/"</span> &gt;&gt; <span class="hljs-variable">$HOME</span>/.gitignore
