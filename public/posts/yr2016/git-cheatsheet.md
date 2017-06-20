@@ -15,19 +15,32 @@ https://www.codeschool.com/learn/git                      | CodeSchool courses o
 
 ```bash
 git config --global alias.aliases "\!git config --list | grep alias | sed -e 's/alias\.//' | sed -e $'s/=/\t/'"
-git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-git config --global alias.s "status -bsu"
-git config --global alias.pr "pull --rebase"
-git config --global alias.cm "commit -m"
-git config --global alias.cam "commit -am"
-git config --global alias.d "diff"
-git config --global alias.ds "diff --staged"
 git config --global alias.b "branch"
 git config --global alias.ba "branch -a"
 git config --global alias.bd "branch -d"
 git config --global alias.bda "\!git branch | grep -v master | xargs git branch -d"
 git config --global alias.brda "\!git branch --remotes --merged master | grep -v master | sed -e 's/\// :/' | xargs -n2 git push"
+git config --global alias.cam "commit -am"
+git config --global alias.cm "commit -m"
+git config --global alias.ch "checkout"
+git config --global alias.chb "checkout -b"
+git config --global alias.d "diff"
+git config --global alias.ds "diff --staged"
+git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.pr "pull --rebase"
 git config --global alias.rpo "remote prune origin"
+git config --global alias.s "status -bsu"
+```
+
+## Super Git Scripts
+
+```bash
+# Find remote branches that have not had activity for a specified amount of time.
+for k in $(git branch --remotes); do 
+  if [ -z "$(git log -1 --after='24 months ago' $k)" ]; then
+    echo $k
+  fi
+done
 ```
 
 ## Global Configuration Preferences
