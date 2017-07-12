@@ -5,6 +5,9 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
 - My understanding of TDD has deepended. I actually did get [a post written](/posts/yr2017/details-on-tdd) about what I have learned about testing.
 - When to be WET (Write Everything Twice) and when to be [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (Don't Repeat Yourself). Yes, there are actually times when it is better to be WET than DRY -- too much abstraction can be a bad thing.
 - Feature Toggles vs. Feature Branches
+    - https://martinfowler.com/articles/feature-toggles.html
+    - http://geekswithblogs.net/Optikal/archive/2013/02/10/152069.aspx
+    - https://devops.com/feature-branching-vs-feature-flags-whats-right-tool-job/
 - Pair programming / mob programming
 - Pull requests
 - Lean
