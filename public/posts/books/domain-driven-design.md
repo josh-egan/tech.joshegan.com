@@ -1,3 +1,5 @@
+Many of my colleagues have recommended Domain-Driven Design (DDD) as one of the fundamental texts on software architecture. This book is meaty, like a textbook, but still easy to follow. Reading it has been insightful and well worth the time; this book has deepened my understanding of ideas that I've picked up over the years and also opened new ideas up to me. I definitely agree with the recommendation that was given me so I'll pass it along: This book is one of the fundamental texts on software architecture and every software developer would benefit from reading and understanding the ideas in this book.
+
 ## Resources
 
 - [DDD Community](http://dddcommunity.org/)
@@ -71,6 +73,8 @@ Sharing value objects can be useful when...
 
 Quick thought here. The first thing I think when I come across this section in the book and start to understand what he's driving at a couple of sentences in: _The word 'services' is **so** overloaded. We need better ubiquitous language to replace this word!_ 
 
+I have started calling this layer **Coordinators**, because the primary job of code in this layer is to coordinate between lower level repositories. The code in this layer is primarily concerned with making decisions based on input and then delegating work to the appropriate code in the layers beneath it.
+
 See pages 104-108
 
 "Service" as described here is code that is stateless and takes action on value objects and or entities.
@@ -91,7 +95,7 @@ See pages 17-20
 
 Called the "Policy Pattern" in DDD; this pattern is better known as the [Strategy Pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
 
-Use the strategy pattern to call out important business behaviors. His example extracts a magic calculation into a class he calls the `OverbookingPolicty`, which makes the code transparently clear why that magic calculation is there. This pattern can also be effective for 
+Use the strategy pattern to call out important business behaviors. His example extracts a magic calculation into a class he calls the `OverbookingPolicy`, which makes the code transparently clear why that magic calculation is there.
 
 ### Layered Architecture
 

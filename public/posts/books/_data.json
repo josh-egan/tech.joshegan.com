@@ -1,11 +1,9 @@
 {
   "domain-driven-design": {
-    "isDraft": true,
     "isBookReview": true,
     "title": "Domain-Driven Design",
     "description": "Thoughts and notes from my reading of Domain-Driven Design",
-    "postDate": "2017-06-02",
-    "finishedReadingDate": "2017-04-21",
+    "postDate": "2017-08-09",
     "bookTitle": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
     "coverImageUrl": "images/domain-driven_design_front_cover.png",
     "purchaseUrl": "https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215"
