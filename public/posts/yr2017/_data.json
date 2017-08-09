@@ -1,4 +1,10 @@
 {
+  "https": {
+    "title": "All about HTTPS",
+    "description": "Some details and thoughts as I've been getting deeper into HTTPS",
+    "postDate": "2017-08-09",
+    "isDraft": "true"
+  },
   "mongodb-cheatsheet": {
     "title": "mongoDB Cheatsheet",
     "description": "My collection of notes, resources, and recipes for using mongoDB.",
