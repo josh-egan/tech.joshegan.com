@@ -31,7 +31,7 @@ The model should be a representation of the domain that highlights the relevant 
 
 See pages 24-27
 
-> The geatest value of a domain model is that it provides a ubiquitous language that ties domain experts and technologists together. [Foreward]
+> The greatest value of a domain model is that it provides a ubiquitous language that ties domain experts and technologists together. [Foreward]
 
 One of the core ideas discussed repeatedly in this book is that engineers need to be close to subject matter experts and they need to be able to communicate clearly with each other. The ability of an engineering project to succeed is directly related to the engineer's ability to understand the problem domain and create an appropriate model to represent the domain.
 
