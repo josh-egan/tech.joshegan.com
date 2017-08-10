@@ -1,5 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A 10,000 foot view of the things that I learned while working for Pluralsight."><meta property="og:description" content="A 10,000 foot view of the things that I learned while working for Pluralsight."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="What I Learned at Pluralsight - tech.joshegan.com"><title>What I Learned at Pluralsight - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>What I Learned at Pluralsight</a></h1><p>Posted on&nbsp;<time datetime="2017-05-04"><strong>May 4th, 2017</strong></time>, updated on&nbsp;<time datetime="2017-05-10" class="orange"><strong>May 10th, 2017</strong></time></p><p>I've learned quite a bit in the last two years working at <a href="https://www.pluralsight.com/">Pluralsight</a>. I wanted to capture at a high level many of the things that I've learned. I could write an entire post about each of these items, but I doubt I'll ever have time for that, so I want to at least capture some of what I've learned at a high level.</p>
-<h2>Practices</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="A 10,000 foot view of the things that I learned while working for Pluralsight."><meta property="og:description" content="A 10,000 foot view of the things that I learned while working for Pluralsight."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="What I Learned at Pluralsight - tech.joshegan.com"><title>What I Learned at Pluralsight - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>What I Learned at Pluralsight</a></h1><p>Posted on&nbsp;<time datetime="2017-05-04"><strong>May 4th, 2017</strong></time>, updated on&nbsp;<time datetime="2017-08-09" class="orange"><strong>Aug 9th, 2017</strong></time></p><p>I've learned quite a bit in the last two years working at <a href="https://www.pluralsight.com/">Pluralsight</a>. I wanted to capture at a high level many of the things that I've learned. I could write an entire post about each of these items, but I doubt I'll ever have time for that, so I want to at least capture some of what I've learned at a high level.</p>
+<h2>Software Practices</h2>
 <ul>
 <li>My understanding of TDD has deepended. I actually did get <a href="/posts/yr2017/details-on-tdd">a post written</a> about what I have learned about testing.</li>
 <li>When to be WET (Write Everything Twice) and when to be <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY</a> (Don't Repeat Yourself). Yes, there are actually times when it is better to be WET than DRY -- too much abstraction can be a bad thing.</li>
@@ -10,11 +10,12 @@
 <li><a href="https://devops.com/feature-branching-vs-feature-flags-whats-right-tool-job/">https://devops.com/feature-branching-vs-feature-flags-whats-right-tool-job/</a></li>
 </ul>
 </li>
-<li>Pair programming / mob programming</li>
-<li>Pull requests</li>
-<li>Lean</li>
-<li><a href="http://kanbanblog.com/explained/">Kanban</a></li>
-<li><a href="https://www.agilealliance.org/agile-retrospectives-as-a-tool-for-team-learning/">Retrospectives</a></li>
+<li>Various ways to ensure code quality
+<ul>
+<li>Pair programming / mob programming. When pairing or mobbing, code is committed directly to master.</li>
+<li>Pull requests. When working solo, create a branch and then the PR is reviewed by one peer before merging into master.</li>
+</ul>
+</li>
 <li><a href="http://www.restapitutorial.com/">REST apis</a> and several standards, e.g. <a href="http://jsonapi.org/">JSON API</a></li>
 <li><a href="https://12factor.net/">12 Factor App</a></li>
 <li>Database migration process
@@ -58,6 +59,45 @@
 <li><a href="https://en.wikipedia.org/wiki/Builder_pattern">Builder pattern</a></li>
 <li><a href="https://www.martinfowler.com/bliki/ObjectMother.html">Mother pattern</a></li>
 <li><a href="http://www.tutorialspoint.com/design_pattern/facade_pattern.htm">Facade pattern</a></li>
+</ul>
+<h2>Organizational Practices</h2>
+<ul>
+<li><a href="https://management30.com/practice/delegation-board/">The Seven Levels of Delegation</a></li>
+<li>Lean</li>
+<li><a href="http://kanbanblog.com/explained/">Kanban</a></li>
+<li><a href="https://www.agilealliance.org/agile-retrospectives-as-a-tool-for-team-learning/">Retrospectives</a></li>
+</ul>
+<h2>Product Practices</h2>
+<ul>
+<li>Directed Discovery
+<ul>
+<li>The process:
+<ul>
+<li><strong>Voice of the Customer (VOC)</strong> - Conduct loose interviews with customers to discover what features they want/need in the product. These interviews can also come from employees who have ideas about how to improve the product. It can be particularly useful to ensure that Customer Support has a clear channel into the product stream to ensure the common difficulties for customers get addressed. Sales teams should also have a clear channel for being able to pass along what potential customers are asking for from the product.</li>
+<li><strong>Narratives</strong> - Get together with a cross-functional group of people (UX, Dev, PM, etc.) and have everyone write out wireframes to develop the narrative that will drive the new feature.</li>
+<li><strong>Initial Design</strong> - Designers build a visual prototype (the prototype is non-functional, no dev work yet) based on the wireframes from the narrative session.</li>
+<li><strong>Customer Preference Testing (CPT)</strong> - Show the prototype to real customers and observe their response. Do they like it? Is usage intuitive? Can they figure out what it does and how on their own? What do they see first? etc. A tool like <a href="https://www.invisionapp.com/">in vision</a> can be really useful for sharing a prototype with customers. Designers iterate on the design based on customer feedback until confidence is high that the product is going to fill a need for the customers.</li>
+<li><strong>Initial Build</strong> - Build the feature to match the design.</li>
+<li><strong>Rollout</strong> - Use a limited release schedule. If confidence grows, keep releasing to a larger segment of users. If problems arise, both devs and designers iterate and re-work where needed. Pluralsight uses a <a href="https://www.netpromoter.com/know/">Net Promoter Score</a> (NPS) to gauge whether or not the feature is meeting customer needs. NPS is measured at alpha, beta, and GR releases. A feature could not go to GR without an NPS of &gt;= 80. NPS is measured by a single question answered on a 0-10 scale. Typical release schedule was
+<ol>
+<li>internal (employees only)</li>
+<li>alpha - 5% of target users (the target users are the users expected to use the feature. Thus 5% of the target users might represent a larger fraction of the total user base, say 20% of the total user base.)</li>
+<li>beta - 20% of target users</li>
+<li>General Release (GR) - 100% of users</li>
+</ol>
+</li>
+<li><strong>Customer Confirmation Testsing (CCT)</strong> - Primarily through the usage of analytics (which are built into the product from the beginning), determine whether or not the new design is accomplishing the goals that were intended. Can also do phone or video calls with customers to see if they know the feature exists, whether or not they use the feature, and how they use the feature. The feedback from this stage is used to iterate on the feature to keep improving it.</li>
+</ul>
+</li>
+<li>Resources
+<ul>
+<li><a href="https://medium.com/directed-discovery/building-a-people-platform-for-continuous-change-in-technology-218fd9ee60c3">Directed Discovery Framework</a></li>
+<li><a href="https://medium.com/directed-discovery/5-reasons-why-you-should-use-directed-discovery-be36caec488d">5 Reasons You Should Use Directed Discover</a></li>
+<li><a href="http://www.mindtheproduct.com/2017/07/heartbeat-product-nate-walkingshaw/">The Heartbeat of Product</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <h2>Learning Resources</h2>
 <ul>
