@@ -8,7 +8,7 @@ As I'm constantly learning new things, I have found that many of the things I ha
 
 ## Architecture
 
-- [Domain-Driven Design](/books/domain-driven-design), I finally read the book!
+- [Domain-Driven Design](/posts/books/domain-driven-design), I finally read the book!
 
 ## Technologies
 
