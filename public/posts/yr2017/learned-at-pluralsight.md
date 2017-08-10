@@ -1,6 +1,6 @@
 I've learned quite a bit in the last two years working at [Pluralsight](https://www.pluralsight.com/). I wanted to capture at a high level many of the things that I've learned. I could write an entire post about each of these items, but I doubt I'll ever have time for that, so I want to at least capture some of what I've learned at a high level.
 
-## Practices
+## Software Practices
 
 - My understanding of TDD has deepended. I actually did get [a post written](/posts/yr2017/details-on-tdd) about what I have learned about testing.
 - When to be WET (Write Everything Twice) and when to be [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) (Don't Repeat Yourself). Yes, there are actually times when it is better to be WET than DRY -- too much abstraction can be a bad thing.
@@ -8,11 +8,9 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
     - https://martinfowler.com/articles/feature-toggles.html
     - http://geekswithblogs.net/Optikal/archive/2013/02/10/152069.aspx
     - https://devops.com/feature-branching-vs-feature-flags-whats-right-tool-job/
-- Pair programming / mob programming
-- Pull requests
-- Lean
-- [Kanban](http://kanbanblog.com/explained/)
-- [Retrospectives](https://www.agilealliance.org/agile-retrospectives-as-a-tool-for-team-learning/)
+- Various ways to ensure code quality
+    - Pair programming / mob programming. When pairing or mobbing, code is committed directly to master.
+    - Pull requests. When working solo, create a branch and then the PR is reviewed by one peer before merging into master.
 - [REST apis](http://www.restapitutorial.com/) and several standards, e.g. [JSON API](http://jsonapi.org/)
 - [12 Factor App](https://12factor.net/)
 - Database migration process
@@ -47,6 +45,34 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
 - [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern)
 - [Mother pattern](https://www.martinfowler.com/bliki/ObjectMother.html)
 - [Facade pattern](http://www.tutorialspoint.com/design_pattern/facade_pattern.htm)
+
+## Organizational Practices
+
+- [The Seven Levels of Delegation](https://management30.com/practice/delegation-board/)
+- Lean
+- [Kanban](http://kanbanblog.com/explained/)
+- [Retrospectives](https://www.agilealliance.org/agile-retrospectives-as-a-tool-for-team-learning/)
+
+## Product Practices
+
+- Directed Discovery
+    - The process:
+         - **Voice of the Customer (VOC)** - Conduct loose interviews with customers to discover what features they want/need in the product. These interviews can also come from employees who have ideas about how to improve the product. It can be particularly useful to ensure that Customer Support has a clear channel into the product stream to ensure the common difficulties for customers get addressed. Sales teams should also have a clear channel for being able to pass along what potential customers are asking for from the product.
+         - **Narratives** - Get together with a cross-functional group of people (UX, Dev, PM, etc.) and have everyone write out wireframes to develop the narrative that will drive the new feature.
+         - **Initial Design** - Designers build a visual prototype (the prototype is non-functional, no dev work yet) based on the wireframes from the narrative session.
+         - **Customer Preference Testing (CPT)** - Show the prototype to real customers and observe their response. Do they like it? Is usage intuitive? Can they figure out what it does and how on their own? What do they see first? etc. A tool like [in vision](https://www.invisionapp.com/) can be really useful for sharing a prototype with customers. Designers iterate on the design based on customer feedback until confidence is high that the product is going to fill a need for the customers.
+         - **Initial Build** - Build the feature to match the design.
+         - **Rollout** - Use a limited release schedule. If confidence grows, keep releasing to a larger segment of users. If problems arise, both devs and designers iterate and re-work where needed. Pluralsight uses a [Net Promoter Score](https://www.netpromoter.com/know/) (NPS) to gauge whether or not the feature is meeting customer needs. NPS is measured at alpha, beta, and GR releases. A feature could not go to GR without an NPS of >= 80. NPS is measured by a single question answered on a 0-10 scale. Typical release schedule was 
+             1. internal (employees only) 
+             1. alpha - 5% of target users (the target users are the users expected to use the feature. Thus 5% of the target users might represent a larger fraction of the total user base, say 20% of the total user base.)
+             1. beta - 20% of target users
+             1. General Release (GR) - 100% of users
+         - **Customer Confirmation Testsing (CCT)** - Primarily through the usage of analytics (which are built into the product from the beginning), determine whether or not the new design is accomplishing the goals that were intended. Can also do phone or video calls with customers to see if they know the feature exists, whether or not they use the feature, and how they use the feature. The feedback from this stage is used to iterate on the feature to keep improving it.
+    - Resources    
+        - [Directed Discovery Framework](https://medium.com/directed-discovery/building-a-people-platform-for-continuous-change-in-technology-218fd9ee60c3)
+        - [5 Reasons You Should Use Directed Discover](https://medium.com/directed-discovery/5-reasons-why-you-should-use-directed-discovery-be36caec488d)
+        - [The Heartbeat of Product](http://www.mindtheproduct.com/2017/07/heartbeat-product-nate-walkingshaw/)
+    
 
 ## Learning Resources
 
