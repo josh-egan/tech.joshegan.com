@@ -40,6 +40,10 @@ I've learned quite a bit in the last two years working at [Pluralsight](https://
 - PostgreSQL
 - Cassandra
 
+## Tools
+
+- [leankit](https://leankit.com/)
+
 ## Design Patterns
 
 - [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern)
