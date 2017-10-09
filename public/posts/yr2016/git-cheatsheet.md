@@ -28,6 +28,7 @@ git config --global alias.d "diff"
 git config --global alias.ds "diff --staged"
 git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global alias.pr "pull --rebase"
+git config --global alias.restore "\!git checkout \$(git rev-list -n 1 HEAD -- \"\$1\")^ -- \"\$1\""
 git config --global alias.rpo "remote prune origin"
 git config --global alias.s "status -bsu"
 ```

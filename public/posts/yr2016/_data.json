@@ -3,7 +3,7 @@
     "title": "Launching an AWS Node.js Server",
     "description": "Detailed steps for launching a node.js server on aws.",
     "postDate": "2016-04-05",
-    "isDraft": "true"
+    "isDraft": true
   },
   "cassandra-cheatsheet": {
     "title": "Cassandra Cheatsheet",
@@ -15,7 +15,7 @@
     "title": "Git Cheatsheet",
     "description": "A cheatsheet of common git commands.",
     "postDate": "2016-03-07",
-    "updateDate": "2017-06-19"
+    "updateDate": "2017-10-09"
   },
   "sample": {
     "title": "Post Title - REQUIRED",
