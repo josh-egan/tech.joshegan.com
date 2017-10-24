@@ -1,24 +1,33 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some details and thoughts as I've been getting deeper into HTTPS"><meta property="og:description" content="Some details and thoughts as I've been getting deeper into HTTPS"><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="All about HTTPS - tech.joshegan.com"><title>All about HTTPS - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>All about HTTPS</a></h1><h2 class="green">DRAFT</h2><p>Posted on&nbsp;<time datetime="2017-08-09" class="orange"><strong>Aug 9th, 2017</strong></time></p><h2>Resources</h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some notes on how to implement HTTPS."><meta property="og:description" content="Some notes on how to implement HTTPS."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="Intro to HTTPS - tech.joshegan.com"><title>Intro to HTTPS - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>Intro to HTTPS</a></h1><p>Posted on&nbsp;<time datetime="2017-10-24" class="orange"><strong>Oct 24th, 2017</strong></time></p><h2>Resources</h2>
 <ul>
 <li><a href="https://app.pluralsight.com/library/courses/https-every-developer-must-know/table-of-contents">https://app.pluralsight.com/library/courses/https-every-developer-must-know/table-of-contents</a></li>
 <li><a href="https://letsencrypt.org/">https://letsencrypt.org/</a></li>
 <li><a href="https://badssl.com/">https://badssl.com/</a></li>
 <li><a href="https://hstspreload.org/">https://hstspreload.org/</a></li>
 </ul>
-<h2>How to correctly use https</h2>
+<h2>How to ensure that your site is always loaded over https</h2>
 <ol>
 <li>Get a certificate from <a href="https://letsencrypt.org/">https://letsencrypt.org/</a></li>
-<li>Configure your server to 301 redirect http traffic.</li>
+<li>Use <a href="https://certbot.eff.org/">https://certbot.eff.org/</a> to automatically renew your certificate.</li>
+<li>Configure your server to 302 (temporary redirect) http traffic.</li>
+<li>Once you are confident that everything is working as expected, configure your server to 301 (permanent redirect) http traffic.</li>
 <li>Configure your server to return a response header of <code>strict-transport-security: max-age=300; includeSubDomains</code></li>
+<li>Once you have confirmed that the browser is performing a <code>307</code> internal redirect as expected, increase the max-age to 1 year: <code>strict-transport-security: max-age=31536000; includeSubDomains</code></li>
 <li>Follow the steps outlined at <a href="https://hstspreload.org/">https://hstspreload.org/</a> to get your website and sub-domains added to the HSTS preload list.</li>
 </ol>
 <h2>How to secure your page</h2>
 <ol>
-<li>Ensure that all content is loaded via https. e.g. images, scripts, etc.</li>
+<li>Ensure that all content is loaded via https. e.g. images, scripts, etc.
+<ol>
+<li>For all internal content, use relative paths. e.g. <code>/images/logo.png</code> instead of <code>http://www.my-site.com/images/logo.png</code></li>
+<li>For all external content, use relative-scheme urls. e.g. <code>//www.youtube.com/video-id</code> instead of <code>http://www.youtube.com/video-id</code></li>
+</ol>
+</li>
 <li>Add a CSP meta tag to the <code>&lt;head&gt;</code>
 <ol>
 <li>Start with <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot;&gt;</code>. This will force all content to load over https. However, it's important to explicitly use https anyways, because this tag <a href="https://caniuse.com/#search=upgrade">is not supported by all browsers yet</a>.</li>
 <li>When you're confident that everything is being loaded over https, switch to <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;block-all-mixed-content&quot;&gt;</code>. This will block any content that attempts to load over http.</li>
+<li>These meta tag security policies can also be implemented as headers.</li>
 </ol>
 </li>
 <li>Ensure that all cookies are <code>secure</code></li>
