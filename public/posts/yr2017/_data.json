@@ -1,4 +1,9 @@
 {
+  "cloud-service-providers": {
+    "title": "Cloud Service Providers",
+    "description": "A summary page for my research on Cloud Service Providers",
+    "postDate": "2017-12-06"
+  },
   "https": {
     "title": "Intro to HTTPS",
     "description": "Some notes on how to implement HTTPS.",
