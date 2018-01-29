@@ -1,0 +1,15 @@
+{
+  "typescript-cheatsheet": {
+    "title": "TypeScript Cheatsheet",
+    "description": "My collection of notes and resources for TypeScript.",
+    "postDate": "2018-01-29",
+    "isDraft": true
+  },
+  "sample": {
+    "title": "Post Title - REQUIRED",
+    "description": "Post description used in meta data - REQUIRED",
+    "postDate": "2015-01-02 - REQUIRED",
+    "updateDate": "2015-02-03 - OPTIONAL",
+    "isDraft": "true - OPTIONAL"
+  }
+}
