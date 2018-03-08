@@ -56,6 +56,14 @@ git config --global color.ui true
 ```
 
 ## Git Recipes
+
+### Now what exactly depends on this package...?
+When you find yourself wondering how a downstream dependency fits into the big picture, this command can show you the dependency tree:
+
+```bash
+npm ls | grep -C 20 "react"
+```
+
 ### Hatin' on merge commits
 Don't you just hate those nasty merge commits cluttering up your commit history? This recipe is just the trick for merging a local branch into master without generating a merge commit.
 
