@@ -43,7 +43,7 @@
 git config --global alias.b <span class="hljs-string">"branch"</span>
 git config --global alias.ba <span class="hljs-string">"branch -a"</span>
 git config --global alias.bd <span class="hljs-string">"branch -d"</span>
-git config --global alias.bda <span class="hljs-string">"\!git branch | grep -v master | xargs git branch -d"</span>
+git config --global alias.bda <span class="hljs-string">"\!git branch | grep -v master | grep -v '*' | xargs git branch -d"</span>
 git config --global alias.brda <span class="hljs-string">"\!git branch --remotes --merged master | grep -v master | sed -e 's/\// :/' | xargs -n2 git push"</span>
 git config --global alias.cam <span class="hljs-string">"commit -am"</span>
 git config --global alias.cm <span class="hljs-string">"commit -m"</span>
@@ -74,6 +74,10 @@ git config --global push.default simple
 git config --global color.ui <span class="hljs-literal">true</span>
 </code></pre>
 <h2>Git Recipes</h2>
+<h3>Now what exactly depends on this package...?</h3>
+<p>When you find yourself wondering how a downstream dependency fits into the big picture, this command can show you the dependency tree:</p>
+<pre><code class="language-bash">npm ls | grep -C <span class="hljs-number">20</span> <span class="hljs-string">"react"</span>
+</code></pre>
 <h3>Hatin' on merge commits</h3>
 <p>Don't you just hate those nasty merge commits cluttering up your commit history? This recipe is just the trick for merging a local branch into master without generating a merge commit.</p>
 <p>DO NOT use this recipe if your branch has been pushed to a remote!</p>

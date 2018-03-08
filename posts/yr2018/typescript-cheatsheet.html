@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="My collection of notes and resources for TypeScript."><meta property="og:description" content="My collection of notes and resources for TypeScript."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="TypeScript Cheatsheet - tech.joshegan.com"><title>TypeScript Cheatsheet - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>TypeScript Cheatsheet</a></h1><h2 class="green">DRAFT</h2><p>Posted on&nbsp;<time datetime="2018-01-29" class="orange"><strong>Jan 29th, 2018</strong></time></p><h2>Resources</h2>
+<ul>
+<li>Pluralsight Courses
+<ul>
+<li><a href="https://app.pluralsight.com/library/courses/typescript">TypeScript Fundamentals</a></li>
+<li><a href="https://app.pluralsight.com/library/courses/typescript-in-depth">TypeScript In-depth</a></li>
+<li><a href="https://app.pluralsight.com/library/courses/typescript-advanced">Advanced TypeScript</a></li>
+</ul>
+</li>
+<li><a href="http://www.typescriptlang.org/">http://www.typescriptlang.org/</a></li>
+<li><a href="http://www.typescriptlang.org/docs/">http://www.typescriptlang.org/docs/</a></li>
+<li><a href="http://www.typescriptlang.org/samples/">http://www.typescriptlang.org/samples/</a></li>
+<li><a href="http://www.typescriptlang.org/playground/">http://www.typescriptlang.org/playground/</a></li>
+</ul>
+<h2>Syntax</h2>
+<h3>Types</h3>
+<p>Built in types include:</p>
+<ul>
+<li><code>boolean</code></li>
+<li><code>string</code></li>
+<li><code>number</code></li>
+<li><code>any</code></li>
+</ul>
+<h3>Operators</h3>
+<table>
+<thead>
+<tr>
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:</td>
+<td>Used to separate a variable from its type.</td>
+</tr>
+</tbody>
+</table>
+<h3>Keywords</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>class</td>
+<td>Used to define a class.</td>
+</tr>
+<tr>
+<td>constructor</td>
+<td>Used to define the constructor function for a class.</td>
+</tr>
+</tbody>
+</table>
+<h3>Examples</h3>
+<pre><code class="language-typescript"><span class="hljs-keyword">class</span> Car {
+  engine: <span class="hljs-built_in">string</span>;
+  
+  <span class="hljs-constructor"><span class="hljs-keyword">constructor</span> (engine: string) </span>{
+    <span class="hljs-keyword">this</span>.engine = engine;
+  }
+  
+  <span class="hljs-comment">// Note that methods on a class do not require the `function` keyword at the beginning of the line.</span>
+  start() {
+    alert(<span class="hljs-string">'Engine started: '</span> + <span class="hljs-keyword">this</span>.engine);
+  }
+}
+</code></pre>
+<pre><code class="language-typescript"><span class="hljs-comment">// type inference is automatically used when a variable is created and assigned a primitive value.</span>
+<span class="hljs-comment">// types can also be explicitly declared for a variable.</span>
+<span class="hljs-keyword">const</span> foo = <span class="hljs-string">'some string'</span>;
+<span class="hljs-keyword">const</span> bar: <span class="hljs-built_in">boolean</span> = <span class="hljs-string">'some string'</span> === foo;
+</code></pre></article><div id="sidebar" class="nav tablet-sidebar"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div></div><div class="mobile-author-profile"><div class="separator"></div><div class="author-profile"><img alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;amp;s=250" class="author-img"><div class="info"><h5>Josh Egan</h5><ul class="social"><li><a href="https://github.com/josh-egan" target="_blank" class="github"><i class="fa fa-github"></i></a></li></ul></div></div><div class="separator"></div></div><div><div id="disqus_thread"></div><script type="text/javascript" async="true" src="//tech-joshegan.disqus.com/embed.js"></script><noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript></div></div><div class="separator"></div><footer><div><span>Proudly built with <a href="http://harpjs.com/" target="_blank">harp </a>and hosted on <a href="https://github.com/josh-egan/tech.joshegan.com/tree/master" target="_blank">GitHub</a></span></div></footer></body></html>
