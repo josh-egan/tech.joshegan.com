@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="Details on TDD - tech.joshegan.com"><title>Details on TDD - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>Details on TDD</a></h1><p>Posted on&nbsp;<time datetime="2017-04-12"><strong>Apr 12th, 2017</strong></time>, updated on&nbsp;<time datetime="2017-06-16" class="orange"><strong>Jun 16th, 2017</strong></time></p><p>I was already familiar with unit testing and the concept of TDD (Test-Driven Development) before I started at Pluralsight, but I soon realized that my understanding was just scratching the surface. I have learned much more on this subject so I wanted to do a quick write-up on what I have learned.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="Details on TDD - tech.joshegan.com"><title>Details on TDD - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>Details on TDD</a></h1><p>Posted on&nbsp;<time datetime="2017-04-12"><strong>Apr 12th, 2017</strong></time>, updated on&nbsp;<time datetime="2018-03-21" class="orange"><strong>Mar 21st, 2018</strong></time></p><p>I was already familiar with unit testing and the concept of TDD (Test-Driven Development) before I started at Pluralsight, but I soon realized that my understanding was just scratching the surface. I have learned much more on this subject so I wanted to do a quick write-up on what I have learned.</p>
+<p>As time has gone on, I have continued to add to this post to create a collection of testing resources, articles, and high level concepts. This has made this post more useful as a testing resource and general knowledge page.</p>
+<h2>Specific Testing Principles</h2>
 <ul>
-<li><a href="http://coding-is-like-cooking.info/2013/04/outside-in-development-with-double-loop-tdd/">Double Loop TDD</a></li>
+<li><a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Three_Laws_of_Test-Driven_Development">The Three Laws of TDD</a></li>
+<li><a href="http://blog.cleancoder.com/uncle-bob/2014/12/17/TheCyclesOfTDD.html">Red-Green-Refactor Cycle</a></li>
 <li><a href="https://martinfowler.com/bliki/TestPyramid.html">Testing Pyramid</a></li>
-<li>Clear definitions of different types of tests
+<li>Clear definitions of different types of tests in the testing pyramid:
 <ol>
 <li>UI: These tests run against the UI in our staging environment. Nothing is mocked. These tests ensure that everything is working together as expected. These are the most fragile tests and we therefore only test critical paths with these type of tests. For web UI tests, we use tools like <a href="http://docs.seleniumhq.org/">Selenium</a>, <a href="http://nightwatchjs.org/">Nightwatch</a>, and <a href="https://saucelabs.com/">SauceLabs</a>.</li>
 <li>Acceptance: These tests are for a single application to ensure that everything in an application is working as expected. Nothing is mocked for these tests. For example, all of our APIs have acceptance tests that make a single happy path pass through each endpoint to ensure that everything is working together as expected. One of the awesome things about Node.js is that our acceptance tests start the api server locally, run the tests, and then shut the server down after the tests have run. So awesome.</li>
@@ -10,7 +13,187 @@
 <li>Unit: Finally, unit tests are for thoroughly testing all possible outcomes with <em>our</em> code. These tests mock out dependencies and test isolated chunks of code. Again, we don't mock what we don't own.</li>
 </ol>
 </li>
+<li><a href="http://coding-is-like-cooking.info/2013/04/outside-in-development-with-double-loop-tdd/">Double Loop TDD</a></li>
+<li><a href="https://github.com/testdouble/contributing-tests/wiki/Don%27t-mock-what-you-don%27t-own">don't mock what we don't own</a></li>
 </ul>
+<h2>General Testing Practices and Theory</h2>
+<h3><a href="http://blog.testdouble.com/posts/2015-11-16-how-to-stop-hating-your-tests">How to stop hating your tests</a></h3>
+<p>Talk given by Justin Searls at RubyConf 2015. This 45 minute presentation covers practices to make testing easier.</p>
+<p><strong>Test Structure</strong></p>
+<ul>
+<li>Too big to fail
+<ul>
+<li>Big objects are hard to deal with.</li>
+<li>Tests make big objects even worse.</li>
+<li>Big objects tend to have lots of branching logic, which then subjects your test code to the rule of product.</li>
+<li>Avoiding large objects will make testing so much easier, not to mention your production code being straight-forward.</li>
+<li>Limit new objects to 1 public method and at most 3 dependencies.</li>
+</ul>
+</li>
+<li>Don't got off script
+<ul>
+<li>Stick to the same pattern of arrange, act, assert or given, when, then for all tests. Getting creative leads to headaches.</li>
+<li>If you have a lot of &quot;given&quot; setup, perhaps your subject has too many dependencies.</li>
+<li>If you have a lot of &quot;when&quot; scenarios, perhaps you could make your api more user friendly with fewer branches.</li>
+<li>If you have a lot of &quot;then&quot; steps, perhaps your code is doing too much.</li>
+</ul>
+</li>
+<li>Hard to read, hard to skim
+<ul>
+<li>Test code is untested code, so minimize the code in test files.</li>
+<li>Avoid logic in test files.</li>
+<li>If you're feeling tempted to DRY up your tests, it may be an indicator that your code under test is not designed well.</li>
+<li>The ability to read and understand a test quickly trumps DRY test code.</li>
+</ul>
+</li>
+<li>Magic tests
+<ul>
+<li>Testing libraries can complicate testing if the api is complex.</li>
+</ul>
+</li>
+<li>Accidentally creative
+<ul>
+<li>Consistency is golden</li>
+<li>He always names the thing under test <code>subject</code> and the return value <code>result</code> or <code>results</code>.</li>
+<li>In consistency can convey meaning if only one test or suite departs from the norm.</li>
+<li>When we read code, we assume everything has meaning. If a value doesn't matter, make it obvious.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Test Isolation</strong></p>
+<ul>
+<li>Unfocused test suites
+<ul>
+<li>How do you define success in testing?
+<ul>
+<li>Is it tested?</li>
+<li>Is the purpose of the test readily apparent?</li>
+<li>Does the test suite promote consistency?</li>
+</ul>
+</li>
+<li>Create separate suites for each type of test.</li>
+<li>Use conventions and configuration to promote consistency.</li>
+</ul>
+</li>
+<li>Too realistic
+<ul>
+<li>More realistic tests are usually not the answer.</li>
+<li>Realistic tests:
+<ul>
+<li>are slower</li>
+<li>take more time to write, change, and debug</li>
+<li>require higher cognitive load</li>
+<li>fail for more reasons</li>
+</ul>
+</li>
+<li>Clear boundaries increase focus on what's tested and what's controlled.</li>
+<li>Less integrated, more isolated tests provide better design feedback.</li>
+</ul>
+</li>
+<li>Redundant coverage
+<ul>
+<li>Redundant test coverage can kill team morale.</li>
+<li>Redundant coverage leads to large changes in test files for a single change in a production file.</li>
+<li>Avoid redundant coverage by have clear layers for what is being tested.</li>
+</ul>
+</li>
+<li>Careless mocking
+<ul>
+<li>Mocking should be used to define contracts between modules.</li>
+<li>Many people in the world use mocks to &quot;silence&quot; troublesome modules. This is not a good practice.</li>
+<li>Bad mocks treat the symptoms of test pain, not the cause.</li>
+<li>Bad mocks greatly confuse future test readers</li>
+</ul>
+</li>
+<li>Application frameworks
+<ul>
+<li>If code does not rely on a framework, neither should the tests.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Test Feedback</strong></p>
+<ul>
+<li>Error messages
+<ul>
+<li>Make your tests fail with useful error messages. A useful error message will save loads of time.</li>
+<li>Judge assertion libraries on their message quality, not only on their api.</li>
+</ul>
+</li>
+<li>Slow feedback loops
+<ul>
+<li>You have 480 minutes in every workday. How many feedback loops can you get in during the day?</li>
+<li>Little nuances in your testing practices can really increase the feedback loop time.</li>
+<li>Keep your tests fast and your test error messages really useful.</li>
+</ul>
+</li>
+<li>Painful data
+<ul>
+<li>Thoughtfully approach your strategy for how to setup data for tests.</li>
+<li>Inline data creation is a great approach for unit tests.</li>
+<li>Test fixtures might be useful for integration or acceptance suites.</li>
+<li>Data dumps might be useful for UI tests.</li>
+<li>&quot;Self-priming&quot; is probably the only option for stage or production tests.</li>
+<li>Slow tests are often slow because of data setup.</li>
+</ul>
+</li>
+<li>Superlinear build slow-down
+<ul>
+<li>As you keep adding code to existing functions along with tests to your suite, the build time tends to grow exponentially instead of linearly.</li>
+<li>Keep integration tests to a minimum. Get as much as you can out of each test.</li>
+<li>Early on, set a firm cap on build duration - and enforce it!</li>
+</ul>
+</li>
+<li>False Negatives
+<ul>
+<li>What does it mean when the build fails?</li>
+<li>Was a test broken, or was the code broken?</li>
+<li>true negatives reinforce the value of our tests. But they are depressingly rare.</li>
+<li>false negatives erode our confidence in our test suite. Quickly becomes a drain.</li>
+<li>Top causes of false negatives:
+<ul>
+<li>Redundant test coverage</li>
+<li>Slow tests</li>
+</ul>
+</li>
+<li>Try tracking how many false negatives you get in your tests and how long they take to fix.</li>
+</ul>
+</li>
+</ul>
+<h3><a href="https://blog.testdouble.com/posts/2018-03-06-please-dont-mock-me">Please don't mock me</a></h3>
+<p>Talk given by Justin Searls at the Assert.js 2018 conference. In this one hour presentation he covers a lot of topics related to testing and design including:</p>
+<ul>
+<li>Never use partial mocks of a dependency. Mock the entire dependency, not just select functions.</li>
+<li>Never mock parts of the subject under test. If you find you need to mock parts of the subject under test, that is a glaring signal to refactor and break up the subject code.</li>
+<li>Never partially mock dependencies - either mock all of them or none of them.</li>
+<li>Create a wrapper around external modules so that external modules don't spread through your application. Wrappers do not necessarily need to be tested.</li>
+<li>&quot;Hard to mock code is hard to use code&quot;</li>
+<li>Every function should either test relationships or logic, but never both. Avoid mixed levels of abstraction.</li>
+<li>Understand that tests are designed to fail. Know what should cause your tests to fail.
+<ul>
+<li>A test on a function that manages logic will need to be updated if the logic changes.</li>
+<li>A test on a function that manages relationships will need to be updated if the contracts change.</li>
+</ul>
+</li>
+<li>Don't mock intermediate modules. Either mock the direct dependency or mock the furthest possible connection point. Avoid mocking some random module in the middle.</li>
+<li>Mock dependencies, but pass real values.</li>
+<li>If you're dealing with legacy code, start by writing high level acceptance tests.</li>
+<li>If you're using mocks to silence side-effects, note that's a smell and modify code design to avoid side effects.</li>
+<li>Allow isolated unit tests to influence the design of your code.</li>
+<li>Take care with how you design assertions, because it can influence code design. Functions should typically return a value. Any function that doesn't return a value likely is a side effect.</li>
+<li>When dependency functions are stubbed, you shouldn't need an assertion that the dependent function was called.</li>
+<li>Using solid testing practices greatly contributes to:
+<ul>
+<li>reliable incremental progress</li>
+<li>single-responsibility functions</li>
+<li>intention-revealing names</li>
+<li>discoverable organization</li>
+<li>separate values and logic</li>
+<li>most functions are synchronous, pure functions</li>
+</ul>
+</li>
+</ul>
+<h3><a href="http://blog.testdouble.com/posts/2014-05-25-breaking-up-with-your-test-suite">Breaking up with your test suite</a></h3>
+<h2>Testing Tools</h2>
 <p>For our acceptance, integration, and unit tests, we use the following libraries:</p>
 <ul>
 <li><a href="http://mochajs.org/">mocha</a> with <code>bdd</code> style.</li>
@@ -23,7 +206,14 @@
 <li><a href="https://wallabyjs.com/">Wallaby.js</a> is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we pair / mob everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the Webstorm runner in continuous execution mode has been good enough for me.)</li>
 <li>We also occasionally use the good 'ole watch mode that is build into mocha.</li>
 </ul>
+<p>For testing React components, here are a couple of insightful articles:</p>
+<ul>
+<li><a href="https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22">The Right Way to Test React Components</a></li>
+<li><a href="https://medium.com/netscape/testing-a-react-redux-app-using-jest-and-enzyme-b349324803a9">Testing a React-Redux app using Jest and Enzyme</a></li>
+</ul>
+<h2>Value of Tests</h2>
 <p>We've had lots of discussions about how to test and what to test. The purpose of testing is to deliver features faster with very few bugs. So our tests are written with that end-goal in mind. We generally follow the shape of the testing pyramid; in other words we typically test in a (off the cuff) ratio of 50:15:5:1. However, like most things, there are exceptions to every rule. For example, in one project, we have abstracted most of the functionality into re-usable, private npm packages because each implementation was so similar. Each npm package is thoroughly unit tested, so in that project we only have acceptance tests and the acceptance tests cover all of the possible paths. We have found that even though the acceptance tests take a little longer to run than unit tests, it's faster in the end to write and maintain these tests for this particular project.</p>
+<h2>Testing Scripts</h2>
 <p>Some tips for making npm scripts work well:</p>
 <ul>
 <li>Use escaped double quotes around file blobs to ensure that they work on Mac, PC, and Linux.</li>
