@@ -95,4 +95,5 @@ This is a list of companies that have whole-heartedly embraced working remotely.
 - [37 Signals](https://37signals.com/) -- this company is now called [Basecamp](https://basecamp.com/)
 - [iFit](https://www.ifit.com/)
 - [clevertech](https://clevertech.biz/)
+- [testdouble](https://testdouble.com/join/)
 - [DuckDuckGo](https://duckduckgo.com/hiring/#open)
