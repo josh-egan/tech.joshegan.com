@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="Details on TDD - tech.joshegan.com"><title>Details on TDD - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>Details on TDD</a></h1><p>Posted on&nbsp;<time datetime="2017-04-12"><strong>Apr 12th, 2017</strong></time>, updated on&nbsp;<time datetime="2018-03-21" class="orange"><strong>Mar 21st, 2018</strong></time></p><p>I was already familiar with unit testing and the concept of TDD (Test-Driven Development) before I started at Pluralsight, but I soon realized that my understanding was just scratching the surface. I have learned much more on this subject so I wanted to do a quick write-up on what I have learned.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="HandheldFriendly" content="True"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:description" content="Some details and thoughts on the practice of Test-Driven Development."><meta property="og:site_name" content="tech.joshegan.com"><link rel="stylesheet" type="text/css" href="/styles/third-party/google-fonts/css/google-fonts.css"><link rel="stylesheet" type="text/css" href="/styles/third-party/font-awesome-4.3.0/css/font-awesome.min.css"><link rel="stylesheet" type="text/css" href="/styles/main.css"><meta property="og:title" content="Details on TDD - tech.joshegan.com"><title>Details on TDD - tech.joshegan.com</title><meta property="og:url"><meta property="og:type" content="article"><link rel="stylesheet" type="text/css" href="/styles/third-party/highlight-js/hybrid.css"><script src="/scripts/sidebar-opacity.js"></script></head><body><div class="post-wrapper"><header class="nav mobile-nav"><a href="/"><i class="fa fa-home fa-2x"></i><span>tech.joshegan.com</span></a></header><article class="post"><h1><a>Details on TDD</a></h1><p>Posted on&nbsp;<time datetime="2017-04-12"><strong>Apr 12th, 2017</strong></time>, updated on&nbsp;<time datetime="2018-04-16" class="orange"><strong>Apr 16th, 2018</strong></time></p><p>I was already familiar with unit testing and the concept of TDD (Test-Driven Development) before I started at Pluralsight, but I soon realized that my understanding was just scratching the surface. I have learned much more on this subject so I wanted to do a quick write-up on what I have learned.</p>
 <p>As time has gone on, I have continued to add to this post to create a collection of testing resources, articles, and high level concepts. This has made this post more useful as a testing resource and general knowledge page.</p>
 <h2>Specific Testing Principles</h2>
 <ul>
@@ -193,18 +193,93 @@
 </li>
 </ul>
 <h3><a href="http://blog.testdouble.com/posts/2014-05-25-breaking-up-with-your-test-suite">Breaking up with your test suite</a></h3>
+<p>Talk given by Justin Searls on April 3rd, 2014.</p>
+<ul>
+<li>&quot;I get paid for code that works, not for tests, so my philosophy is to test as little as possible to reach a given level of confidence.&quot; - Kent Beck</li>
+<li>Each test suite should be targeted to provide 1 level of conifidence or 1 layer of understanding.</li>
+<li>App level (entire application - e.g. web UI tests that rely on all services, APIs, etc. to be up and running)
+<ul>
+<li>Tests for this level are called by many names (Smoke, Acceptance, Feature, End-to-end) (SAFE tests)</li>
+<li>Should be written from the perspective of the end user.</li>
+<li>Should provide confidence that everything works when it's all glued together.</li>
+<li>Should provide understanding of how simple and easy to use your application is.
+<ul>
+<li>If it takes more than 30 minutes to run through every possible user endpoint, your application is not simple.</li>
+<li>If it takes more than 30 minutes to write a test for a new user endpoint, your application is not simple.</li>
+</ul>
+</li>
+<li>The tests should not have any knowledge beyond the public interface. No implementation details of internal apis, libraries, etc. should be used by these tests.</li>
+<li>Enforce a fixed time budget. Choose a maximum amount of time that you're willing to wait while the tests run. Never go over that amount of time. If the amount of time is ever exceeded, either tests need to be removed or you need to create a new suite that can run in parallel with the existing suite.</li>
+</ul>
+</li>
+<li>Micro-service level (a single service, for example an API)
+<ul>
+<li>Again, various names for these type of tests. Integration is one, although he hates that word because it is the most overloaded when it comes to testing. He calls them &quot;Consumption&quot; tests.</li>
+<li>Should written from the perspective of the consumer of the service.</li>
+<li>Should verify behavior that the service is <em>directly</em> responsible for.</li>
+<li>Should provide understanding of whether or not it is easy to use.</li>
+<li>Module boundaries should be meaningful beyond testing.</li>
+<li>Fake all external dependencies. Should be able to run the tests without external services running.</li>
+<li>Only use public APIs</li>
+<li>Organize the tests by the consumer's desired outcomes.</li>
+<li>Keep these tests really fast. If they're slow, and external dependencies are faked, then you know it's your fault if they're slow.</li>
+</ul>
+</li>
+<li>Inter-service tests - write these type of tests to verify that other services are behaving the way you expect them to behave.
+<ul>
+<li>He calls them Contract tests.</li>
+<li>These tests are written from the developer's perspective, to ensure that some 3rd party service is doing what you expect it to do.</li>
+<li>Include these tests in the other repo's consumption suite if it is an internal application. Include your contact info so that if the tests break the other team knows who to get a hold of.</li>
+<li>The goal here is speedier feedback. If another team breaks something that you depend on, they will know immediately when the test fails.</li>
+<li>Should provide confidence that our dependencies behave the way we need them to.</li>
+<li>Should provide understanding about whether or not the service meets our needs.</li>
+<li>Frequent test failures may reveal differing priorities.</li>
+<li>Reveals to the maintainers of the project how their service is being used.</li>
+<li>If one of the consumers is using the service in a weird way, then perhaps recommend a different service or writing a new one.</li>
+<li>If all of the consumers are using the service in a weird way, then perhaps the service needs to be re-designed to better meet the needs it is supposed to meet.</li>
+</ul>
+</li>
+<li>Class level tests - unit tests
+<ul>
+<li>He calls them &quot;Discovery tests&quot; because the principle value he derives from these tests is discovering good code design.</li>
+<li>Discover tiny, boring, consistent units of code that break down big, scary problems into small manageable ones.</li>
+<li>The user of these tests is the first person to call a function. They are concerned with the inputs, outputs, and side effects if any.</li>
+<li>Concerned with basic code design. Tightly coupled to the implementation.</li>
+<li>Should provide confidence of logical leaf nodes.</li>
+<li>Should lead to small, focused units of code. Makes SRP easy.</li>
+</ul>
+</li>
+<li>Adapter tests
+<ul>
+<li>These are tests against a 3rd party service that you have no control over.</li>
+<li>Written from the standpoint of your application trying to understand how to interact with the 3rd party service.</li>
+<li>Tests should be written in the most realistic context possible.</li>
+<li>Should provide confidence that your code will work when the 3rd party service changes.</li>
+<li>Should provide information about outages and breaking changes.</li>
+<li>Should help you understand which parts of the 3rd party service you depend on and how you are using those parts.</li>
+<li>Establishes boundaries; prevents 3rd party references from leaking into your app.</li>
+<li>All of this reduces the cost of replacing dependencies later.</li>
+<li>Only test adapters when you have good reason to. For the most part, trust that the 3rd party library does what it's supposed to. Most of the time you should be able to write an adapter without worrying about testing the adapter.</li>
+<li>Adapter test suites can be tricky to run, so be mindful of the gotchas you might run into for a given adapter.</li>
+<li>Sometimes it might make more sense to test 3rd party services from the SAFE test suite (highest level).</li>
+<li>Adapter tests tend to be slow, and the speed is outside your control.</li>
+</ul>
+</li>
+</ul>
 <h2>Testing Tools</h2>
-<p>For our acceptance, integration, and unit tests, we use the following libraries:</p>
+<p>For acceptance, integration, and unit tests, I have used the following libraries:</p>
 <ul>
 <li><a href="http://mochajs.org/">mocha</a> with <code>bdd</code> style.</li>
-<li><a href="http://chaijs.com/">chai</a> with the <code>expect</code> assertions because <code>expect(undefined).to.equal('foo')</code> will execute whereas <code>undefined.should.equal('foo')</code> will explode. We also use the <a href="http://chaijs.com/plugins/chai-as-promised/">chai-as-promised</a> plugin.</li>
-<li><a href="https://github.com/testdouble/testdouble.js">testdouble</a> for mocking. We used to use sinon.js but changed over because we were feeling many of <a href="http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html">these</a> pain points.</li>
+<li><a href="http://chaijs.com/">chai</a> with the <code>expect</code> assertions because <code>expect(undefined).to.equal('foo')</code> will execute whereas <code>undefined.should.equal('foo')</code> will explode. Also use the <a href="http://chaijs.com/plugins/chai-as-promised/">chai-as-promised</a> plugin.</li>
+<li><a href="https://shouldjs.github.io/">should</a> for fluent assertions.</li>
+<li><a href="https://github.com/testdouble/testdouble.js">testdouble</a> for mocking. This is my preferred mocking library - I have dealt with many of <a href="http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html">these</a> pain points.</li>
+<li><a href="http://sinonjs.org/">sinon</a> for mocking.</li>
 </ul>
-<p>We use the following tools for executing our tests:</p>
+<p>I have used the following tools for executing tests:</p>
 <ul>
-<li><a href="https://www.jetbrains.com/webstorm/">Webstorm</a> has an excellent built in test runner that works seamlessly with <code>mocha</code>. One of the best parts of using Webstorm to run tests is having clickable links in the stack traces.</li>
-<li><a href="https://wallabyjs.com/">Wallaby.js</a> is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we pair / mob everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the Webstorm runner in continuous execution mode has been good enough for me.)</li>
-<li>We also occasionally use the good 'ole watch mode that is build into mocha.</li>
+<li>I most often run tests using <code>mocha</code>'s built in <code>--watch</code> mode.</li>
+<li><a href="https://www.jetbrains.com/webstorm/">WebStorm</a> has an excellent built in test runner that works seamlessly with <code>mocha</code>. One of the best parts of using WebStorm to run tests is having clickable links in the stack traces.</li>
+<li><a href="https://wallabyjs.com/">Wallaby.js</a> is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we paired / mobbed everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the WebStorm runner in continuous execution mode has been good enough for me.)</li>
 </ul>
 <p>For testing React components, here are a couple of insightful articles:</p>
 <ul>
@@ -217,8 +292,14 @@
 <p>Some tips for making npm scripts work well:</p>
 <ul>
 <li>Use escaped double quotes around file blobs to ensure that they work on Mac, PC, and Linux.</li>
+<li>How to get rid of the ~20 lines of error output that npm pukes out after a failed script?
+<ul>
+<li>Use the <code>--silent</code> flag from the command line, e.g. <code>npm test --silent</code>.</li>
+<li>Add <code>loglevel=silent</code> to your <code>.npmrc</code> to set the log level to silent for every npm process.</li>
 <li>Use <code>|| true</code> at the end of your test script to prevent npm from puking all of the error output at the end of a failed test.</li>
 <li>Make sure <em>not</em> to use <code>|| true</code> if your test script is going to be run in a tool like TeamCity where a failure needs to be meaningful.</li>
+</ul>
+</li>
 </ul>
 <pre><code class="language-json">{
   "<span class="hljs-attribute">scripts</span>": <span class="hljs-value">{
