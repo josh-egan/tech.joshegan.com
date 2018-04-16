@@ -137,17 +137,74 @@ Talk given by Justin Searls at the Assert.js 2018 conference. In this one hour p
 
 ### [Breaking up with your test suite](http://blog.testdouble.com/posts/2014-05-25-breaking-up-with-your-test-suite)
 
+Talk given by Justin Searls on April 3rd, 2014.
+
+- "I get paid for code that works, not for tests, so my philosophy is to test as little as possible to reach a given level of confidence." - Kent Beck
+- Each test suite should be targeted to provide 1 level of conifidence or 1 layer of understanding.
+- App level (entire application - e.g. web UI tests that rely on all services, APIs, etc. to be up and running)
+    - Tests for this level are called by many names (Smoke, Acceptance, Feature, End-to-end) (SAFE tests)
+    - Should be written from the perspective of the end user.
+    - Should provide confidence that everything works when it's all glued together.
+    - Should provide understanding of how simple and easy to use your application is.
+        - If it takes more than 30 minutes to run through every possible user endpoint, your application is not simple.
+        - If it takes more than 30 minutes to write a test for a new user endpoint, your application is not simple.
+    - The tests should not have any knowledge beyond the public interface. No implementation details of internal apis, libraries, etc. should be used by these tests.
+    - Enforce a fixed time budget. Choose a maximum amount of time that you're willing to wait while the tests run. Never go over that amount of time. If the amount of time is ever exceeded, either tests need to be removed or you need to create a new suite that can run in parallel with the existing suite.
+- Micro-service level (a single service, for example an API)
+    - Again, various names for these type of tests. Integration is one, although he hates that word because it is the most overloaded when it comes to testing. He calls them "Consumption" tests.
+    - Should written from the perspective of the consumer of the service.
+    - Should verify behavior that the service is *directly* responsible for.
+    - Should provide understanding of whether or not it is easy to use.
+    - Module boundaries should be meaningful beyond testing.
+    - Fake all external dependencies. Should be able to run the tests without external services running.
+    - Only use public APIs
+    - Organize the tests by the consumer's desired outcomes.
+    - Keep these tests really fast. If they're slow, and external dependencies are faked, then you know it's your fault if they're slow.
+- Inter-service tests - write these type of tests to verify that other services are behaving the way you expect them to behave.
+    - He calls them Contract tests.
+    - These tests are written from the developer's perspective, to ensure that some 3rd party service is doing what you expect it to do.
+    - Include these tests in the other repo's consumption suite if it is an internal application. Include your contact info so that if the tests break the other team knows who to get a hold of.
+    - The goal here is speedier feedback. If another team breaks something that you depend on, they will know immediately when the test fails.
+    - Should provide confidence that our dependencies behave the way we need them to.
+    - Should provide understanding about whether or not the service meets our needs.
+    - Frequent test failures may reveal differing priorities.
+    - Reveals to the maintainers of the project how their service is being used.
+    - If one of the consumers is using the service in a weird way, then perhaps recommend a different service or writing a new one.
+    - If all of the consumers are using the service in a weird way, then perhaps the service needs to be re-designed to better meet the needs it is supposed to meet.
+- Class level tests - unit tests
+    - He calls them "Discovery tests" because the principle value he derives from these tests is discovering good code design.
+    - Discover tiny, boring, consistent units of code that break down big, scary problems into small manageable ones.
+    - The user of these tests is the first person to call a function. They are concerned with the inputs, outputs, and side effects if any.
+    - Concerned with basic code design. Tightly coupled to the implementation.
+    - Should provide confidence of logical leaf nodes.
+    - Should lead to small, focused units of code. Makes SRP easy.
+- Adapter tests
+    - These are tests against a 3rd party service that you have no control over.
+    - Written from the standpoint of your application trying to understand how to interact with the 3rd party service.
+    - Tests should be written in the most realistic context possible.
+    - Should provide confidence that your code will work when the 3rd party service changes.
+    - Should provide information about outages and breaking changes.
+    - Should help you understand which parts of the 3rd party service you depend on and how you are using those parts.
+    - Establishes boundaries; prevents 3rd party references from leaking into your app.
+    - All of this reduces the cost of replacing dependencies later.
+    - Only test adapters when you have good reason to. For the most part, trust that the 3rd party library does what it's supposed to. Most of the time you should be able to write an adapter without worrying about testing the adapter.
+    - Adapter test suites can be tricky to run, so be mindful of the gotchas you might run into for a given adapter.
+    - Sometimes it might make more sense to test 3rd party services from the SAFE test suite (highest level).
+    - Adapter tests tend to be slow, and the speed is outside your control.
+
 ## Testing Tools
   
-For our acceptance, integration, and unit tests, we use the following libraries:
+For acceptance, integration, and unit tests, I have used the following libraries:
 - [mocha](http://mochajs.org/) with `bdd` style.
-- [chai](http://chaijs.com/) with the `expect` assertions because `expect(undefined).to.equal('foo')` will execute whereas `undefined.should.equal('foo')` will explode. We also use the [chai-as-promised](http://chaijs.com/plugins/chai-as-promised/) plugin.
-- [testdouble](https://github.com/testdouble/testdouble.js) for mocking. We used to use sinon.js but changed over because we were feeling many of [these](http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html) pain points.
+- [chai](http://chaijs.com/) with the `expect` assertions because `expect(undefined).to.equal('foo')` will execute whereas `undefined.should.equal('foo')` will explode. Also use the [chai-as-promised](http://chaijs.com/plugins/chai-as-promised/) plugin.
+- [should](https://shouldjs.github.io/) for fluent assertions.
+- [testdouble](https://github.com/testdouble/testdouble.js) for mocking. This is my preferred mocking library - I have dealt with many of [these](http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html) pain points.
+- [sinon](http://sinonjs.org/) for mocking.
 
-We use the following tools for executing our tests:
-- [Webstorm](https://www.jetbrains.com/webstorm/) has an excellent built in test runner that works seamlessly with `mocha`. One of the best parts of using Webstorm to run tests is having clickable links in the stack traces.
-- [Wallaby.js](https://wallabyjs.com/) is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we pair / mob everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the Webstorm runner in continuous execution mode has been good enough for me.)
-- We also occasionally use the good 'ole watch mode that is build into mocha.
+I have used the following tools for executing tests:
+- I most often run tests using `mocha`'s built in `--watch` mode.
+- [WebStorm](https://www.jetbrains.com/webstorm/) has an excellent built in test runner that works seamlessly with `mocha`. One of the best parts of using WebStorm to run tests is having clickable links in the stack traces.
+- [Wallaby.js](https://wallabyjs.com/) is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we paired / mobbed everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the WebStorm runner in continuous execution mode has been good enough for me.)
 
 For testing React components, here are a couple of insightful articles:
 - [The Right Way to Test React Components](https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22)
@@ -161,8 +218,11 @@ We've had lots of discussions about how to test and what to test. The purpose of
 
 Some tips for making npm scripts work well:
 - Use escaped double quotes around file blobs to ensure that they work on Mac, PC, and Linux.
-- Use `|| true` at the end of your test script to prevent npm from puking all of the error output at the end of a failed test.
-- Make sure *not* to use `|| true` if your test script is going to be run in a tool like TeamCity where a failure needs to be meaningful.
+- How to get rid of the ~20 lines of error output that npm pukes out after a failed script?
+    - Use the `--silent` flag from the command line, e.g. `npm test --silent`.
+    - Add `loglevel=silent` to your `.npmrc` to set the log level to silent for every npm process.
+    - Use `|| true` at the end of your test script to prevent npm from puking all of the error output at the end of a failed test.
+    - Make sure *not* to use `|| true` if your test script is going to be run in a tool like TeamCity where a failure needs to be meaningful.
 
 ```json
 {
