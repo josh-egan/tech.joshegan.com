@@ -15,7 +15,55 @@ As time has gone on, I have continued to add to this post to create a collection
 - [Double Loop TDD](http://coding-is-like-cooking.info/2013/04/outside-in-development-with-double-loop-tdd/)
 - [don't mock what we don't own](https://github.com/testdouble/contributing-tests/wiki/Don%27t-mock-what-you-don%27t-own)
 
+
+## Testing Tools
+
+For acceptance, integration, and unit tests, I have used the following libraries:
+- [mocha](http://mochajs.org/) with `bdd` style.
+- [chai](http://chaijs.com/) with the `expect` assertions because `expect(undefined).to.equal('foo')` will execute whereas `undefined.should.equal('foo')` will explode. Also use the [chai-as-promised](http://chaijs.com/plugins/chai-as-promised/) plugin.
+- [should](https://shouldjs.github.io/) for fluent assertions.
+- [testdouble](https://github.com/testdouble/testdouble.js) for mocking. This is my preferred mocking library - I have dealt with many of [these](http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html) pain points.
+- [sinon](http://sinonjs.org/) for mocking.
+
+I have used the following tools for executing tests:
+- I most often run tests using `mocha`'s built in `--watch` mode.
+- [WebStorm](https://www.jetbrains.com/webstorm/) has an excellent built in test runner that works seamlessly with `mocha`. One of the best parts of using WebStorm to run tests is having clickable links in the stack traces.
+- [Wallaby.js](https://wallabyjs.com/) is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we paired / mobbed everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the WebStorm runner in continuous execution mode has been good enough for me.)
+
+For testing React components, here are a couple of insightful articles:
+- [The Right Way to Test React Components](https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22)
+- [Testing a React-Redux app using Jest and Enzyme](https://medium.com/netscape/testing-a-react-redux-app-using-jest-and-enzyme-b349324803a9)
+
+## Value of Tests
+
+We've had lots of discussions about how to test and what to test. The purpose of testing is to deliver features faster with very few bugs. So our tests are written with that end-goal in mind. We generally follow the shape of the testing pyramid; in other words we typically test in a (off the cuff) ratio of 50:15:5:1. However, like most things, there are exceptions to every rule. For example, in one project, we have abstracted most of the functionality into re-usable, private npm packages because each implementation was so similar. Each npm package is thoroughly unit tested, so in that project we only have acceptance tests and the acceptance tests cover all of the possible paths. We have found that even though the acceptance tests take a little longer to run than unit tests, it's faster in the end to write and maintain these tests for this particular project.
+
 ## General Testing Practices and Theory
+
+### [The Three Laws of TDD](https://www.youtube.com/watch?v=qkblc5WRn-U)
+
+Training given by Uncle Bob (Robert Martin).
+
+**Test-Driven Development (TDD) is a Discipline**
+- TDD is a displicline
+- As a discipline, there is an essential goal, although the way to achieve that goal can be somewhat arbitrary.
+- Gives the example of a surgeon washing his hands prior to surgery. The surgeon follows a specific procedure to ensure hands are clean.
+- The discipline of TDD follows these three laws:
+    1. You are not allowed to write any production code unless it is to make a failing unit test pass.
+    1. You are not allowed to write any more of a unit test than is sufficeint to fail; and compilation failures are failures.
+    1. You are not alloowed to write any more production code than is sufficient to pass the one failing unit test.
+- This will seem stupid to most developers, especially experienced developers who are not familiar with testing.
+- If you follow this discipline strictly, you will always know that your code worked 1 minute ago. How much debugging will you have to do if you know your code worked 1 minute ago? Virtually none. Being skilled at using debugging tools is not a desirable skill - your time is much better spent writing production code.
+- When you write tests, you are producing the code example of how the system works and how to use the code.
+- Writing unit tests after the fact is a pain, and feels like a waste of time, because you already know the code works. Writing tests after the fact will inevitably leave holes in the test suite. Holes in the test suite lead to a lack of confidence in the test suite. Writing tests afterwards also leads to false positives.
+- If you do TDD, when your test suite passes, you know that your code works.
+- Having a test suite you are confident in allows you to confidently refactor. Without a test suite, you will not touch old code for fear of breaking it, which will lead to code rot.
+- TDD is a way to incrementally solve problems and incrementally develop algorithms.
+- Unit tests will not work for everything. For example, a UI is best tested with the eyes instead of unit tests. However, unit-testable code should be carefully separated from code that is difficult to unit test.
+- It is also difficult to write a test when you do not know the answer, so with exploratory code, you might have to write the tests afterwards.
+
+
+
 
 ### [How to stop hating your tests](http://blog.testdouble.com/posts/2015-11-16-how-to-stop-hating-your-tests)
 
@@ -70,15 +118,15 @@ Talk given by Justin Searls at RubyConf 2015. This 45 minute presentation covers
     - Redundant coverage leads to large changes in test files for a single change in a production file.
     - Avoid redundant coverage by have clear layers for what is being tested.
 - Careless mocking
-    - Mocking should be used to define contracts between modules. 
+    - Mocking should be used to define contracts between modules.
     - Many people in the world use mocks to "silence" troublesome modules. This is not a good practice.
     - Bad mocks treat the symptoms of test pain, not the cause.
     - Bad mocks greatly confuse future test readers
 - Application frameworks
     - If code does not rely on a framework, neither should the tests.
- 
+
  **Test Feedback**
- 
+
  - Error messages
      - Make your tests fail with useful error messages. A useful error message will save loads of time.
      - Judge assertion libraries on their message quality, not only on their api.
@@ -117,7 +165,7 @@ Talk given by Justin Searls at the Assert.js 2018 conference. In this one hour p
 - Create a wrapper around external modules so that external modules don't spread through your application. Wrappers do not necessarily need to be tested.
 - "Hard to mock code is hard to use code"
 - Every function should either test relationships or logic, but never both. Avoid mixed levels of abstraction.
-- Understand that tests are designed to fail. Know what should cause your tests to fail. 
+- Understand that tests are designed to fail. Know what should cause your tests to fail.
     - A test on a function that manages logic will need to be updated if the logic changes.
     - A test on a function that manages relationships will need to be updated if the contracts change.
 - Don't mock intermediate modules. Either mock the direct dependency or mock the furthest possible connection point. Avoid mocking some random module in the middle.
@@ -191,28 +239,6 @@ Talk given by Justin Searls on April 3rd, 2014.
     - Adapter test suites can be tricky to run, so be mindful of the gotchas you might run into for a given adapter.
     - Sometimes it might make more sense to test 3rd party services from the SAFE test suite (highest level).
     - Adapter tests tend to be slow, and the speed is outside your control.
-
-## Testing Tools
-  
-For acceptance, integration, and unit tests, I have used the following libraries:
-- [mocha](http://mochajs.org/) with `bdd` style.
-- [chai](http://chaijs.com/) with the `expect` assertions because `expect(undefined).to.equal('foo')` will execute whereas `undefined.should.equal('foo')` will explode. Also use the [chai-as-promised](http://chaijs.com/plugins/chai-as-promised/) plugin.
-- [should](https://shouldjs.github.io/) for fluent assertions.
-- [testdouble](https://github.com/testdouble/testdouble.js) for mocking. This is my preferred mocking library - I have dealt with many of [these](http://blog.testdouble.com/posts/2016-03-13-testdouble-vs-sinon.html) pain points.
-- [sinon](http://sinonjs.org/) for mocking.
-
-I have used the following tools for executing tests:
-- I most often run tests using `mocha`'s built in `--watch` mode.
-- [WebStorm](https://www.jetbrains.com/webstorm/) has an excellent built in test runner that works seamlessly with `mocha`. One of the best parts of using WebStorm to run tests is having clickable links in the stack traces.
-- [Wallaby.js](https://wallabyjs.com/) is a continuous test runner that integrates with numerous text editors. I used this heavily for about 6 months, and it was awesome, but in the end this tool fell out of use because it was too much work to keep it configured on all of the workstations. (At Pluralsight, no one on our team has a desk - we paired / mobbed everyday so there is no personal space. Consequently, keeping wallaby running required configuring it on every workstation for every project, and the overhead grew to be too tiring for me and outweighed the benefits. Just using the WebStorm runner in continuous execution mode has been good enough for me.)
-
-For testing React components, here are a couple of insightful articles:
-- [The Right Way to Test React Components](https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22)
-- [Testing a React-Redux app using Jest and Enzyme](https://medium.com/netscape/testing-a-react-redux-app-using-jest-and-enzyme-b349324803a9)
-
-## Value of Tests
-
-We've had lots of discussions about how to test and what to test. The purpose of testing is to deliver features faster with very few bugs. So our tests are written with that end-goal in mind. We generally follow the shape of the testing pyramid; in other words we typically test in a (off the cuff) ratio of 50:15:5:1. However, like most things, there are exceptions to every rule. For example, in one project, we have abstracted most of the functionality into re-usable, private npm packages because each implementation was so similar. Each npm package is thoroughly unit tested, so in that project we only have acceptance tests and the acceptance tests cover all of the possible paths. We have found that even though the acceptance tests take a little longer to run than unit tests, it's faster in the end to write and maintain these tests for this particular project.
 
 ## Testing Scripts
 
