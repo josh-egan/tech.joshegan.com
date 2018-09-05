@@ -1,4 +1,10 @@
 {
+  "ubuntu-setup": {
+    "title": "Ubuntu Machine Setup",
+    "description": "A collection of installation scripts and configuration files for setting up a new ubuntu dev machine.",
+    "postDate": "2018-09-04",
+    "isDraft": true
+  },
   "conducting-an-interview": {
     "title": "Conducting an Interview",
     "description": "A collection of my thoughts and research on conducting interviews for software engineers.",
