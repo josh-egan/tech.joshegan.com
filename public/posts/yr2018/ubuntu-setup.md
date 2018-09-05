@@ -68,6 +68,17 @@ curl https://gist.githubusercontent.com/josh-egan/0aacba3090e7d523f68859fefccb6d
 
 ## Configuration
 
+### GNOME Tweaks
+
+- Keyboard & Mouse
+    - Overview Shortcut - set to Right Super
+- Startup Applications
+    - Google Chrome
+    - KeepassXC
+    - Visual Studio Code
+    - Terminator
+    - Slack
+
 ### Git
 
 ```bash
