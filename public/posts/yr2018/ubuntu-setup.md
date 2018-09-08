@@ -60,6 +60,11 @@ sudo snap install slack --classic
 # nvm
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 curl https://gist.githubusercontent.com/josh-egan/0aacba3090e7d523f68859fefccb6d51/raw/718072e42edf4b6fbd231447b48468837324bdc1/bash_automatically_run_nvm.sh >> ~/.bashrc
+
+# replace ubuntu screensaver with xscreensaver
+sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
+sudo apt-get remove gnome-screensaver
+sudo ln -sf /usr/bin/xscreensaver-command /usr/bin/gnome-screensaver-command
 ```
 
 ### From Ubuntu Software Center
@@ -78,6 +83,10 @@ curl https://gist.githubusercontent.com/josh-egan/0aacba3090e7d523f68859fefccb6d
     - Visual Studio Code
     - Terminator
     - Slack
+
+### Screensaver
+
+https://askubuntu.com/questions/292995/configure-screensaver-in-ubuntu
 
 ### Git
 
