@@ -61,6 +61,15 @@ sudo snap install slack --classic
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 curl https://gist.githubusercontent.com/josh-egan/0aacba3090e7d523f68859fefccb6d51/raw/718072e42edf4b6fbd231447b48468837324bdc1/bash_automatically_run_nvm.sh >> ~/.bashrc
 
+# bash-git-prompt
+cd ~
+git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1
+echo "" >> ~/.bashrc
+echo "# bash-git-prompt configuration" >> ~/.bashrc
+echo "GIT_PROMPT_ONLY_IN_REPO=1" >> ~/.bashrc
+echo "GIT_PROMPT_THEME=Solarized_Ubuntu" >> ~/.bashrc
+echo "source ~/.bash-git-prompt/gitprompt.sh" >> ~/.bashrc
+
 # replace ubuntu screensaver with xscreensaver
 sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
 sudo apt-get remove gnome-screensaver
