@@ -118,6 +118,14 @@ sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install pgadmin4
+
+# Ruby
+sudo apt update
+sudo apt install build-essential
+sudo apt install ruby ruby-dev
+
+# Travis CLI
+sudo gem install travis
 ```
 
 **Zoom**
