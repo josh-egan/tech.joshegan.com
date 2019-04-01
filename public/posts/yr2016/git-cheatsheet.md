@@ -1,15 +1,17 @@
 #
+
 ## Git Resources
 
-Resource                                                  | Notes
---------------------------------------------------------- | --------------------------------------------------------------------
-http://git-scm.com/                                       | Official git website
-http://git-scm.com/docs                                   | Git docs
-https://help.github.com/articles/generating-ssh-keys/     | Generate an SSH Key
-https://help.github.com/articles/changing-a-remote-s-url/ | Setup the Remote URL
-https://github.com/pluralsight/git-switch                 | GitSwitch is a windows utility for managing multiple git credentials
-https://github.com/pluralsight/pairing-station            | PairingStation is a mac app for managing multiple git credentials
-https://www.codeschool.com/learn/git                      | CodeSchool courses on using git
+Resource                                                                   | Notes
+---------------------------------------------------------------------------|---------------------------------------------------------------------
+http://git-scm.com/                                                        | Official git website
+http://git-scm.com/docs                                                    | Git docs
+https://help.github.com/articles/generating-ssh-keys/                      | Generate an SSH Key
+https://help.github.com/en/articles/managing-commit-signature-verification | Setup commit signature verification
+https://help.github.com/articles/changing-a-remote-s-url/                  | Setup the Remote URL
+https://github.com/pluralsight/git-switch                                  | GitSwitch is a windows utility for managing multiple git credentials
+https://github.com/pluralsight/pairing-station                             | PairingStation is a mac app for managing multiple git credentials
+https://www.codeschool.com/learn/git                                       | CodeSchool courses on using git
 
 ## Awesome Git Aliases
 
@@ -57,7 +59,8 @@ git config --global color.ui true
 
 ## Git Recipes
 
-### Now what exactly depends on this package...?
+### What depends on this package
+
 When you find yourself wondering how a downstream dependency fits into the big picture, this command can show you the dependency tree:
 
 ```bash
@@ -65,6 +68,7 @@ npm ls | grep -C 20 "react"
 ```
 
 ### Hatin' on merge commits
+
 Don't you just hate those nasty merge commits cluttering up your commit history? This recipe is just the trick for merging a local branch into master without generating a merge commit.
 
 DO NOT use this recipe if your branch has been pushed to a remote!
@@ -76,18 +80,20 @@ git checkout master
 git merge my-branch
 ```
 
-### I take it back!
+### I take it back
+
 Sometimes, don't you wish you could just go back in time and do things a little bit differently? Well, with git you can.
 
 Here are the git commands to use for the three different scenarios you'll face when wanting to undo what's been done.
 
 Command        | Use Case
--------------- | -----------------------------------------------------------------------------
+---------------|------------------------------------------------------------------------------
 `git checkout` | Use `checkout` if your changes have not been checked in.
 `git reset`    | Use `reset` if your changes have been checked in, but not pushed to a remote.
 `git revert`   | Use `revert` if your changes have been checked in and pushed to a remote.
 
 ### Catching up
+
 If you've forked a repo and then find yourself wanting to sync up with the latest changes in the original repo, this is the recipe for you.
 
 This recipe makes the assumption that your repo follows the standard conventions of naming the original remote the `upstream` remote.
@@ -99,7 +105,9 @@ git merge upstream/master
 ```
 
 ## Special Git Files
+
 ### .gitignore
+
 The `.gitignore` file should be at the root of the project directory. This file tells git to ignore, or not track, the specified files.
 
 See the docs for a complete reference: [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore)
@@ -126,6 +134,7 @@ log
 ```
 
 ### .gitattributes
+
 The `.gitattributes` file should be at the root of the project directory. This file tells git how to handle certain files or file types.
 
 See the docs for a complete reference: [https://git-scm.com/docs/gitattributes](https://git-scm.com/docs/gitattributes)
@@ -140,20 +149,22 @@ The `-text` option tells git not to normalize the line endings on that file. In 
 ```
 
 ## Git Commands
+
 When working with `git` commands, options can be combined. For example, `git commit -am` is the same as `git commit -a -m` and `git status -su` is the same as `git status -s -u`.
 
 ### git help
 
 Command              | Description
--------------------- | ---------------------------------------------------------------------------------------------------------
+---------------------|----------------------------------------------------------------------------------------------------------
 `git help`           | Prints basic usage for the `help` command to the console.
 `git help <command>` | Launches detailed help docs for the specified command. For example, `git help commit` or `git help clone`
 
 ### git config
+
 For a large, but not necessarily complete, list of configuration variables, see [http://git-scm.com/docs/git-config#_variables](http://git-scm.com/docs/git-config#_variables)
 
 Command                                                      | Description
------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git config`                                                 | Prints basic usage for the `config` command to the console.
 `git config --global`                                        | Use the global user configuration
 `git config --system`                                        | Use the system configuration, i.e. the config for all users on the computer
@@ -171,22 +182,23 @@ Command                                                      | Description
 ### git init
 
 Command    | Description
----------- | -----------------------------------
+-----------|------------------------------------
 `git init` | Create a new, empty git repository.
 
 ### git status
 
 Command         | Description
---------------- | ---------------------------------------------------------------
+----------------|----------------------------------------------------------------
 `git status`    | Shows changes since the last commit
 `git status -s` | Displays a short, condensed status message. Alias for `--short`
 `git status -u` | Show untracked files. Alias for `--untracked`
 
 ### git diff
+
 When viewing the diff in a bash console, hit `q` to exit.
 
 Command                          | Description
--------------------------------- | --------------------------------------------------------------------------------
+---------------------------------|---------------------------------------------------------------------------------
 `git diff`                       | Show the differences in tracked, unstaged files.
 `git diff --staged`              | Show the differences in staged files. Synonymous with `git diff --cached`
 `git diff <file>`                | Show the differences in the specified file.
@@ -197,7 +209,7 @@ Command                          | Description
 ### git checkout
 
 Command                                     | Description
-------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git checkout <path>`                       | Replace the contents of the file in the working directory with the contents from the last commit. This effectively blows away the changes in the specified path since the last commit.
 `git checkout .`                            | Checkout all files from the last commit. This effectively blows away all changes to tracked files since your last commit.
 `git checkout <branch-name>`                | Switch to the specified branch. If you have changes in your working directory when you switch branches, those changes will be preserved.
@@ -208,7 +220,7 @@ Command                                     | Description
 ### git add
 
 Command           | Description
------------------ | ---------------------------------------------------------------------------------------------------
+------------------|----------------------------------------------------------------------------------------------------
 `git add <path>`  | Add the specified file or folder to the staging area.
 `git add -A`      | Add all modified and untracked files to the staging area. Alias for `--all`
 `git add .`       | Functionally equivalent to `--all`
@@ -218,7 +230,7 @@ Command           | Description
 ### git commit
 
 Command                   | Description
-------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------
 `git commit`              | Commit the staged files. This will open up an editor to type in your commit message.
 `git commit -m "message"` | Commit staged files with the specified commit message.
 `git commit -a`           | Add all modified tracked files and then commit. This DOES NOT add untracked files. Alias for `--all`
@@ -228,7 +240,7 @@ Command                   | Description
 ### git tag
 
 Command                              | Description
------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git tag`                            | Lists all of the tags. Same as running `git tag -l`
 `git tag <tag-name>`                 | Create a new lightweight tag. This does not create a tag object. Lightweight tags are only recommended for temporary or private use for identifying commits.
 `git tag -a <tag-name>`              | Create an unsigned, annotated tag object. For example, `git tag -a v1.2.7`. `-a` is an alias for `--annotate`.
@@ -242,14 +254,15 @@ Command                              | Description
 ### git blame
 
 Command                 | Description
------------------------ | --------------------------------------------------------------------
+------------------------|---------------------------------------------------------------------
 `git blame <file-name>` | See which commit is responsible for each line in the specified file.
 
 ### git reset
+
 Never use the `reset` command to undo changes that have been pushed! If changes have been pushed, use `git revert` to undo commits.
 
 Command                     | Description
---------------------------- | -------------------------------------------------------------------------------------------
+----------------------------|--------------------------------------------------------------------------------------------
 `git reset`                 | Unstage all files that have been staged using the `add` command.
 `git reset <path>`          | Unstage the specified file or folder.
 `git reset --soft HEAD^`    | Undo, or reset, the last commit and put the changes from that commit into the staging area.
@@ -258,17 +271,19 @@ Command                     | Description
 `git reset --soft <commit>` | Undo changes back to the specified commit.
 
 ### git revert
+
 Use git revert if the commit to undo has been pushed to a remote.
 
 Command               | Description
---------------------- | -----------------------------------------------------------------------------------
+----------------------|------------------------------------------------------------------------------------
 `git revert <commit>` | Create an inverse commit of the specified commit. For example, `git revert f32ab34`
 
 ### git log
+
 When viewing the diff in a bash console, hit `q` to exit.
 
 Command                   | Description
-------------------------- | -------------------------------------------------------------------------------------------
+--------------------------|--------------------------------------------------------------------------------------------
 `git log`                 | Show the commit log.
 `git log --graph`         | Show a text based representation of the branches.
 `git log --all`           | Show all of the commits as if they had been specified on the command line.
@@ -276,12 +291,14 @@ Command                   | Description
 `git log --abbrev-commit` | Show only the first 7 characters of the commit instead of the full 40 byte hex object name.
 
 ### git remote
+
 There are a couple of remote naming conventions:
+
 1. `origin` is the name of the remote that is the primary owner of the repository.
 2. `upstream` is the name of the original remote from which a repository was forked.
 
 Command                                         | Description
------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------
+------------------------------------------------|-----------------------------------------------------------------------------------------------------------------
 `git remote`                                    | List the remotes for the repository.
 `git remote -v`                                 | Give detailed information about remotes. Alias for `--verbose`.
 `git remote add <remote-name> <remote-address>` | Add a remote to an existing repo.
@@ -292,7 +309,7 @@ Command                                         | Description
 ### git push
 
 Command                                                 | Description
-------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git push <remote-name> <branch-name>`                  | Push the specified branch to the specified to the specified remote.
 `git push -u <remote-name> <branch-name>`               | Push using the `-u` flag to remember the remote to use for the branch. After pushing with the `-u` flag, you can just use `git push`. `-u` is an alias for `--set-upstream`.
 `git push`                                              | After pushing with the `-u` flag, this will push the branch to the upstream remote.
@@ -305,27 +322,27 @@ Command                                                 | Description
 ### git fetch
 
 Command     | Description
------------ | -----------------------------------------------------------------------------------------------
+------------|------------------------------------------------------------------------------------------------
 `git fetch` | Retrieves and pulls down information from the remote, but does not merge it into the local copy
 
 ### git pull
 
 Command             | Description
-------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git pull`          | Pull down changes from the remote. If needed a merge commit will be created. Shorthand for `git fetch` followed by `git merge FETCH_HEAD`
 `git pull --rebase` | Pull down changes from the remote, and if needed, rebase local commits instead of creating a merge commit. Shorthand for `git fetch` followed by `git rebase FETCH_HEAD`
 
 ### git clone
 
 Command                              | Description
------------------------------------- | ------------------------------------------------------------------
+-------------------------------------|-------------------------------------------------------------------
 `git clone <src-repo>`               | Clone a repository. Provide a url to clone a remotely hosted repo.
 `git clone <src-repo> <target-repo>` | Clone a repo into the specified repo.
 
 ### git branch
 
 Command                                 | Description
---------------------------------------- | -----------------------------------------------------------------------------------------------------------------------
+----------------------------------------|------------------------------------------------------------------------------------------------------------------------
 `git branch`                            | List the active branch and all local branches.
 `git branch -r`                         | List remote branches.
 `git branch -a`                         | List all branches, both local and remote.
@@ -338,18 +355,19 @@ Command                                 | Description
 ### git merge
 
 Command                                                  | Description
--------------------------------------------------------- | --------------------------------------------------------------
+---------------------------------------------------------|---------------------------------------------------------------
 `git merge <branch-name>`                                | Merge the specified branch into the current branch.
 `git merge <remote-name>/<remote-branch> <local-branch>` | Merge a remote branch into a local branch.
 `git merge --no-ff <branch-name>`                        | Do a recursive merge. Tell git not to do a fast-forward merge.
 
 ### git rebase
+
 Rebase moves commits made on the current branch since the branch was made into a temporary area, does a fast-forward merge of new commits in the original branch into the current branch, and then replays the current branch commits (which creates new commit hashes in the process). This effectively makes it as if you had started the branch at the current state of the original branch. This is a useful technique for not creating automatic 'merge commits' that would get created using `git merge`.
 
 DO NOT rebase a branch that has been pushed to a remote.
 
 Command                       | Description
------------------------------ | -----------------------------------------------------------------------------------------
+------------------------------|------------------------------------------------------------------------------------------
 `git rebase <branch-name>`    | Replay the commits in the current branch on top of any commits from the specified branch.
 `git rebase --continue`       | Continue a rebase after fixing a conflict.
 `git rebase -i <branch-name>` | Do an interactive rebase.
@@ -357,7 +375,7 @@ Command                       | Description
 ### git rm
 
 Command                          | Description
--------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git rm <file-pattern>`          | Remove the file(s) that match the specified file pattern from the working tree and from the index.
 `git rm -n <file-pattern>`       | Do a dry run to see which files will be removed.
 `git rm -r <directory>`          | Recursively remove all of the files in the specified directory.
@@ -366,19 +384,20 @@ Command                          | Description
 ### git clean
 
 Command        | Description
--------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 `git clean`    | Remove untracked files from the working directory
 `git clean -n` | Do a dry run - preview files that are going to be deleted
 `git clean -f` | Force delete. Remove files without requiring a confirmation
 `git clean -x` | Remove files that are ignored in your .gitignore file. For more examples, see http://stackoverflow.com/questions/61212/how-do-i-remove-local-untracked-files-from-my-current-git-branch
 
 ### git stash
+
 Stashing files is particularly useful for when you have changes in the working directory that you aren't ready to commit, but you need to pull or push or something. Stashing the files will preserve your changes in the stashed copy.
 
 Most common usage is `git stash`, [do some stuff], `git stash pop`
 
 Command                              | Description
------------------------------------- | ------------------------------------------------------------
+-------------------------------------|-------------------------------------------------------------
 `git stash`                          | Same as `git stash save`
 `git stash save`                     | Save all changed files and stash them away.
 `git stash save --keep-index`        | Causes the staging area not to get stashed.
