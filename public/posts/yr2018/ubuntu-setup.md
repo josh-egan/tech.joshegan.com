@@ -42,6 +42,7 @@ sudo apt-get update
 sudo apt-get install vim
 sudo apt-get install git-core
 sudo apt-get install terminator
+sudo apt-get install xclip
 sudo apt install gnome-tweak-tool
 sudo apt install keepassxc
 sudo apt install google-chrome-stable
@@ -69,6 +70,15 @@ echo "# bash-git-prompt configuration" >> ~/.bashrc
 echo "GIT_PROMPT_ONLY_IN_REPO=1" >> ~/.bashrc
 echo "GIT_PROMPT_THEME=Solarized_Ubuntu" >> ~/.bashrc
 echo "source ~/.bash-git-prompt/gitprompt.sh" >> ~/.bashrc
+
+# copy / past aliases
+echo "" >> ~/.bashrc
+echo "# xclip configuration" >> ~/.bashrc
+echo "# setclip usage: head file.txt | setclip" >> ~/.bashrc
+echo "alias setclip=\"xclip -selection c\"" >> ~/.bashrc
+echo "# getclip usage: getclip | grep" >> ~/.bashrc
+echo "alias getclip=\"xclip -selection c -o\"" >> ~/.bashrc
+
 
 # replace ubuntu screensaver with xscreensaver
 sudo apt-get install xscreensaver xscreensaver-data-extra xscreensaver-gl-extra
@@ -121,7 +131,7 @@ sudo apt-get install pgadmin4
 
 # Ruby
 sudo apt update
-sudo apt install build-essential
+sudo apt install build-essential patch zlib1g-dev liblzma-dev
 sudo apt install ruby ruby-dev
 
 # Travis CLI
