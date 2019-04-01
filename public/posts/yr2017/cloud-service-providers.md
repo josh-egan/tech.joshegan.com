@@ -16,11 +16,11 @@
   - https://www.ibm.com/cloud/virtual-servers
   - https://www.ibm.com/cloud/container-service
   - https://www.ibm.com/cloud/bare-metal-servers
-- OpenShift 
+- OpenShift
   - https://www.openshift.com/pricing/index.html
-- Joyent Triton 
+- Joyent Triton
   - https://www.joyent.com/
-  - 12/6/2017 - Costs half the price of AWS. 
+  - 12/6/2017 - Costs half the price of AWS.
 - Digital Ocean
   - https://www.digitalocean.com/pricing/
   - Smallest plan is $5/mo. for a "droplet"
@@ -41,14 +41,16 @@
   - $5/month for cheapest
 - CloudSigma
   - https://www.cloudsigma.com/pricing/
-  - Cheapest is $7/month, but includes double or more storage, RAM, and data transfer compared to other small plans.  
+  - Cheapest is $7/month, but includes double or more storage, RAM, and data transfer compared to other small plans.
+- SkySilk
+  - https://www.skysilk.com/cloud/pricing/
+  - $1/month for cheapest
 
 https://webhostingegg.com/vps/top-alternative-amazon-aws-ec2/
-  
+
 ## Platform as a Service (PAAS)
 
 - Heroku -- https://www.heroku.com/pricing
-- 
 
 ## Cloud Storage
 
