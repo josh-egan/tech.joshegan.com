@@ -1,5 +1,3 @@
-#
-
 ## Git Resources
 
 | Resource                                                                   | Notes                                                                |
@@ -28,9 +26,11 @@ git config --global alias.ch "checkout"
 git config --global alias.chb "\! git checkout -b \"\$1\" -t origin/\"\$1\""
 git config --global alias.d "diff"
 git config --global alias.ds "diff --staged"
-git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global alias.lga "log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -n 50"
 git config --global alias.p "pull"
 git config --global alias.pr "pull --rebase"
+git config --global alias.ps "push"
+git config --global alias.psf "push --force-with-lease"
 git config --global alias.restore "\!git checkout \$(git rev-list -n 1 HEAD -- \"\$1\")^ -- \"\$1\""
 git config --global alias.rpo "remote prune origin"
 git config --global alias.s "status -bsu"
@@ -50,12 +50,24 @@ done
 ## Global Configuration Preferences
 
 ```bash
+# Global gitignore
 echo ".idea/" >> $HOME/.gitignore
 git config --global core.excludesfile $HOME/.gitignore
-git config --global core.autocrlf true
-git config --global core.safecrlf false
-git config --global push.default simple
+
+# Enable colors
 git config --global color.ui true
+
+# Set autocrlf to true if working on a windows machine.
+git config --global core.autocrlf true
+
+# Make commands like git branch, git log, etc. output directly to the terminal rather than opening vim
+git config --global core.pager ''
+
+# Automaticaly push branches to origin matching the name.
+git config --global push.default current
+
+# Automaticaly pull branches from origin matching the name.
+git config --global pull.default current
 ```
 
 ## Git Recipes
@@ -162,7 +174,7 @@ When working with `git` commands, options can be combined. For example, `git com
 
 ### git config
 
-For a large, but not necessarily complete, list of configuration variables, see [http://git-scm.com/docs/git-config#_variables](http://git-scm.com/docs/git-config#_variables)
+For a large, but not necessarily complete, list of configuration variables, see [http://git-scm.com/docs/git-config#\_variables](http://git-scm.com/docs/git-config#_variables)
 
 | Command                                                      | Description                                                                                                                                                     |
 | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -319,6 +331,7 @@ There are a couple of remote naming conventions:
 | `git push <remote-name> <local-branch>:<remote-branch>` | If the local branch has a different name than the remote branch, use this command to push the local branch to the remote.                                                    |
 | `git push --tags`                                       | Push tags. For some strange reason, tags are not pushed unless this flag is used and using this flag does not push code.                                                     |
 | `git push --recurse-submodules=on-demand`               | If using submodules, use this flag to push your current branch and also all of the submodules.                                                                               |
+| `git push --force-with-lease`                           | Use after rebasing. Safer than `git push --force` because `--force-with-lease` will not overwrite the branch if new commits are found on the remote.                         |
 
 ### git fetch
 
