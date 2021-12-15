@@ -2,34 +2,32 @@
   "name": "tech.joshegan.com",
   "version": "1.0.0",
   "description": "Josh Egan's Tech Blog",
-  "main": "gulpfile.js",
-  "engines": {
-    "node": "0.12.10"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "browser-sync": "^2.7.3",
-    "gulp": "^3.9.1",
-    "gulp-gh-pages": "^0.5.1",
-    "gulp-watch": "^4.2.4",
-    "harp": "git://github.com/josh-egan/harp.git",
-    "moment": "^2.18.1"
-  },
-  "scripts": {
-    "watch": "node_modules/.bin/gulp watch",
-    "deploy": "node_modules/.bin/gulp deploy"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/josh-egan/tech.joshegan.com.git"
-  },
-  "keywords": [
-    "blog"
-  ],
+  "keywords": [ "blog" ],
   "author": "Joshua Egan",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/josh-egan/tech.joshegan.com/issues"
   },
-  "homepage": "http://tech.joshegan.com"
+  "homepage": "http://tech.joshegan.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josh-egan/tech.joshegan.com.git"
+  },
+  "engines": {
+    "node": "0.12.10"
+  },
+  "main": "gulpfile.js",
+  "scripts": {
+    "watch": "node_modules/.bin/gulp watch",
+    "deploy": "node_modules/.bin/gulp deploy"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "2.7.3",
+    "gulp": "3.9.1",
+    "gulp-gh-pages": "0.5.1",
+    "gulp-watch": "4.2.4",
+    "harp": "git://github.com/josh-egan/harp.git",
+    "moment": "2.18.1"
+  }  
 }
