@@ -18,6 +18,15 @@
     "coverImageUrl": "images/remote_front_cover.png",
     "purchaseUrl": "https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr="
   },
+  "out-of-the-tar-pit": {
+    "isBookReview": true,
+    "title": "Out of the Tar Pit",
+    "description": "Thoughts and notes from my reading of Out of the Tar Pit",
+    "postDate": "2021-08-23",    
+    "bookTitle": "Out of the Tar Pit",
+    "purchaseUrl": "http://curtclifton.net/papers/MoseleyMarks06a.pdf",
+    "isDraft": true
+  },
   "sample": {
     "isBookReview": "true - OPTIONAL",
     "title": "Post Title - REQUIRED",
