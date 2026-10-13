@@ -1,7 +1,4 @@
 mixin postHeader(post)
-  - var dateInputFormat = 'YYYY-MM-DD'
-  - var dateDisplayFormat = 'MMM Do, YYYY'
-
   h1
     a(href=post.url)= post.title
 
@@ -12,16 +9,16 @@ mixin postHeader(post)
     p
       | Posted on&nbsp;
       time(datetime= post.postDate)
-        strong= moment(post.postDate, dateInputFormat).format(dateDisplayFormat)
+        strong= formatDate(post.postDate)
       | , updated on&nbsp;
       time.orange(datetime= post.updateDate)
-        strong= moment(post.updateDate, dateInputFormat).format(dateDisplayFormat)
+        strong= formatDate(post.updateDate)
 
   else
     p
       | Posted on&nbsp;
       time.orange(datetime= post.postDate)
-        strong= moment(post.postDate, dateInputFormat).format(dateDisplayFormat)
+        strong= formatDate(post.postDate)
 
   if post.isBookReview || post.finishedReadingDate
     p
@@ -31,4 +28,4 @@ mixin postHeader(post)
       if post.finishedReadingDate
         | Finished reading on&nbsp;
         time(datetime= post.finishedReadingDate)
-          strong= moment(post.finishedReadingDate, dateInputFormat).format(dateDisplayFormat)
+          strong= formatDate(post.finishedReadingDate)

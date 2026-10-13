@@ -1,7 +1,8 @@
-@import "colors";
-@import "sizes";
-@import "mixins";
-@import "fonts";
+@use "sass:color";
+@use "colors" as *;
+@use "sizes" as *;
+@use "mixins" as *;
+@use "fonts" as *;
 
 // border-box makes it so that the width will equal the computed width.
 html {
@@ -67,7 +68,7 @@ a {
 }
 
 a:hover {
-  color: darken($blue, 10%);
+  color: color.adjust($blue, $lightness: -10%);
 }
 
 code {
@@ -107,7 +108,7 @@ pre {
 
   code {
     padding: 25px 35px;
-    color: darken($light, 12%);
+    color: color.adjust($light, $lightness: -12%);
     line-height: 22px;
     background: $dark;
     border: none;

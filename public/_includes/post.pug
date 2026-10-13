@@ -1,9 +1,5 @@
-extends ../_shared/html-page
-include ../_shared/post-header
-
-- var postUrl = site_url
-- for (var i = 0; i < current.path.length; i++)
-- postUrl += "/" + current.path[i]
+extends html-page
+include post-header
 
 block head
   - var computedTitle = title + " - " + site_title
@@ -30,14 +26,14 @@ block body
         a(href=(purchaseUrl || '#') target="_blank" title=bookTitle)
           img.post-book-cover(src=coverImageUrl alt=bookTitle)
 
-      != yield
+      != content
 
     div.nav.tablet-sidebar(id="sidebar")
       a(href="/")
         i.fa.fa-home.fa-2x
         span= site_title
       div.author-profile
-        img.author-img(alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250")
+        img.author-img(alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&s=250")
         div.info
           h5 Josh Egan
           ul.social
@@ -49,7 +45,7 @@ block body
       div.separator
 
       div.author-profile
-        img.author-img(alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&amp;s=250")
+        img.author-img(alt="author image" src="//www.gravatar.com/avatar/bd6b4be626e8bc1b30161f22a0de08ae?d=404&s=250")
         div.info
           h5 Josh Egan
           ul.social

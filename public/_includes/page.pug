@@ -1,4 +1,4 @@
-extends ./_shared/html-page
+extends html-page
 
 block head
   meta(property='og:title', content= site_title)
@@ -15,4 +15,4 @@ block body
         span= site_title
 
     section.posts
-      != yield
+      != content

@@ -1,0 +1,20 @@
+---
+layout: page.pug
+---
+include _includes/post-header
+
+- var SNIPPET_LENGTH = 300;
+
+each item in collections.posts
+  - var post = item.data
+  - var tagsRemoved = item.content.replace(/(<([^>]+)>)/ig, '')
+  - var whitespaceCorrected = tagsRemoved.replace(/\s/g, ' ').replace(/[\s]{2,}/g, ' ')
+  - var snippet = whitespaceCorrected.substring(0, SNIPPET_LENGTH)
+
+  article.post
+    +postHeader({url: post.postUrl, title: post.title, postDate: post.postDate, updateDate: post.updateDate, isDraft: post.isDraft, isBookReview: post.isBookReview, finishedReadingDate: post.finishedReadingDate })
+
+    p
+      != snippet
+      |  . . .
+      a(href=post.postUrl)= " Read More"
