@@ -3,7 +3,9 @@
   "version": "2.0.0",
   "private": true,
   "description": "Josh Egan's Tech Blog",
-  "keywords": [ "blog" ],
+  "keywords": [
+    "blog"
+  ],
   "author": "Joshua Egan",
   "license": "MIT",
   "bugs": {
@@ -21,13 +23,11 @@
   "scripts": {
     "start": "eleventy --serve",
     "watch": "eleventy --serve",
-    "build": "eleventy",
-    "deploy": "npm run build && gh-pages --dist dist --message \"Update $(date -u +%Y-%m-%dT%H:%M:%SZ)\""
+    "build": "eleventy"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
     "@11ty/eleventy-plugin-pug": "1.0.0",
-    "gh-pages": "6.3.0",
     "highlight.js": "8.9.1",
     "markdown-it": "15.0.2",
     "sass": "1.105.1"
