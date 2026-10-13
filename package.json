@@ -28,7 +28,7 @@
   "devDependencies": {
     "@11ty/eleventy": "3.1.6",
     "@11ty/eleventy-plugin-pug": "1.0.0",
-    "highlight.js": "8.9.1",
+    "highlight.js": "10.4.1",
     "markdown-it": "15.0.2",
     "sass": "1.105.1"
   }
