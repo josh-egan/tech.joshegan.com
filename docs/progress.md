@@ -1,37 +1,39 @@
 # Progress
 
-## Eleventy migration (in progress)
+## Eleventy migration (done)
 
-Replaced the broken Harp/Gulp toolchain (Node 0.12) with Eleventy 3 on Node 24, on the `eleventy-migration` branch. The output was checked against the live site: page structure, code highlighting colors, and screenshots at desktop and mobile widths all match, apart from the intended changes below.
-
-Intended changes from the live site:
+Replaced the broken Harp/Gulp toolchain (Node 0.12) with Eleventy 3 on Node 24. Merged to master and deployed on 2026-10-13. The output was checked against the previous live site: page structure, code highlighting colors, and screenshots at desktop and mobile widths all matched, apart from these intended changes:
 - Footer shows a copyright line ("© 2015–<build year> Josh Egan") instead of the "built with" and "hosted on" attributions.
 - Post titles link to the post, and post pages have a correct `og:url`. Both were empty in the Harp build.
 - The author gravatar loads at 250px instead of a stretched 80px image.
 
-Remaining steps:
-- [ ] Review the site locally with `npm start`.
-- [ ] Commit and merge `eleventy-migration` into master.
-- [ ] Deploy with `npm run deploy`. The first deploy also publishes post edits made since April 2018, plus the draft pages `ubuntu-setup` and `out-of-the-tar-pit` (reachable by URL, not listed on the home page).
+## Follow-ups
 
-## After the migration
+### Remove Disqus (done, not yet deployed)
+Removed the Disqus embed from `public/_includes/post.pug` and the `#disqus_thread` style.
+- [ ] Delete the site in the Disqus admin. Export the comments first if they're worth keeping.
 
-### Explore updating highlight.js
-highlight.js is pinned to 8.9.1 (deprecated), the version the original site was built with. Version 11 emits different token classes, which changed the color of about 16% of characters in code blocks, most in `cassandra-cheatsheet` and `aws-nodejs-server`. Options to explore:
-- Upgrade to v11 and use its `hybrid.css` (replaces `public/styles/third-party/highlight-js/hybrid.css`), accepting some color changes.
-- Upgrade to v11 and adjust the theme so the colors stay close to the current ones.
-- Add explicit languages to unlabeled code fences, since much of the difference comes from auto-detection picking different languages.
+### Move the site to HTTPS (done, not yet deployed)
+`site_url`, the `package.json` homepage, the README, and the one self-link in a post now use `https://`.
+- [ ] Turn on "Enforce HTTPS" in the repository's Settings → Pages so `http://` redirects. As of 2026-10-13, `http://tech.joshegan.com` still serves pages without redirecting.
 
-Compare per-character colors and screenshots against the live site before deciding.
+### Switch deploys to GitHub Actions (workflow added, cutover pending)
+`.github/workflows/deploy.yml` builds on every push to master (or a manual run) and deploys with `actions/deploy-pages`. Actions is free for public repositories. Cutover steps, in order:
+- [ ] In Settings → Pages, change "Source" from "Deploy from a branch" to "GitHub Actions". The custom domain setting stays.
+- [ ] Push to master (or run the workflow manually) and confirm the site updates.
+- [ ] Remove the `deploy` script and the `gh-pages` dependency from `package.json`, and update the README's deploy section.
+- [ ] Delete the `gh-pages` branch.
 
-### Switch deploys to GitHub Actions
-GitHub Actions is free for public repositories, which this one is. Add a workflow that builds on push to master and deploys with `actions/deploy-pages`, then change the Pages source from the `gh-pages` branch to GitHub Actions. Make sure `CNAME` still ends up in the output. Afterwards, remove the `deploy` script and the `gh-pages` dependency, and delete the `gh-pages` branch.
+### Explore updating highlight.js (explored, decision needed)
+highlight.js is pinned to 8.9.1 (deprecated), the version the original site was built with. Findings from comparing v11.12.0 against the live site, character by character:
+- With v11 and its `hybrid.css`, about 16% of characters in code blocks change color. The posts that change most are `cassandra-cheatsheet` (35%) and `aws-nodejs-server` (28%).
+- The biggest differences come from v11 tokenizing code differently:
+  - v8 tinted whole SQL statements teal. v11 leaves them light gray with colored keywords.
+  - JSON keys change from orange to blue or gray.
+  - Some strings become green, and function names become yellow.
+- A custom v11 theme can't close the gap. Even giving each v11 token class its closest old color leaves about 13% of characters different.
+- Adding languages to unlabeled code fences barely matters: only one block on the site has no language.
 
-### Remove Disqus
-Comments are no longer wanted. Remove the `#disqus_thread` block and the `embed.js` script from `public/_includes/post.pug`, the `#disqus_thread` rule from `public/styles/main.scss`, and then the site from the Disqus admin. Export existing comments first if they're worth keeping.
-
-### Move the site to HTTPS
-- Change `site_url` in `eleventy.config.js` to `https://tech.joshegan.com`. It's used for home page links and `og:url`.
-- Update the `homepage` in `package.json` and the links in `README.md`.
-- Turn on "Enforce HTTPS" in the repository's Pages settings so `http://` redirects.
-- Remove Disqus first. Disqus can treat `http` and `https` URLs as different threads, so switching while it's active could hide existing comments.
+Options:
+1. Stay on 8.9.1. Highlighting only runs at build time on your own posts, so the age of the package is low-risk. The cost is older grammars for new posts.
+2. Upgrade to v11 with its `hybrid.css` and accept the color changes. Same theme family, more accurate tokenizing.
