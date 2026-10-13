@@ -15,13 +15,12 @@ function formatDate(value) {
   return `${MONTHS[month - 1]} ${day}${suffix}, ${year}`;
 }
 
-// highlight.js is pinned to 8.x, the version the site was originally built with. Newer versions emit
-// different token classes, which changes the colors of roughly 1 in 6 characters in code blocks.
+// Code blocks without a known language are left unhighlighted; returning '' lets markdown-it escape them.
 function highlight(code, lang) {
   if (lang && hljs.getLanguage(lang))
-    return hljs.highlight(lang, code).value;
+    return hljs.highlight(code, { language: lang }).value;
 
-  return hljs.highlightAuto(code).value;
+  return '';
 }
 
 export default function (eleventyConfig) {
@@ -73,7 +72,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('public/scripts');
   eleventyConfig.addPassthroughCopy('public/styles/third-party/google-fonts');
   eleventyConfig.addPassthroughCopy('public/styles/third-party/font-awesome-4.3.0');
-  eleventyConfig.addPassthroughCopy('public/styles/third-party/highlight-js');
+  eleventyConfig.addPassthroughCopy({ 'node_modules/highlight.js/styles/hybrid.css': 'styles/third-party/highlight-js/hybrid.css' });
   eleventyConfig.addPassthroughCopy('public/posts/**/*.{jpg,png,svg}');
 
   eleventyConfig.setServerOptions({ port: DEV_PORT });

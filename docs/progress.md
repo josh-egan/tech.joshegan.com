@@ -20,18 +20,5 @@ Removed the Disqus embed from `public/_includes/post.pug` and the `#disqus_threa
 ### Switch deploys to GitHub Actions (done)
 `.github/workflows/deploy.yml` builds on every push to master (or a manual run) and deploys with `actions/deploy-pages`. Actions is free for public repositories. The Pages source is set to "GitHub Actions", the first Actions deploy succeeded on 2026-10-13, and the `gh-pages` deploy script, dependency, and branch were removed.
 
-### Explore updating highlight.js (explored, decision needed)
-Dependabot opened [PR #1](https://github.com/josh-egan/tech.joshegan.com/pull/1) to bump highlight.js to 10.4.1. Don't merge it until this is decided: merging deploys immediately and changes code colors.
-
-highlight.js is pinned to 8.9.1 (deprecated), the version the original site was built with. Findings from comparing v11.12.0 against the live site, character by character:
-- With v11 and its `hybrid.css`, about 16% of characters in code blocks change color. The posts that change most are `cassandra-cheatsheet` (35%) and `aws-nodejs-server` (28%).
-- The biggest differences come from v11 tokenizing code differently:
-  - v8 tinted whole SQL statements teal. v11 leaves them light gray with colored keywords.
-  - JSON keys change from orange to blue or gray.
-  - Some strings become green, and function names become yellow.
-- A custom v11 theme can't close the gap. Even giving each v11 token class its closest old color leaves about 13% of characters different.
-- Adding languages to unlabeled code fences barely matters: only one block on the site has no language.
-
-Options:
-1. Stay on 8.9.1. Highlighting only runs at build time on your own posts, so the age of the package is low-risk. The cost is older grammars for new posts.
-2. Upgrade to v11 with its `hybrid.css` and accept the color changes. Same theme family, more accurate tokenizing.
+### Update highlight.js (done)
+Upgraded from 8.9.1 to 11.12.0 on 2026-10-13, using v11's `hybrid.css` (copied from the package at build time). About 15% of code characters changed color, mostly SQL, JSON, and HTML blocks; reviewed locally and accepted. Code blocks without a language are no longer auto-detected and render as plain text, so give new code fences a language.
