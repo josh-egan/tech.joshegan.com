@@ -115,7 +115,7 @@ git config --global user.name "Josh Egan"
 git config --global user.email "josh.egan@example.com"
 ```
 
-Get aliases from http://tech.joshegan.com/posts/yr2016/git-cheatsheet
+Get aliases from https://tech.joshegan.com/posts/yr2016/git-cheatsheet
 
 ## Lambda School Specific
 

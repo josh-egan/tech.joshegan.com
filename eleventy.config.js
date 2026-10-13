@@ -31,7 +31,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addGlobalData('site_title', 'tech.joshegan.com');
   eleventyConfig.addGlobalData('description', 'tech.joshegan.com is a blog about tech adventures.');
-  eleventyConfig.addGlobalData('site_url', isProduction ? 'http://tech.joshegan.com' : `http://localhost:${DEV_PORT}`);
+  eleventyConfig.addGlobalData('site_url', isProduction ? 'https://tech.joshegan.com' : `http://localhost:${DEV_PORT}`);
   eleventyConfig.addGlobalData('site_environment', isProduction ? 'PRODUCTION' : 'DEV');
   eleventyConfig.addGlobalData('formatDate', () => formatDate);
   eleventyConfig.addGlobalData('build_year', () => new Date().getFullYear());
