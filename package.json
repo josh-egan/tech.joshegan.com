@@ -29,7 +29,7 @@
     "@11ty/eleventy": "3.1.6",
     "@11ty/eleventy-plugin-pug": "1.0.0",
     "highlight.js": "11.12.0",
-    "markdown-it": "15.0.2",
+    "markdown-it": "15.0.3",
     "sass": "1.105.1"
   }
 }
