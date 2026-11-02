@@ -1,0 +1,4 @@
+# angel-dev session identity: who is running, written at SessionStart and read by the
+# commit-attribution gates. It describes THIS machine's session -- committing it makes one
+# developer's host, model and role a false statement about every other clone.
+session.json

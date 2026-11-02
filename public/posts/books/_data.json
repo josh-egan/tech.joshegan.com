@@ -22,9 +22,19 @@
     "isBookReview": true,
     "title": "Out of the Tar Pit",
     "description": "Thoughts and notes from my reading of Out of the Tar Pit",
-    "postDate": "2021-08-23",    
+    "postDate": "2021-08-23",
     "bookTitle": "Out of the Tar Pit",
     "purchaseUrl": "http://curtclifton.net/papers/MoseleyMarks06a.pdf",
+    "isDraft": true
+  },
+  "the-science-of-scaling": {
+    "isBookReview": true,
+    "title": "The Science of Scaling",
+    "description": "Thoughts and notes from my reading of The Science of Scaling",
+    "postDate": "2026-11-02",
+    "bookTitle": "The Science of Scaling",
+    "coverImageUrl": "images/the_science_of_scaling_front_cover.webp",
+    "purchaseUrl": "https://www.amazon.com/dp/1401967639",
     "isDraft": true
   },
   "sample": {
