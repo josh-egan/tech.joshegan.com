@@ -73,7 +73,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('public/styles/third-party/google-fonts');
   eleventyConfig.addPassthroughCopy('public/styles/third-party/font-awesome-4.3.0');
   eleventyConfig.addPassthroughCopy({ 'node_modules/highlight.js/styles/hybrid.css': 'styles/third-party/highlight-js/hybrid.css' });
-  eleventyConfig.addPassthroughCopy('public/posts/**/*.{jpg,png,svg}');
+  eleventyConfig.addPassthroughCopy('public/posts/**/*.{jpg,jpeg,png,gif,svg,webp}');
 
   eleventyConfig.setServerOptions({ port: DEV_PORT });
 
