@@ -16,6 +16,7 @@ I believe the target audience for this book is successful business owners. The b
 
 - Most of this book is focused on anecdotes. Although the title is The "Science" of Scaling, there's not much science in this book. This book relies heavily on anectdotes.
 - Likely due to the extensive use of anectdotes, I feel like the core message of this book could be effectively communicated in a two-page essay. The rest of the book is just stories that are used to inspire the reader. I expect this was a conscious decision by the author; the persona of the typical business owner the author is targeting may be more influenced by emotion than I am as an engineer.
+- An interesting line from one of the anecdotes: "a CEO must be an elite story-teller". I have observed this to be true as well. A CEO must be able to convince people with money to invest in the company, and that requires being an elite story-teller.
 
 
 ## Change Your Frame
@@ -108,6 +109,6 @@ Instead, hire "Super Whos," high performers who are motivated by impossible goal
 
 ## Some Skepticism
 
-- Many of the claims, like 10-100x growth in three years, come from the authors' own clients. Survivorship bias is a real concern here. We hear about the companies that grew 50x, not the ones that set a 50x goal and went under.
+- Many of the claims, like 10-100x growth in three years, come from the authors' own clients. Survivorship bias is a real concern here. We hear about the companies that grew 50x, not the ones that set a 50x goal and went under. It is a very real risk that focusing on the wrong thing and aggressively pursuing the wrong result would lead to failure. It's also a real risk that even when focused on the "right" thing, that external factors such as the market changing out from underneath you can inhibit reaching your goal. I suppose in any scenario you could change your goal, but it's challenging to have the required focus, determination, and overcome-every-obstacle mentality to pursue an impossible goal while also being open to changing your goal under circumstances where either the goal is misguided or the goal is no longer possible. An honest, grounded, periodic check-in would probably be the most useful way to steer the ship while navigating a company to determine if you're going in the right direction and/or if there are any unforseen obstacles that require a change in course, whether a detour or in extreme cases a new destination.
 - There aren't many hard numbers to back up the bigger claims.
 - Some ideas, like "a business is either scaling aggressively or dying slowly," feel more like motivational framing than science, despite the title. This seems most likely to be true for technology companies, and less likely to be true for a manual labor company, such as a plumbing company.
