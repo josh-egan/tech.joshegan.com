@@ -9,7 +9,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
@@ -52,7 +54,9 @@ h6 {
   margin: 10px 0;
 }
 
-p, ul, ol {
+p,
+ul,
+ol {
   line-height: 1.4em;
 }
 
@@ -142,7 +146,7 @@ footer {
   margin: 0 auto;
 }
 
-.post-wrapper{
+.post-wrapper {
   width: 90%;
   max-width: $post-wrapper-max-width;
   margin: 0 auto;
@@ -160,6 +164,11 @@ footer {
 .post-book-cover {
   border: 1px solid $black;
   max-width: 300px;
+  max-height: 340px;
+
+  &.no-border {
+    border: none;
+  }
 }
 
 .nav {
@@ -289,6 +298,7 @@ footer {
     .author {
       float: left;
     }
+
     .info {
       margin: 0 0 0 15px;
       float: left;

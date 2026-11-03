@@ -23,6 +23,7 @@ const metadataFields = [
   'finishedReadingDate',
   'bookTitle',
   'coverImageUrl',
+  'hideCoverBorder',
   'purchaseUrl'
 ];
 

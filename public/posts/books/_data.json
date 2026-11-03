@@ -6,6 +6,7 @@
     "postDate": "2017-08-09",
     "bookTitle": "Domain-Driven Design: Tackling Complexity in the Heart of Software",
     "coverImageUrl": "images/domain-driven_design_front_cover.jpg",
+    "hideCoverBorder": true,
     "purchaseUrl": "https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215"
   },
   "remote-office-not-required": {
@@ -34,7 +35,8 @@
     "postDate": "2026-11-02",
     "finishedReadingDate": "2026-11-02",
     "bookTitle": "The Science of Scaling: Grow Your Business Bigger and Faster Than You Think Possible",
-    "coverImageUrl": "images/the_science_of_scaling_front_cover.webp",
+    "coverImageUrl": "images/the_science_of_scaling_front_cover_cropped.webp",
+    "hideCoverBorder": true,
     "purchaseUrl": "https://www.amazon.com/dp/1401967639"
   },
   "sample": {
@@ -46,6 +48,7 @@
     "finishedReadingDate": "2014-11-22 - OPTIONAL",
     "bookTitle": "Remote: Office Not Required - OPTIONAL",
     "coverImageUrl": "images/remote_front_cover.png - OPTIONAL",
+    "hideCoverBorder": "true - OPTIONAL",
     "purchaseUrl": "https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=&sr= - OPTIONAL",
     "isDraft": "true - OPTIONAL"
   }
